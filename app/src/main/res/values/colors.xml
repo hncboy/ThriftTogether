@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4693EC</color>
+    <color name="colorPrimaryDark">#378CEF</color>
+    <color name="colorAccent">#378CEF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="split_line">#e2e2e2</color>
+    <color name="tabbar_color">#aaaaaa</color>
+</resources>

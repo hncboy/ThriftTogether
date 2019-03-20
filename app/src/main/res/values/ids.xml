@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tabbar_home" type="id" />
+    <item name="tabbar_discover" type="id" />
+    <item name="tabbar_mall" type="id" />
+    <item name="tabbar_mine" type="id" />
+    <item name="bottomNavigationView" type="id" />
+    <item name="title" type="id" />
+    <item name="main" type="id" />
+</resources>
