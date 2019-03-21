@@ -1,5 +1,7 @@
 package com.pro516.thrifttogether.ui.home;
 
+import android.view.View;
+
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 
@@ -9,12 +11,12 @@ import com.pro516.thrifttogether.ui.base.BaseFragment;
 public class HomeFragment extends BaseFragment {
 
     @Override
-    protected void init() {
-
+    protected int getLayoutRes() {
+        return R.layout.fragment_home;
     }
 
     @Override
-    protected int getLayoutRes() {
-        return R.layout.fragment_home;
+    protected void init(View view) {
+
     }
 }

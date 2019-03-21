@@ -1,6 +1,6 @@
 package com.pro516.thrifttogether.ui.discover;
 
-import android.os.Bundle;
+import android.view.View;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
@@ -11,19 +11,12 @@ import com.pro516.thrifttogether.ui.base.BaseFragment;
 public class DiscoverFragment extends BaseFragment {
 
     @Override
-    protected void init() {
-
-    }
-
-    @Override
     protected int getLayoutRes() {
         return R.layout.fragment_discover;
     }
 
-    public static DiscoverFragment newInstance() {
-        DiscoverFragment fragment = new DiscoverFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    protected void init(View view) {
+
     }
 }

@@ -1,5 +1,7 @@
 package com.pro516.thrifttogether.ui.mine;
 
+import android.view.View;
+
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 
@@ -9,7 +11,7 @@ import com.pro516.thrifttogether.ui.base.BaseFragment;
 public class MineFragment extends BaseFragment {
 
     @Override
-    protected void init() {
+    protected void init(View view) {
 
     }
 
