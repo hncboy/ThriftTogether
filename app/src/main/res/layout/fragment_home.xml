@@ -10,6 +10,7 @@
         android:background="@color/colorPrimary">
 
         <LinearLayout
+            android:id="@id/city_picker_layout"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="5dp"
@@ -25,9 +26,9 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxWidth="50dp"
                 android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:maxWidth="40dp"
                 android:maxLines="1"
                 android:text="宁波"
                 android:textColor="@color/white" />
@@ -35,6 +36,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@id/home_search_layout"
             android:layout_width="220dp"
             android:layout_height="32dp"
             android:layout_marginStart="25dp"
@@ -52,8 +54,8 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
                 android:maxWidth="150dp"
                 android:maxLines="1"
                 android:text="城隍庙海底捞"
@@ -62,6 +64,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatImageButton
+            android:id="@id/scan_qrcode_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

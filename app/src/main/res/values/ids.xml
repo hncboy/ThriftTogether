@@ -7,4 +7,8 @@
     <item name="bottomNavigationView" type="id" />
     <item name="title" type="id" />
     <item name="main" type="id" />
+    <item name="scan_qrcode_btn" type="id" />
+    <item name="city_picker_layout" type="id" />
+    <item name="home_search_layout" type="id" />
+
 </resources>

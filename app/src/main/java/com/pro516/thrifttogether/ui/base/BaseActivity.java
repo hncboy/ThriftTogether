@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 /**
  * Created by hncboy on 2018/6/8.
  */
@@ -31,31 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void init();
 
     /**
-     * 带有参数的跳转页面
-     * @param activity
-     * @param key
-     * @param extra
-     */
-    protected void startActivity(Class activity, String key, String extra) {
-        Intent intent = new Intent(this, activity);
-        intent.putExtra(key, extra);
-        startActivity(intent);
-    }
-
-    protected void startActivity(Class activity) {
-        startActivity(activity, true);
-    }
-
-    protected void startActivity(Class activity, boolean finish) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
-        if (finish) {
-            finish();
-        }
-    }
-
-    /**
      * 延迟Runnable对象的调用
+     *
      * @param runnable
      * @param millis
      */
@@ -88,6 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 弹出toast
+     *
      * @param msg
      */
     protected void toast(String msg) {
@@ -102,5 +82,32 @@ public abstract class BaseActivity extends AppCompatActivity {
             mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         }
         mInputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
+    protected void startActivity(Class activity, String key, String extra) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtra(key, extra);
+        startActivity(intent);
+    }
+
+    protected void startActivity(Class activity, String key, String extra, boolean finish) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtra(key, extra);
+        startActivity(intent);
+        if (finish) {
+            Objects.requireNonNull(this).finish();
+        }
+    }
+
+    protected void startActivity(Class activity) {
+        startActivity(activity, false);
+    }
+
+    protected void startActivity(Class activity, boolean finish) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+        if (finish) {
+            Objects.requireNonNull(this).finish();
+        }
     }
 }

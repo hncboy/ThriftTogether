@@ -32,4 +32,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.7' // 扫描二维码
+    implementation 'com.yanzhenjie.permission:support:2.0.1' // 申请权限
+    implementation 'com.zaaach:citypicker:2.0.3' // 城市选择器
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 }
