@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -74,5 +75,16 @@
             android:src="@drawable/ic_icon_scan_qrcode" />
 
     </android.support.v7.widget.Toolbar>
+
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@id/xbanner"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        app:AutoPlayTime="3000"
+        app:isClipChildrenMode="true"
+        app:pageChangeDuration="1000"
+        app:clipChildrenLeftRightMargin="20dp"
+        app:pointNormal="@drawable/shape_banner_noraml"
+        app:pointSelect="@drawable/shape_banner_selected" />
 
 </LinearLayout>
