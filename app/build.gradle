@@ -42,4 +42,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.github.mcxtzhang:ZLayoutManager:V1.1.0' // 卡片滑动
     implementation 'com.iarcuschin:simpleratingbar:0.1.5' // 星星
+    implementation 'com.github.dongjunkun:DropDownMenu:1.0.4' // 多条件筛选菜单
 }

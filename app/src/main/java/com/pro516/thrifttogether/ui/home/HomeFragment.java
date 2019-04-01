@@ -39,7 +39,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void init(View view) {
-        AppCompatImageButton mScanQrcodeBtn = view.findViewById(R.id.scan_qrcode_btn);
+        AppCompatImageButton mScanQrcodeImgBtn = view.findViewById(R.id.scan_qrcode_btn);
         LinearLayout cityPickerLLayout = view.findViewById(R.id.city_picker_layout);
         LinearLayout homeSearchLLayout = view.findViewById(R.id.home_search_layout);
         AppCompatImageButton enterLookingAroundImgBtn = view.findViewById(R.id.enter_looking_around_img_btn);
@@ -50,7 +50,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         LinearLayout homeBeautyLayout = view.findViewById(R.id.home_beauty_layout);
         LinearLayout homeEntertainmentLayout = view.findViewById(R.id.home_entertainment_layout);
         LinearLayout homeTicketLayout = view.findViewById(R.id.home_ticket_layout);
-        mScanQrcodeBtn.setOnClickListener(this);
+        mScanQrcodeImgBtn.setOnClickListener(this);
         cityPickerLLayout.setOnClickListener(this);
         homeSearchLLayout.setOnClickListener(this);
         enterLookingAroundImgBtn.setOnClickListener(this);

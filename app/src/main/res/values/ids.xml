@@ -20,7 +20,9 @@
     <item name="common_toolbar_function_left" type="id" />
     <item name="common_toolbar_function_right" type="id" />
     <item name="recycler_view" type="id" />
+    <item name="text_view" type="id" />
     <item name="view_pager" type="id" />
+    <item name="dropDownMenu" type="id" />
     <item name="home_food_layout" type="id" />
     <item name="home_movie_layout" type="id" />
     <item name="home_hotel_layout" type="id" />
@@ -28,5 +30,20 @@
     <item name="home_ktv_layout" type="id" />
     <item name="home_entertainment_layout" type="id" />
     <item name="home_ticket_layout" type="id" />
+    <item name="home_food_buffet_layout" type="id" />
+    <item name="home_food_cake_layout" type="id" />
+    <item name="home_food_hot_pot_layout" type="id" />
+    <item name="home_food_snack_layout" type="id" />
+    <item name="home_food_western_layout" type="id" />
+    <item name="home_beauty_hairdressing" type="id" />
+    <item name="home_beauty_nail_art" type="id" />
+    <item name="home_beauty_beauty_body" type="id" />
+    <item name="home_beauty_medical_cosmetology" type="id" />
+    <item name="home_beauty_slimming" type="id" />
+    <item name="home_entertainment_fitness" type="id" />
+    <item name="home_entertainment_chamber" type="id" />
+    <item name="home_entertainment_table_games" type="id" />
+    <item name="home_entertainment_internet_cafe_and_gaming" type="id" />
+    <item name="home_entertainment_bombardment_tube" type="id" />
 
 </resources>

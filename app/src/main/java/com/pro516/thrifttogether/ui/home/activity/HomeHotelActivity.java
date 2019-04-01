@@ -11,7 +11,7 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public int getLayoutRes() {
-        return R.layout.activity_home_movie;
+        return R.layout.activity_home_hotel;
     }
 
     @Override
@@ -20,12 +20,15 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initToolbar() {
-        AppCompatImageButton backBtn = findViewById(R.id.common_toolbar_function_left);
-        backBtn.setVisibility(View.VISIBLE);
-        backBtn.setImageDrawable(getDrawable(R.drawable.ic_arrow_back_24dp));
+        AppCompatImageButton backImgBtn = findViewById(R.id.common_toolbar_function_left);
+        backImgBtn.setVisibility(View.VISIBLE);
+        backImgBtn.setImageDrawable(getDrawable(R.drawable.ic_arrow_back_24dp));
+        AppCompatImageButton searchImgBtn = findViewById(R.id.common_toolbar_function_right);
+        searchImgBtn.setVisibility(View.VISIBLE);
+        searchImgBtn.setImageDrawable(getDrawable(R.drawable.ic_search_white_24dp));
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.hotel));
-        backBtn.setOnClickListener(this);
+        backImgBtn.setOnClickListener(this);
     }
 
     @Override
@@ -33,6 +36,9 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.common_toolbar_function_left:
                 finish();
+                break;
+            case R.id.common_toolbar_function_right:
+                toast("搜索");
                 break;
             default:
                 break;

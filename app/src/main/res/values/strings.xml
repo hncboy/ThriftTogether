@@ -4,6 +4,7 @@
     <string name="discover">发现</string>
     <string name="mall">商城</string>
     <string name="mine">我的</string>
+    <!-- 首页 -->
     <string name="points_mall">积分商城</string>
     <string name="food">美食</string>
     <string name="movie">电影</string>
@@ -17,4 +18,22 @@
     <string name="order_tag">订</string>
     <string name="group_tag">团</string>
     <string name="bug_tag">买</string>
+    <!-- 首页-美食 -->
+    <string name="buffet">自助餐</string>
+    <string name="cake_and_milk_tea">蛋糕奶茶</string>
+    <string name="hot_pot">火锅</string>
+    <string name="snack_and_fast_food">小吃快餐</string>
+    <string name="western_food">西餐</string>
+    <!-- 首页-丽人 -->
+    <string name="hairdressing">美发</string>
+    <string name="nail_art">美甲美瞳</string>
+    <string name="beauty_body">美容美体</string>
+    <string name="medical_cosmetology">医学美容</string>
+    <string name="slimming">纤体瘦身</string>
+    <!-- 首页-休闲娱乐 -->
+    <string name="fitness">健身/运动</string>
+    <string name="chamber">密室</string>
+    <string name="table_games">桌面游戏</string>
+    <string name="internet_cafe_and_gaming">网吧/电竞</string>
+    <string name="bombardment_tube">轰趴管</string>
 </resources>
