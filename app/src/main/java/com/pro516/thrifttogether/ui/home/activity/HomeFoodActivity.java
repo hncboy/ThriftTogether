@@ -53,7 +53,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         searchImgBtn.setImageDrawable(getDrawable(R.drawable.ic_search_white_24dp));
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.food));
-        backImgBtn.setOnClickListener(this);
+        searchImgBtn.setOnClickListener(this);
     }
 
     private void initDropMenu() {
@@ -123,7 +123,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.common_toolbar_function_right:
-                toast("搜索");
+                startActivity(HomeSearchActivity.class);
                 break;
             default:
                 break;

@@ -52,6 +52,7 @@ public class HomeEntertainmentActivity extends BaseActivity implements View.OnCl
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.entertainment));
         backImgBtn.setOnClickListener(this);
+        searchImgBtn.setOnClickListener(this);
     }
 
     private void initDropMenu() {
@@ -109,7 +110,7 @@ public class HomeEntertainmentActivity extends BaseActivity implements View.OnCl
                 finish();
                 break;
             case R.id.common_toolbar_function_right:
-                toast("搜索");
+                startActivity(HomeSearchActivity.class);
                 break;
             default:
                 break;

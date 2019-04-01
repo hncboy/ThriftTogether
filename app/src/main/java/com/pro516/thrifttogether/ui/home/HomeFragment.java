@@ -17,6 +17,7 @@ import com.pro516.thrifttogether.ui.home.activity.HomeHotelActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeKtvActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeLookingAroundActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeMovieActivity;
+import com.pro516.thrifttogether.ui.home.activity.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeTicketActivity;
 import com.stx.xhb.xbanner.XBanner;
 import com.yanzhenjie.permission.AndPermission;
@@ -104,6 +105,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(HomeCityPickerActivity.class);
                 break;
             case R.id.home_search_layout: // 搜索
+                startActivity(HomeSearchActivity.class);
                 break;
             case R.id.enter_looking_around_img_btn: // 随便看看
                 startActivity(HomeLookingAroundActivity.class);

@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by hncboy on 2019-04-01.
+ * 随便看看卡片的适配器
  */
 public class HomeLookingAroundAdapter extends RecyclerView.Adapter<HomeLookingAroundAdapter.CardItemViewHolder>  {
 

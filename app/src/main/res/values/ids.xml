@@ -45,5 +45,8 @@
     <item name="home_entertainment_table_games" type="id" />
     <item name="home_entertainment_internet_cafe_and_gaming" type="id" />
     <item name="home_entertainment_bombardment_tube" type="id" />
+    <item name="hot_search_ry" type="id" />
+    <item name="history_search_ry" type="id" />
+    <item name="search_recording_tv" type="id" />
 
 </resources>

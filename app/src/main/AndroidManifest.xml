@@ -24,7 +24,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.home.activity.HomeFoodActivity"></activity>
+        <activity android:name=".ui.home.activity.HomeSearchActivity"></activity>
+        <activity android:name=".ui.home.activity.HomeFoodActivity" />
         <activity android:name=".ui.home.activity.HomeTicketActivity" />
         <activity android:name=".ui.home.activity.HomeEntertainmentActivity" />
         <activity android:name=".ui.home.activity.HomeKtvActivity" />

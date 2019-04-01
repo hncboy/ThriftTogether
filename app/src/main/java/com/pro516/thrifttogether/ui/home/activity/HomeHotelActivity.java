@@ -29,6 +29,7 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.hotel));
         backImgBtn.setOnClickListener(this);
+        searchImgBtn.setOnClickListener(this);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.common_toolbar_function_right:
-                toast("搜索");
+                startActivity(HomeSearchActivity.class);
                 break;
             default:
                 break;
