@@ -11,5 +11,14 @@
     <item name="city_picker_layout" type="id" />
     <item name="home_search_layout" type="id" />
     <item name="xbanner" type="id" />
+    <item name="category_xbanner" type="id" />
+    <item name="category_img" type="id" />
+    <item name="category_tv" type="id" />
+    <item name="recommended_today_tv" type="id" />
+    <item name="just_looking_around" type="id" />
+    <item name="enter_looking_around_tv" type="id" />
+    <item name="common_toolbar_function_left" type="id" />
+    <item name="common_toolbar_function_right" type="id" />
+    <item name="recycler_view" type="id" />
 
 </resources>

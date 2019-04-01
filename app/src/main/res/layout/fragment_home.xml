@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -22,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:src="@drawable/ic_icon_position" />
+                android:src="@drawable/ic_home_position" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
             android:layout_width="220dp"
             android:layout_height="32dp"
             android:layout_marginStart="25dp"
-            android:background="@drawable/shape_search_bar"
+            android:background="@drawable/shape_home_search_bar"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -50,7 +51,7 @@
                 android:layout_height="16dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/ic_search_bar_search" />
+                android:src="@drawable/ic_home_search_bar_search" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -72,19 +73,129 @@
             android:layout_marginEnd="12dp"
             android:background="@color/colorPrimary"
             android:gravity="center_vertical"
-            android:src="@drawable/ic_icon_scan_qrcode" />
+            android:src="@drawable/ic_home_scan_qrcode" />
 
     </android.support.v7.widget.Toolbar>
 
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@id/xbanner"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        app:AutoPlayTime="3000"
-        app:isClipChildrenMode="true"
-        app:pageChangeDuration="1000"
-        app:clipChildrenLeftRightMargin="20dp"
-        app:pointNormal="@drawable/shape_banner_noraml"
-        app:pointSelect="@drawable/shape_banner_selected" />
+        android:layout_height="1000dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@id/xbanner"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                app:AutoPlayTime="3000"
+                app:clipChildrenLeftRightMargin="20dp"
+                app:isClipChildrenMode="true"
+                app:pageChangeDuration="1000"
+                app:pointNormal="@drawable/shape_home_banner_noraml"
+                app:pointSelect="@drawable/shape_home_banner_selected" />
+
+            <!-- 今日推荐 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical">
+
+                <!-- 今日推荐标题 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@id/recommended_today_tv"
+                        android:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@id/recommended_today_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/recommended_today"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@id/recommended_today_tv"
+                        android:background="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- 随便看看 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical">
+
+                <!-- 随便看看标题 -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@id/just_looking_around"
+                        android:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@id/just_looking_around"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/just_looking_around"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@id/just_looking_around"
+                        android:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@id/enter_looking_around_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        android:text=">"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

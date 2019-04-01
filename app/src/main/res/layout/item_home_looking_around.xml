@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="450dp"
+    android:background="@drawable/shape_home_looking_around"
+    android:elevation="5dp"
+    android:orientation="vertical">
+
+    <!-- 图片 -->
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/test_looking_around" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <!-- 标题 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="海鲜航母王"
+            android:textColor="@color/text_dark_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- 预定标签 -->
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/shape_home_order_tag"
+            android:text="@string/order_tag"
+            android:textColor="@color/order_tag_color" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <!-- 星级评分 -->
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srb_borderColor="@color/star_yellow"
+            app:srb_fillColor="@color/star_yellow"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="5"
+            app:srb_rating="3"
+            app:srb_starBorderWidth="2"
+            app:srb_starCornerRadius="3"
+            app:srb_starSize="15dp"
+            app:srb_stepSize="0.5" />
+
+        <!-- 价格 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:text="￥50/人"
+            android:textColor="@color/text_grey_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- 位置 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="海曙区 | 海鲜"
+        android:textColor="@color/text_grey_color"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <!-- 团购标签 -->
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_home_group_tag"
+            android:text="@string/group_tag"
+            android:textColor="@color/white" />
+
+        <!-- 团购信息 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:maxWidth="300dp"
+            android:maxLines="1"
+            android:text="1-2人餐49元，2-3人餐69元，3-4人餐108元"
+            android:textColor="@color/text_grey_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <!-- 买单标签 -->
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_home_bug_tag"
+            android:text="@string/bug_tag"
+            android:textColor="@color/white" />
+
+        <!-- 买单信息 -->
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:maxWidth="300dp"
+            android:maxLines="1"
+            android:text="88代100元"
+            android:textColor="@color/text_grey_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_favorite_black_24dp" />
+
+</LinearLayout>

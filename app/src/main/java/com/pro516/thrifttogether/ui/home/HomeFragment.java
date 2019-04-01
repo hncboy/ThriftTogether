@@ -4,12 +4,14 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.home.BannerInfo;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.home.activity.HomeCityPickerActivity;
+import com.pro516.thrifttogether.ui.home.activity.HomeLookingAroundActivity;
 import com.stx.xhb.xbanner.XBanner;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -34,9 +36,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         AppCompatImageButton mScanQrcodeBtn = view.findViewById(R.id.scan_qrcode_btn);
         LinearLayout cityPickerLLayout = view.findViewById(R.id.city_picker_layout);
         LinearLayout homeSearchLLayout = view.findViewById(R.id.home_search_layout);
+        TextView enterLookingAroundTv = view.findViewById(R.id.enter_looking_around_tv);
         mScanQrcodeBtn.setOnClickListener(this);
         cityPickerLLayout.setOnClickListener(this);
         homeSearchLLayout.setOnClickListener(this);
+        enterLookingAroundTv.setOnClickListener(this);
         initBanner(view);
     }
 
@@ -49,22 +53,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             bannerInfos.add(bannerInfo);
         }
 
-        XBanner mXBanner = view.findViewById(R.id.xbanner);
-        mXBanner.setBannerData(bannerInfos);
-        mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
-            @Override
-            public void onItemClick(XBanner banner, Object model, View view, int position) {
-                toast("点击了第" + position + "图片");
-            }
-        });
-        //加载广告图片
-        mXBanner.loadImage(new XBanner.XBannerAdapter() {
-            @Override
-            public void loadBanner(XBanner banner, Object model, View view, int position) {
-                Glide.with(getContext()).load(((BannerInfo)
-                        model).getXBannerUrl()).into((ImageView) view);
-            }
-        });
+        XBanner xBanner = view.findViewById(R.id.xbanner);
+        xBanner.setBannerData(bannerInfos);
+        xBanner.setOnItemClickListener((banner, model, imageView, position) ->
+                toast("点击了第" + position + "图片")
+        );
+
+        xBanner.loadImage((banner, model, imageView, position) ->
+                Glide.with(imageView.getContext()).load(((BannerInfo)
+                        model).getXBannerUrl()).into((ImageView) imageView)
+        );
     }
 
     @Override
@@ -86,6 +84,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(HomeCityPickerActivity.class);
                 break;
             case R.id.home_search_layout:
+                break;
+            case R.id.enter_looking_around_tv:
+                startActivity(HomeLookingAroundActivity.class);
                 break;
             default:
                 break;

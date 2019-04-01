@@ -1,5 +1,6 @@
 package com.pro516.thrifttogether.ui.discover;
 
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.pro516.thrifttogether.R;

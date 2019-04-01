@@ -3,7 +3,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <!-- 允许使用transitions -->
         <item name="android:windowContentTransitions">true</item>
     </style>
 
