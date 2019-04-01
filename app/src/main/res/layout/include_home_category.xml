@@ -12,9 +12,11 @@
 
         <!-- 美食 -->
         <LinearLayout
+            android:id="@id/home_food_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatImageButton
@@ -22,6 +24,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_food" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -36,6 +39,7 @@
 
         <!-- 电影 -->
         <LinearLayout
+            android:id="@id/home_movie_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -46,6 +50,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_movie" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -60,6 +65,7 @@
 
         <!-- 酒店 -->
         <LinearLayout
+            android:id="@id/home_hotel_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -70,6 +76,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_hotel" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -84,6 +91,7 @@
 
         <!-- 丽人 -->
         <LinearLayout
+            android:id="@id/home_beauty_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -94,6 +102,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_beauty" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -108,6 +117,7 @@
 
         <!-- KTV -->
         <LinearLayout
+            android:id="@id/home_ktv_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -118,6 +128,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_ktv" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -132,6 +143,7 @@
 
         <!-- 休闲娱乐 -->
         <LinearLayout
+            android:id="@id/home_entertainment_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -142,6 +154,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_entertainment" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -154,8 +167,9 @@
 
         </LinearLayout>
 
-        <!-- 火车票/机票 -->
+        <!-- 车票 -->
         <LinearLayout
+            android:id="@id/home_ticket_layout"
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -166,6 +180,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:clickable="false"
                 android:src="@drawable/ic_home_category_ticket" />
 
             <android.support.v7.widget.AppCompatTextView

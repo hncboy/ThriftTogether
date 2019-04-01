@@ -21,5 +21,12 @@
     <item name="common_toolbar_function_right" type="id" />
     <item name="recycler_view" type="id" />
     <item name="view_pager" type="id" />
+    <item name="home_food_layout" type="id" />
+    <item name="home_movie_layout" type="id" />
+    <item name="home_hotel_layout" type="id" />
+    <item name="home_beauty_layout" type="id" />
+    <item name="home_ktv_layout" type="id" />
+    <item name="home_entertainment_layout" type="id" />
+    <item name="home_ticket_layout" type="id" />
 
 </resources>
