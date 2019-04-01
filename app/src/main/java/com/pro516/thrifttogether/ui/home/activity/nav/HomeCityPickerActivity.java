@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.home.activity;
+package com.pro516.thrifttogether.ui.home.activity.nav;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
@@ -11,6 +11,9 @@ import com.zaaach.citypicker.model.LocatedCity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 城市选择
+ */
 public class HomeCityPickerActivity extends BaseActivity {
 
     @Override

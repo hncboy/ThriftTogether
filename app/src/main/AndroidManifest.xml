@@ -24,14 +24,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.home.activity.HomeSearchActivity"></activity>
+        <activity android:name=".ui.home.activity.movie.ChooseMovieSeatTableActivity"></activity>
+        <activity android:name=".ui.home.activity.nav.HomeSearchActivity" />
         <activity android:name=".ui.home.activity.HomeFoodActivity" />
         <activity android:name=".ui.home.activity.HomeTicketActivity" />
         <activity android:name=".ui.home.activity.HomeEntertainmentActivity" />
         <activity android:name=".ui.home.activity.HomeKtvActivity" />
         <activity android:name=".ui.home.activity.HomeBeautyActivity" />
         <activity android:name=".ui.home.activity.HomeHotelActivity" />
-        <activity android:name=".ui.home.activity.HomeMovieActivity" />
+        <activity android:name=".ui.home.activity.movie.HomeMovieActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.home.activity.HomeCityPickerActivity"
+            android:name=".ui.home.activity.nav.HomeCityPickerActivity"
             android:theme="@style/DefaultCityPickerTheme" />
         <activity android:name=".ui.home.activity.HomeLookingAroundActivity" />
     </application>

@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.home.activity;
+package com.pro516.thrifttogether.ui.home.activity.movie;
 
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -7,6 +7,9 @@ import android.view.View;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 
+/**
+ * 电影
+ */
 public class HomeMovieActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
@@ -39,7 +42,7 @@ public class HomeMovieActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.common_toolbar_function_right:
-                startActivity(HomeSearchActivity.class);
+                startActivity(ChooseMovieSeatTableActivity.class);
                 break;
             default:
                 break;

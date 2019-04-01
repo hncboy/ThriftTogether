@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
+import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.adapter.GirdDropDownAdapter;
 import com.yyydjk.library.DropDownMenu;
 
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 美食
+ */
 public class HomeFoodActivity extends BaseActivity implements View.OnClickListener {
 
     private DropDownMenu mDropDownMenu;
@@ -53,6 +57,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         searchImgBtn.setImageDrawable(getDrawable(R.drawable.ic_search_white_24dp));
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.food));
+        backImgBtn.setOnClickListener(this);
         searchImgBtn.setOnClickListener(this);
     }
 

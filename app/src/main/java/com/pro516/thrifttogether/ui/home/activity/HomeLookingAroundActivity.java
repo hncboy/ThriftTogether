@@ -17,6 +17,9 @@ import com.pro516.thrifttogether.ui.home.adapter.HomeLookingAroundAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 随便看看
+ */
 public class HomeLookingAroundActivity extends BaseActivity implements View.OnClickListener {
 
     @Override

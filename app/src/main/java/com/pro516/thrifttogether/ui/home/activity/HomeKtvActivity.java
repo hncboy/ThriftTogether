@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
+import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.adapter.GirdDropDownAdapter;
 import com.yyydjk.library.DropDownMenu;
 
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * KTV
+ */
 public class HomeKtvActivity extends BaseActivity implements View.OnClickListener {
 
     private DropDownMenu mDropDownMenu;

@@ -48,5 +48,6 @@
     <item name="hot_search_ry" type="id" />
     <item name="history_search_ry" type="id" />
     <item name="search_recording_tv" type="id" />
+    <item name="movie_seat_view" type="id" />
 
 </resources>

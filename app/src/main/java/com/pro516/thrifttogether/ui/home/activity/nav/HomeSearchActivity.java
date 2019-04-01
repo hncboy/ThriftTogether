@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.home.activity;
+package com.pro516.thrifttogether.ui.home.activity.nav;
 
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -14,6 +14,9 @@ import com.pro516.thrifttogether.ui.home.adapter.HomeHotSearchAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 搜索
+ */
 public class HomeSearchActivity extends BaseActivity implements View.OnClickListener {
 
     private List<String> mHotSearchData;
