@@ -4,7 +4,6 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.pro516.thrifttogether.R;
@@ -36,11 +35,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         AppCompatImageButton mScanQrcodeBtn = view.findViewById(R.id.scan_qrcode_btn);
         LinearLayout cityPickerLLayout = view.findViewById(R.id.city_picker_layout);
         LinearLayout homeSearchLLayout = view.findViewById(R.id.home_search_layout);
-        TextView enterLookingAroundTv = view.findViewById(R.id.enter_looking_around_tv);
+        AppCompatImageButton enterLookingAroundImgBtn = view.findViewById(R.id.enter_looking_around_img_btn);
         mScanQrcodeBtn.setOnClickListener(this);
         cityPickerLLayout.setOnClickListener(this);
         homeSearchLLayout.setOnClickListener(this);
-        enterLookingAroundTv.setOnClickListener(this);
+        enterLookingAroundImgBtn.setOnClickListener(this);
         initBanner(view);
     }
 
@@ -85,7 +84,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.home_search_layout:
                 break;
-            case R.id.enter_looking_around_tv:
+            case R.id.enter_looking_around_img_btn:
                 startActivity(HomeLookingAroundActivity.class);
                 break;
             default:

@@ -97,11 +97,19 @@
                 app:pointNormal="@drawable/shape_home_banner_noraml"
                 app:pointSelect="@drawable/shape_home_banner_selected" />
 
+            <include layout="@layout/include_home_category" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/split_line" />
+
             <!-- 今日推荐 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="3dp"
                 android:orientation="vertical">
 
                 <!-- 今日推荐标题 -->
@@ -177,18 +185,16 @@
                         android:layout_toEndOf="@id/just_looking_around"
                         android:background="@color/colorPrimary" />
 
-                    <TextView
-                        android:id="@id/enter_looking_around_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@id/enter_looking_around_img_btn"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="16dp"
                         android:layout_centerVertical="true"
-                        android:text=">"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:layout_marginEnd="14dp"
+                        android:background="@color/white"
+                        android:gravity="end"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
                 </RelativeLayout>
 

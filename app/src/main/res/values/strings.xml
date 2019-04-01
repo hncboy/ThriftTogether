@@ -8,9 +8,10 @@
     <string name="food">美食</string>
     <string name="movie">电影</string>
     <string name="hotel">酒店</string>
+    <string name="beauty">丽人</string>
     <string name="ktv">KTV</string>
     <string name="entertainment">休闲娱乐</string>
-    <string name="ticket">火车票/机票</string>
+    <string name="ticket">车票</string>
     <string name="recommended_today">今日推荐</string>
     <string name="just_looking_around">随便看看</string>
     <string name="order_tag">订</string>

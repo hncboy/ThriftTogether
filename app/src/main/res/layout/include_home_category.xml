@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="60dp"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 美食 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_food" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/food"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- 电影 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_movie" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/movie"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- 酒店 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_hotel" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/hotel"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- 丽人 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_beauty" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/beauty"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- KTV -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_ktv" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/ktv"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- 休闲娱乐 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_entertainment" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/entertainment"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- 火车票/机票 -->
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_category_ticket" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/ticket"
+                android:textColor="@color/text_grey_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</HorizontalScrollView>

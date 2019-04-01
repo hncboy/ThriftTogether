@@ -16,9 +16,10 @@
     <item name="category_tv" type="id" />
     <item name="recommended_today_tv" type="id" />
     <item name="just_looking_around" type="id" />
-    <item name="enter_looking_around_tv" type="id" />
+    <item name="enter_looking_around_img_btn" type="id" />
     <item name="common_toolbar_function_left" type="id" />
     <item name="common_toolbar_function_right" type="id" />
     <item name="recycler_view" type="id" />
+    <item name="view_pager" type="id" />
 
 </resources>
