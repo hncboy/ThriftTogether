@@ -20,8 +20,10 @@
     <string name="bug_tag">买</string>
     <string name="search">搜索</string>
     <string name="confirm">确认</string>
+    <string name="search_hotel">查找酒店</string>
     <string name="hot_search">热门搜索</string>
     <string name="history_searches">历史搜索</string>
+    <string name="destination">目的地</string>
     <!-- 首页-美食 -->
     <string name="buffet">自助餐</string>
     <string name="cake_and_milk_tea">蛋糕奶茶</string>

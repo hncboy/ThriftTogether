@@ -1,5 +1,6 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -21,6 +22,15 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void init() {
         initToolbar();
+        initTabLayout();
+    }
+
+    private void initTabLayout() {
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        String [] titles = {"国内", "国际/港澳台", "民宿公寓"};
+        for (String title : titles) {
+            tabLayout.addTab(tabLayout.newTab().setText(title));
+        }
     }
 
     private void initToolbar() {
