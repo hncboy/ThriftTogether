@@ -3,13 +3,13 @@
     android:id="@+id/discover_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="4dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal">
 
@@ -33,6 +33,7 @@
                 android:id="@+id/discover_store_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxLines="1"
@@ -70,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/three_and_half" />
+
         </LinearLayout>
 
         <RelativeLayout
@@ -89,6 +91,7 @@
                 android:text="@string/default_price"
                 android:textColor="@color/text_dark_color"
                 android:textSize="14sp" />
+
         </RelativeLayout>
 
     </LinearLayout>
@@ -97,8 +100,7 @@
         android:id="@+id/discover_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="5dp"
+        android:background="@color/split_line" />
 
 </LinearLayout>

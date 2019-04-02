@@ -39,7 +39,7 @@
                 android:layout_marginTop="8dp"
                 android:text="双人套餐A"
                 android:textColor="@color/text_dark_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/discover_store_address"

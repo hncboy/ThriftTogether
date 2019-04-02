@@ -9,17 +9,19 @@
 
     android:paddingRight="24dp"
     tools:context=".ui.login.LoginActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="56dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_forget_password"
             android:layout_alignParentEnd="true"
-            />
+            android:text="@string/login_forget_password" />
+
     </RelativeLayout>
 
     <ImageView
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/account"
             android:inputType="textEmailAddress" />
+
     </android.support.design.widget.TextInputLayout>
 
     <!-- Password Label -->

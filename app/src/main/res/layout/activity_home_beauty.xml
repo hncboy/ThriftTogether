@@ -169,7 +169,7 @@
         app:ddmenuTextSize="13sp"
         app:ddmenuUnselectedIcon="@drawable/ic_drop_down"
         app:ddtextSelectedColor="@color/colorPrimary"
-        app:ddtextUnselectedColor="@color/drop_down_unselected"
+        app:ddtextUnselectedColor="@color/text_grey_color"
         app:ddunderlineColor="@color/gray" />
 
     <View

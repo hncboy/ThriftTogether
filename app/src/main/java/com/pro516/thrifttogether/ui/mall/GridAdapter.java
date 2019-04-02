@@ -32,7 +32,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.LinearViewHold
     public void onBindViewHolder(@NonNull GridAdapter.LinearViewHolder viewHolder, final int i) {
 
         viewHolder.textView.setText("优惠券" + i);
-        Glide.with(mContext).load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3319567498,4007415579&fm=26&gp=0.jpg").into(viewHolder.imageView);
+        Glide.with(mContext).load("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2835690478,3167959472&fm=26&gp=0.jpg\n").into(viewHolder.imageView);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
