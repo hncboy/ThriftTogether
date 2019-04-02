@@ -145,4 +145,13 @@ public class HomeMovieActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mDropDownMenu.isShowing()) {
+            mDropDownMenu.closeMenu();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

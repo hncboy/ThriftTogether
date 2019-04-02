@@ -19,7 +19,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="个人信息"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"
@@ -48,7 +48,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="换绑手机"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"
@@ -76,7 +76,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="社交账号绑定"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"
@@ -104,7 +104,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="设置密码"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"
@@ -132,7 +132,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="支付设置"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"
@@ -160,7 +160,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:text="安全中心"
-            android:textColor="@color/black" />
+            android:textColor="@color/text_dark_color" />
 
         <ImageView
             android:layout_width="25dp"

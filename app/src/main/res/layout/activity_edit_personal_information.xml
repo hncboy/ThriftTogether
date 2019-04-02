@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="修改头像"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"/>
         <ImageView
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="账号"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"/>
         <ImageView
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="昵称"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"/>
         <ImageView
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="性别"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"/>
         <ImageView
@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="管理收货地址"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:layout_weight="1"
             android:layout_marginLeft="20dp"/>
         <ImageView

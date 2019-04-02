@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.home.activity.StoreActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <!--标题栏-->
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/colorPrimary">
@@ -51,96 +51,115 @@
             android:src="@drawable/ic_share_black" />
 
     </android.support.v7.widget.Toolbar>
-    <!-- 商家信息 -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fish" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/store_name"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:orientation="vertical">
 
+            <!-- 商家信息 -->
             <ImageView
-                android:layout_width="75dp"
-                android:layout_height="20dp"
-                android:src="@drawable/three_and_half" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fish" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/store_name"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/three_and_half" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="￥108/人" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_place_black_24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:text="海曙区药行街169号亚细亚商城A座5层" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 团购 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/separate_color" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="￥108/人" />
-        </LinearLayout>
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/store_product"
+                android:textColor="@color/text_dark_color"
+                android:textSize="24sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            <include layout="@layout/item_store_product" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_place_black_24dp" />
+            <include layout="@layout/item_store_product" />
+            <!--评价-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/separate_color" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:text="海曙区药行街169号亚细亚商城A座5层" />
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/store_evaluation"
+                android:textColor="@color/text_dark_color"
+                android:textSize="24sp" />
+
+            <include layout="@layout/item_store_evaluation" />
+
+            <include layout="@layout/item_store_evaluation" />
         </LinearLayout>
-    </LinearLayout>
-    <!-- 团购 -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:background="@color/separate_color" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/store_product"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"/>
+    </ScrollView>
 
-    <include layout="@layout/item_store_product" />
-    <include layout="@layout/item_store_product" />
-    <!--评价-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:background="@color/separate_color" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/store_evaluation"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"/>
-
-    <include layout="@layout/item_store_evaluation"/>
-    <include layout="@layout/item_store_evaluation"/>
 </LinearLayout>
+
+

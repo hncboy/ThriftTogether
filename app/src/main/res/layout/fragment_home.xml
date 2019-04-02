@@ -151,13 +151,20 @@
 
                     </RelativeLayout>
 
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+
                 </LinearLayout>
 
                 <!-- 随便看看 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <!-- 随便看看标题 -->
@@ -203,6 +210,13 @@
                             android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
                     </RelativeLayout>
+
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover"/>
 
                 </LinearLayout>
 

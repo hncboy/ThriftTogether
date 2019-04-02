@@ -34,21 +34,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="店名：XXXXXXXXX"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
 
             <TextView
                 android:id="@+id/shop_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="海曙区 | 美发"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
 
             <TextView
                 android:id="@+id/shop_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="评分：5.0"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="人均：￥45"
-            android:textColor="@color/black"
+            android:textColor="@color/text_dark_color"
             android:textSize="18sp"
             android:layout_marginTop="20dp"/>
     </LinearLayout>

@@ -38,7 +38,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:text="双人套餐A"
-                android:textColor="@color/black"
+                android:textColor="@color/text_dark_color"
                 android:textSize="18sp" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:ellipsize="end"
                 android:maxEms="18"
                 android:text="￥108"
-                android:textColor="@color/black"
+                android:textColor="@color/text_dark_color"
                 android:textSize="12sp" />
         </RelativeLayout>
 

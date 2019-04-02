@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/discover_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,8 +17,8 @@
             android:id="@+id/discover_store_icon"
             android:layout_width="0dp"
             android:layout_height="90dp"
-            android:layout_weight="1"
             android:layout_gravity="start"
+            android:layout_weight="1"
             android:contentDescription="@string/store_icon"
             android:src="@drawable/temp_map" />
 
@@ -34,10 +35,10 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:maxEms="15"
+                android:maxLines="1"
                 android:text="@string/default_store_name"
                 android:textColor="@color/text_dark_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/discover_store_pos"
@@ -67,8 +68,8 @@
                 android:id="@+id/discover_star"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/three_and_half"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="4dp"
+                android:src="@drawable/three_and_half" />
         </LinearLayout>
 
         <RelativeLayout
@@ -84,10 +85,10 @@
                 android:layout_marginBottom="2dp"
                 android:ellipsize="end"
                 android:gravity="end"
-                android:maxEms="18"
+                android:maxLines="1"
                 android:text="@string/default_price"
                 android:textColor="@color/text_dark_color"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </RelativeLayout>
 
     </LinearLayout>

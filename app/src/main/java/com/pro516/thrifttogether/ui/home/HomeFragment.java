@@ -17,6 +17,7 @@ import com.pro516.thrifttogether.ui.home.activity.HomeFoodActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeKtvActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeLookingAroundActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeTicketActivity;
+import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.ui.home.activity.hotel.HomeHotelActivity;
 import com.pro516.thrifttogether.ui.home.activity.movie.HomeMovieActivity;
 import com.pro516.thrifttogether.ui.home.activity.nav.HomeCityPickerActivity;
@@ -68,7 +69,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         homeTicketLayout.setOnClickListener(this);
         initBanner(view);
         initRefreshLayout(view);
+        initTestShop(view);
+    }
 
+    private void initTestShop(View view) {
+        LinearLayout shop = view.findViewById(R.id.discover_layout);
+        shop.setOnClickListener(this);
     }
 
     private void initBanner(View view) {
@@ -149,6 +155,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.home_ticket_layout: // 车票
                 startActivity(HomeTicketActivity.class);
+                break;
+            case R.id.discover_layout:
+                startActivity(StoreActivity.class);
                 break;
             default:
                 break;

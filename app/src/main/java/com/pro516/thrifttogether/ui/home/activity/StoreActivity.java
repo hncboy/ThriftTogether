@@ -1,12 +1,12 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageButton;
+import android.view.View;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 
-public class StoreActivity extends BaseActivity {
+public class StoreActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public int getLayoutRes() {
@@ -15,6 +15,22 @@ public class StoreActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        initToolbar();
+    }
 
+    private void initToolbar() {
+        AppCompatImageButton backImgBtn = findViewById(R.id.common_toolbar_function_left);
+        backImgBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.common_toolbar_function_left:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }
