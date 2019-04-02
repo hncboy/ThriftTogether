@@ -51,5 +51,6 @@
     <item name="movie_seat_view" type="id" />
     <item name="tab_layout" type="id" />
     <item name="date_picker_layout" type="id" />
+    <item name="swipe_refresh" type="id" />
 
 </resources>

@@ -24,6 +24,7 @@
     <string name="hot_search">热门搜索</string>
     <string name="history_searches">历史搜索</string>
     <string name="destination">目的地</string>
+    <string name="choose_date">选择日期</string>
     <!-- 首页-美食 -->
     <string name="buffet">自助餐</string>
     <string name="cake_and_milk_tea">蛋糕奶茶</string>

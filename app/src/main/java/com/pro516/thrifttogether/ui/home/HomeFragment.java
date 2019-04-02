@@ -1,5 +1,7 @@
 package com.pro516.thrifttogether.ui.home;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,15 +12,15 @@ import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.home.BannerInfo;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.home.activity.HomeBeautyActivity;
-import com.pro516.thrifttogether.ui.home.activity.nav.HomeCityPickerActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeEntertainmentActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeFoodActivity;
-import com.pro516.thrifttogether.ui.home.activity.HomeHotelActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeKtvActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeLookingAroundActivity;
-import com.pro516.thrifttogether.ui.home.activity.movie.HomeMovieActivity;
-import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeTicketActivity;
+import com.pro516.thrifttogether.ui.home.activity.hotel.HomeHotelActivity;
+import com.pro516.thrifttogether.ui.home.activity.movie.HomeMovieActivity;
+import com.pro516.thrifttogether.ui.home.activity.nav.HomeCityPickerActivity;
+import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.stx.xhb.xbanner.XBanner;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -32,6 +34,8 @@ import java.util.List;
  * Created by hncboy on 2019-03-19.
  */
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
+
+    private SwipeRefreshLayout mSwipeRefresh;
 
     @Override
     protected int getLayoutRes() {
@@ -63,6 +67,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         homeEntertainmentLayout.setOnClickListener(this);
         homeTicketLayout.setOnClickListener(this);
         initBanner(view);
+        initRefreshLayout(view);
+
     }
 
     private void initBanner(View view) {
@@ -84,6 +90,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Glide.with(imageView.getContext()).load(((BannerInfo)
                         model).getXBannerUrl()).into((ImageView) imageView)
         );
+    }
+
+    private void initRefreshLayout(View view) {
+        mSwipeRefresh = view.findViewById(R.id.swipe_refresh);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefresh.setOnRefreshListener(() -> {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mSwipeRefresh.setRefreshing(false);
+                }
+            }, 3000);
+        });
     }
 
     @Override

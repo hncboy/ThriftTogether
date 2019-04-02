@@ -1,9 +1,10 @@
-package com.pro516.thrifttogether.ui.home.activity;
+package com.pro516.thrifttogether.ui.home.activity.hotel;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
@@ -27,10 +28,12 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
 
     private void initTabLayout() {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-        String [] titles = {"国内", "国际/港澳台", "民宿公寓"};
+        String[] titles = {"国内", "国际/港澳台", "民宿公寓"};
         for (String title : titles) {
             tabLayout.addTab(tabLayout.newTab().setText(title));
         }
+        LinearLayout datePickerLayout = findViewById(R.id.date_picker_layout);
+        datePickerLayout.setOnClickListener(this);
     }
 
     private void initToolbar() {
@@ -54,6 +57,9 @@ public class HomeHotelActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.common_toolbar_function_right:
                 startActivity(HomeSearchActivity.class);
+                break;
+            case R.id.date_picker_layout:
+                startActivity(HotelDatePickerActivity.class);
                 break;
             default:
                 break;

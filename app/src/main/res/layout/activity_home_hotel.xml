@@ -23,6 +23,7 @@
             android:layout_height="50dp"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="2dp"
+            app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/colorPrimaryDark"
             app:tabTextAppearance="@style/TabLayoutTextStyle"
             app:tabTextColor="@color/text_grey_color" />
@@ -74,6 +75,7 @@
                 android:id="@id/date_picker_layout"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
+                android:background="@drawable/ripple_bg"
                 android:orientation="horizontal">
 
                 <!-- 入住时间 -->
