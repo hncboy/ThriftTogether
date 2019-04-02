@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary">
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@id/common_toolbar_function_left"
+        android:id="@+id/common_toolbar_function_left"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_centerVertical="true"
@@ -24,7 +24,7 @@
         android:textSize="20sp" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@id/common_toolbar_function_right"
+        android:id="@+id/common_toolbar_function_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

@@ -182,6 +182,7 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/quit_account"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@color/red"
