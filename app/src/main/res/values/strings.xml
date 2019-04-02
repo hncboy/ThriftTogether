@@ -43,4 +43,12 @@
     <string name="table_games">桌面游戏</string>
     <string name="internet_cafe_and_gaming">网吧/电竞</string>
     <string name="bombardment_tube">轰趴管</string>
+
+    <string name="collection">收藏</string>
+    <string name="recently_viewed">最近浏览</string>
+    <string name="voucher_package">券包</string>
+    <string name="settings">设置</string>
+    <string name="personal_information">个人信息</string>
+    <string name="my_collection">我的收藏</string>
+    <string name="before_payment">待付款</string>
 </resources>
