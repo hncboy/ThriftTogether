@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/movie_layout"
+    android:layout_width="100dp"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@id/movie_img"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:clickable="false"
+        android:src="@drawable/test_movie" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@id/movie_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="雷霆沙赞!"
+        android:textColor="@color/text_grey_color"
+        android:textSize="15sp" />
+
+</LinearLayout>

@@ -52,5 +52,8 @@
     <item name="tab_layout" type="id" />
     <item name="date_picker_layout" type="id" />
     <item name="swipe_refresh" type="id" />
+    <item name="movie_img" type="id" />
+    <item name="movie_tv" type="id" />
+    <item name="movie_layout" type="id" />
 
 </resources>

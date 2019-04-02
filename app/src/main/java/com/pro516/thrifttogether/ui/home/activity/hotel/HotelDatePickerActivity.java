@@ -20,6 +20,11 @@ public class HotelDatePickerActivity extends BaseActivity implements View.OnClic
     @Override
     protected void init() {
         initToolbar();
+        initCalendarView();
+    }
+
+    private void initCalendarView() {
+
     }
 
     private void initToolbar() {
