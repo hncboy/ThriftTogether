@@ -5,4 +5,21 @@
     <string name="mall">商城</string>
     <string name="mine">我的</string>
     <string name="points_mall">积分商城</string>
+    <string name="default_store_name">店名xxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    <string name="default_pos">位置</string>
+    <string name="default_address">地址</string>
+    <string name="default_price">人均￥45起</string>
+    <string name="store_icon">店铺图片</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="link_sign_up">没有账号？马上注册</string>
+    <string name="account">手机号</string>
+    <string name="check_password">确认密码</string>
+    <string name="register">注册</string>
+    <string name="link_sign_in">已有账号？马上登录</string>
+    <string name="store_info">店铺详情</string>
+    <string name="login_forget_password">忘记密码</string>
+    <string name="store_name">海底捞火锅</string>
+    <string name="store_product">团购</string>
+    <string name="store_evaluation">评价</string>
 </resources>
