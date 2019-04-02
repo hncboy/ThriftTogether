@@ -15,4 +15,11 @@
     <color name="group_tag_color">#66CC33</color>
     <color name="buy_tag_color">#FF3300</color>
     <color name="star_yellow">#FF9800</color>
+    <color name="red">#CC3333</color>
+    <color name="theme_text">#7F7F7F</color>
+    <color name="division">#bfbfbf</color>
+
+
+    <color name="pos_color">#515151</color>
+    <color name="separate_color">#F2F2F2</color>
 </resources>
