@@ -30,11 +30,14 @@
         <activity android:name=".ui.mine.collection.MineCollectionActivity" />
         <activity android:name=".ui.mine.settings.EditPersonalInformationActivity" />
         <activity android:name=".ui.mine.settings.MineSetting" />
-
         <activity android:name=".ui.home.activity.hotel.HotelDatePickerActivity" />
         <activity android:name=".ui.home.activity.movie.ChooseMovieSeatTableActivity" />
+        <activity
+            android:name=".ui.home.activity.nav.HomeCityPickerActivity"
+            android:theme="@style/DefaultCityPickerTheme" />
         <activity android:name=".ui.home.activity.nav.HomeSearchActivity" />
         <activity android:name=".ui.home.activity.HomeFoodActivity" />
+        <activity android:name=".ui.home.activity.HomeLookingAroundActivity" />
         <activity android:name=".ui.home.activity.HomeTicketActivity" />
         <activity android:name=".ui.home.activity.HomeEntertainmentActivity" />
         <activity android:name=".ui.home.activity.HomeKtvActivity" />
@@ -51,9 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".ui.home.activity.HomeCityPickerActivity"-->
-            <!--android:theme="@style/DefaultCityPickerTheme" />-->
     </application>
 
 </manifest>

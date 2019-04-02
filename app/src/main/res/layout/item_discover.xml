@@ -36,7 +36,7 @@
                 android:lines="1"
                 android:maxEms="15"
                 android:text="@string/default_store_name"
-                android:textColor="@color/black"
+                android:textColor="@color/text_dark_color"
                 android:textSize="18sp" />
 
             <TextView
@@ -86,7 +86,7 @@
                 android:gravity="end"
                 android:maxEms="18"
                 android:text="@string/default_price"
-                android:textColor="@color/black"
+                android:textColor="@color/text_dark_color"
                 android:textSize="16sp" />
         </RelativeLayout>
 

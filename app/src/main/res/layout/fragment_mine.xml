@@ -2,26 +2,27 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginTop="20dp"
             android:id="@+id/mine_notification"
             android:layout_width="27dp"
             android:layout_height="27dp"
-            android:layout_marginStart="180dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/icon_mine_notification" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
@@ -33,8 +34,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="MIKE"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -44,12 +47,12 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/mine_collection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/mine_collection">
+                android:orientation="vertical">
 
                 <ImageView
 
@@ -61,16 +64,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/collection"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/mine_recently_viewed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/mine_recently_viewed">
+                android:orientation="vertical">
 
                 <ImageView
 
@@ -82,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/recently_viewed"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/voucher_package"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
         </LinearLayout>
 
@@ -133,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="待付款"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="待使用"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="待评价"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -193,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="退款/售后"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -213,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="全部订单"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_dark_color" />
             </LinearLayout>
         </LinearLayout>
 
@@ -223,23 +226,25 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:paddingRight="265dp">
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/icon_mine_my_reservation"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/icon_mine_my_reservation" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
                 android:text="我的预订"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
+
         </LinearLayout>
 
         <View
@@ -248,24 +253,25 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:paddingRight="265dp"
-            android:id="@+id/mine_setting">
+            android:id="@+id/mine_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/icon_mine_settings"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/icon_mine_settings" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:text="通用设置"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
         </LinearLayout>
 
         <View
@@ -274,23 +280,25 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:paddingRight="265dp">
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/icon_mine_feedback"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/icon_mine_feedback" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
                 android:text="意见反馈"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
+
         </LinearLayout>
 
         <View
@@ -299,23 +307,25 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:paddingRight="265dp">
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/icon_mine_check_for_updates"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/icon_mine_check_for_updates" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
                 android:text="版本更新"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
+
         </LinearLayout>
 
         <View
@@ -324,30 +334,32 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:paddingRight="265dp">
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/icon_mine_advisory_service"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
                 android:src="@drawable/icon_mine_advisory_service" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
                 android:text="咨询客服"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_dark_color" />
+
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/split_line" />
-    </LinearLayout>
 
+    </LinearLayout>
 
 </ScrollView>
