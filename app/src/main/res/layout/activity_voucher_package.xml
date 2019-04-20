@@ -3,14 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.mine.order.BeforePaymentActivity">
-
+    tools:context=".ui.mine.voucherPackage.VoucherPackageActivity"
+    android:orientation="vertical">
     <include layout="@layout/include_toolbar" />
-
-    <ListView
-        android:id="@+id/before_payment_order_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/voucher_package_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_before_payment" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

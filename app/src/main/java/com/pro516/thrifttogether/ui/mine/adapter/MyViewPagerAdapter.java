@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.mine.Adapter;
+package com.pro516.thrifttogether.ui.mine.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

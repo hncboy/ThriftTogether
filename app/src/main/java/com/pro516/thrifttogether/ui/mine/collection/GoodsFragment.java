@@ -7,18 +7,13 @@ import android.widget.Toast;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
-import com.pro516.thrifttogether.ui.mine.Adapter.ShopAdapter;
+import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 
 public class GoodsFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.common_toolbar_function_left:
-                break;
-            default:
-                break;
-        }
+
     }
 
     private void setListeners() {

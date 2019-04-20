@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@color/white"
     android:scrollbars="none">
 
     <LinearLayout
@@ -47,6 +48,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:id="@+id/mine_collection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +72,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:id="@+id/mine_recently_viewed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +96,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/mine_voucher_package"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -120,6 +131,33 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/mine_all_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/icon_mine_order_all_orders"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_mine_order_all_orders" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部订单"
+                    android:textColor="@color/text_dark_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:id="@+id/mine_order_pending_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,10 +178,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/mine_order_to_be_used"
                 android:orientation="vertical">
 
                 <ImageView
@@ -160,6 +202,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/mine_order_to_be_evaluate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -180,6 +226,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/mine_order_refund_or_after_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -199,25 +249,7 @@
                     android:textColor="@color/text_dark_color" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/icon_mine_order_all_orders"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/icon_mine_order_all_orders" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="全部订单"
-                    android:textColor="@color/text_dark_color" />
-            </LinearLayout>
         </LinearLayout>
 
         <View
@@ -226,7 +258,10 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <ImageView
@@ -253,8 +288,11 @@
             android:background="@color/split_line" />
 
         <LinearLayout
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true"
             android:id="@+id/mine_setting"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <ImageView
@@ -280,7 +318,11 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/mine_feedback"
+            android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <ImageView
@@ -307,7 +349,10 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <ImageView
@@ -334,7 +379,10 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <ImageView

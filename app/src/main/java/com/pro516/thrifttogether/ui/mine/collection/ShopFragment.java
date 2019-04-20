@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
-import com.pro516.thrifttogether.ui.mine.Adapter.ShopAdapter;
+import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 
 public class ShopFragment extends BaseFragment implements View.OnClickListener {
     @Override

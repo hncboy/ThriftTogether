@@ -7,6 +7,9 @@
     <include layout="@layout/include_toolbar" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/personal_information"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -36,6 +39,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/Change_to_mobile_phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -64,6 +70,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/Social_account_binding"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -92,6 +101,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/set_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -120,6 +132,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/payment_setting"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -148,6 +163,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:id="@+id/Security_center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -176,6 +194,9 @@
         android:background="@color/split_line" />
 
     <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
