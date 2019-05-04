@@ -151,12 +151,12 @@
 
                     </RelativeLayout>
 
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
 
                 </LinearLayout>
 
@@ -211,12 +211,12 @@
 
                     </RelativeLayout>
 
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
+                    <include layout="@layout/item_discover_surrounding_shops"/>
 
                 </LinearLayout>
 

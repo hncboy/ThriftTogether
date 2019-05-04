@@ -47,4 +47,15 @@ dependencies {
     implementation 'com.iarcuschin:simpleratingbar:0.1.5' // 星星
     implementation 'com.github.dongjunkun:DropDownMenu:1.0.4' // 多条件筛选菜单
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+
+    //3D地图so及jar
+    implementation 'com.amap.api:3dmap:6.8.0'
+    //定位功能
+    implementation 'com.amap.api:location:4.5.1'
+    //搜索功能
+    implementation 'com.amap.api:search:6.5.0.1'
+    implementation 'com.github.mcxtzhang:ZLayoutManager:V1.1.0' // 卡片滑动
+    implementation 'com.iarcuschin:simpleratingbar:0.1.5' // 星星
+    implementation 'com.github.dongjunkun:DropDownMenu:1.0.4' // 多条件筛选菜单
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
 }
