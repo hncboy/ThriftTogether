@@ -9,6 +9,7 @@ import com.pro516.thrifttogether.ui.mine.collection.MineCollectionActivity;
 import com.pro516.thrifttogether.ui.mine.feedback.MineFeedBackActivity;
 import com.pro516.thrifttogether.ui.mine.order.OrderActivity;
 import com.pro516.thrifttogether.ui.mine.recentlyViewed.RecentlyViewedActivity;
+import com.pro516.thrifttogether.ui.mine.reservation.MineReservationActivity;
 import com.pro516.thrifttogether.ui.mine.settings.MineSetting;
 import com.pro516.thrifttogether.ui.mine.voucherPackage.VoucherPackageActivity;
 
@@ -27,7 +28,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mineVoucherPackage;
     private LinearLayout mineFeedBack;
     private LinearLayout mineAllOrders;
-
+    private LinearLayout mineReservation;
     @Override
     protected void init(View view) {
         mineSetting = view.findViewById(R.id.mine_setting);
@@ -40,6 +41,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mineVoucherPackage=view.findViewById(R.id.mine_voucher_package);
         mineFeedBack=view.findViewById(R.id.mine_feedback);
         mineAllOrders=view.findViewById(R.id.mine_all_order);
+        mineReservation=view.findViewById(R.id.mine_reservation);
         setListeners();
     }
 
@@ -54,6 +56,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mineVoucherPackage.setOnClickListener(this);
         mineFeedBack.setOnClickListener(this);
         mineAllOrders.setOnClickListener(this);
+        mineReservation.setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +91,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.mine_order_refund_or_after_sales:
                 startActivity(OrderActivity.class,"id","4");
+                break;
+            case R.id.mine_reservation:
+                startActivity(MineReservationActivity.class);
                 break;
             default:
                 break;

@@ -10,21 +10,21 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.ui.mine.bean.ShopBean;
+import com.pro516.thrifttogether.ui.mine.bean.GoodsBean;
 
 import java.util.List;
 
-public class ShopAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
-    public ShopAdapter(int layoutResId, @Nullable List<ShopBean> data) {
+public class GoodsAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder> {
+    public GoodsAdapter(int layoutResId, @Nullable List<GoodsBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ShopBean item) {
+    protected void convert(BaseViewHolder helper, GoodsBean item) {
         helper.setText(R.id.shop_name, item.getShopName())
                 .setText(R.id.shop_address, item.getAddress())
-                .setText(R.id.shop_price, "人均：￥" + item.getAvePrice())
-                .setText(R.id.shop_score, "评分： "+item.getPoint());
+                .setText(R.id.goods_name, "商品名称： "+item.getGoodsName())
+                .setText(R.id.goods_price,"￥"+item.getPrice());
 
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
@@ -35,6 +35,6 @@ public class ShopAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.shop_iv));
+        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.goods_iv));
     }
 }

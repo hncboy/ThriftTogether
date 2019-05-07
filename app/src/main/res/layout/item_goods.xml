@@ -12,18 +12,18 @@
     android:foreground="?attr/selectableItemBackgroundBorderless">
 
     <LinearLayout
-        android:id="@+id/shop"
+        android:id="@+id/goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginLeft="10dp"
-            android:adjustViewBounds="true"
-            android:id="@+id/shop_iv"
+            android:id="@+id/goods_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@drawable/icon_shop" />
 
@@ -51,10 +51,10 @@
                 android:textColor="@color/text_dark_color" />
 
             <TextView
-                android:id="@+id/shop_score"
+                android:id="@+id/goods_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="评分：5.0"
+                android:text="商品名称"
                 android:textColor="@color/text_dark_color" />
 
             <ImageView
@@ -63,11 +63,11 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/shop_price"
+            android:id="@+id/goods_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="人均：￥45"
+            android:text="价格：￥45"
             android:textColor="@color/text_dark_color"
             android:textSize="16sp"
             android:layout_marginTop="20dp"/>

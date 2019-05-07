@@ -31,7 +31,8 @@ public class MallFragment extends BaseFragment {
         mRvGrid.setAdapter(new GridAdapter(getActivity(), new GridAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getActivity(), "click: " + pos, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "click: " + pos, Toast.LENGTH_SHORT).show();
+                startActivity(MallExchangeActivity.class);
             }
         }));
     }

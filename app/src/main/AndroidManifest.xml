@@ -25,7 +25,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.mine.order.OrderDetailsActivity"></activity>
+        <activity android:name=".ui.mine.reservation.MineReservationActivity"></activity>
+        <activity android:name=".ui.mall.MallExchangeActivity" />
+        <activity android:name=".ui.mine.order.OrderDetailsActivity" />
         <activity android:name=".ui.mine.feedback.MineFeedBackActivity" />
         <activity android:name=".ui.mine.voucherPackage.VoucherPackageActivity" />
         <activity android:name=".ui.mine.order.OrderActivity" />
