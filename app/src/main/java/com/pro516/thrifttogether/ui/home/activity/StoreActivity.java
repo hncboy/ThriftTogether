@@ -1,22 +1,24 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
+import android.app.Dialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.mine.voucherPackage.VoucherPackageActivity;
 
+import org.jaaksi.pickerview.picker.TimePicker;
+import org.jaaksi.pickerview.util.DateUtil;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
-import cn.qqtheme.framework.picker.DatePicker;
-
-public class StoreActivity extends BaseActivity implements View.OnClickListener {
+public class StoreActivity extends BaseActivity implements View.OnClickListener, TimePicker.OnTimeSelectListener {
     @Override
     public int getLayoutRes() {
         return R.layout.activity_store;
@@ -34,6 +36,10 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener 
         backImgBtn.setOnClickListener(this);
     }
 
+    public static final DateFormat sSimpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+    public static final SimpleDateFormat mDateFormat =
+            new SimpleDateFormat("MM月dd日  E", Locale.CHINA);
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -41,31 +47,47 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.store_reservation:
-                DatePicker picker = new DatePicker(this);
-                picker.setRange(2019, 2022);//年份范围
-
-                SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");
-
-                Calendar cal = Calendar.getInstance();
-                System.out.println("现在时间："+sdf.format(cal.getTime()));
-                //分别获取年、月、日
-                //System.out.println("年："+cal.get(cal.YEAR));
-                //System.out.println("月："+(cal.get(cal.MONTH)+1));//老外把一月份整成了0，翻译成中国月份要加1
-                //System.out.println("日："+cal.get(cal.DATE));
-                int year=cal.get(Calendar.YEAR);
-                int month=cal.get(Calendar.MONTH)+1;
-                int day=cal.get(Calendar.DATE);
-                picker.setSelectedItem(year,month,day);
-                picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
-                    @Override
-                    public void onDatePicked(String year, String month, String day) {
-                        Toast.makeText(StoreActivity.this, "点击：" + year + "-" + month + "-" + day, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                picker.show();
+                Calendar calendar = Calendar.getInstance();
+                long createTime = calendar.getTimeInMillis();
+                calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 7);
+                TimePicker mTimePicker = new TimePicker.Builder(this, TimePicker.TYPE_MIXED_DATE | TimePicker.TYPE_MIXED_TIME,
+                        this)
+                        // 设置不包含超出的结束时间<=
+                        .setContainsEndDate(false)
+                        // 设置时间间隔为30分钟
+                        .setTimeMinuteOffset(60).setRangDate(createTime, calendar.getTimeInMillis())
+                        .setFormatter(new TimePicker.DefaultFormatter() {
+                            @Override
+                            public CharSequence format(TimePicker picker, int type, int position, long value) {
+                                if (type == TimePicker.TYPE_MIXED_DATE) {
+                                    CharSequence text;
+                                    int dayOffset = DateUtil.getDayOffset(value, System.currentTimeMillis());
+                                    if (dayOffset == 0) {
+                                        text = "今天";
+                                    } else if (dayOffset == 1) {
+                                        text = "明天";
+                                    } else { // xx月xx日 星期 x
+                                        text = mDateFormat.format(value);
+                                    }
+                                    return text;
+                                }
+                                return super.format(picker, type, position, value);
+                            }
+                        })
+                        .create();
+                Dialog pickerDialog = mTimePicker.getPickerDialog();
+                pickerDialog.setCanceledOnTouchOutside(true);
+                mTimePicker.getTopBar().getTitleView().setText("请选择时间");
+                mTimePicker.show();
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onTimeSelect(TimePicker picker, Date date) {
+        Toast.makeText(StoreActivity.this, "点击：" + sSimpleDateFormat.format(date), Toast.LENGTH_SHORT).show();
+
     }
 }

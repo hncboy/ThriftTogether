@@ -48,5 +48,5 @@ dependencies {
     implementation 'com.github.dongjunkun:DropDownMenu:1.0.4' // 多条件筛选菜单
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
 
-    implementation 'cn.qqtheme.framework:WheelPicker:1.5.6.20190131'
+    implementation 'org.jaaksi:pickerview:2.0.0@aar'
 }
