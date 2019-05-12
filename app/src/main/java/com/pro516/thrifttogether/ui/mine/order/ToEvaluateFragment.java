@@ -43,6 +43,7 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
+                startActivity(OrderCommentActivity.class);
             }
         });
     }

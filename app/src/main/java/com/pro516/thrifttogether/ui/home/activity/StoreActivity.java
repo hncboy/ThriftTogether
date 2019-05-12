@@ -88,6 +88,6 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTimeSelect(TimePicker picker, Date date) {
         Toast.makeText(StoreActivity.this, "点击：" + sSimpleDateFormat.format(date), Toast.LENGTH_SHORT).show();
-
+        startActivity(ReservationDetailsActivity.class);
     }
 }

@@ -3,12 +3,11 @@ package com.pro516.thrifttogether;
 import android.app.Application;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.widget.LinearLayout;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.pro516.thrifttogether.ui.home.activity.CustomTopBar;
 
 import org.jaaksi.pickerview.picker.BasePicker;
-import org.jaaksi.pickerview.topbar.ITopBar;
 import org.jaaksi.pickerview.util.Util;
 import org.jaaksi.pickerview.widget.DefaultCenterDecoration;
 import org.jaaksi.pickerview.widget.PickerView;
@@ -23,6 +22,8 @@ public class TtApplication extends Application {
         super.onCreate();
         // 建议在application中初始化picker 默认属性实现全局设置
         initDefaultPicker();
+        //Fresco初始化
+        Fresco.initialize(this);
     }
 
     private void initDefaultPicker() {
