@@ -33,12 +33,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.LinearViewHold
 
         viewHolder.textView.setText("优惠券" + i);
         Glide.with(mContext).load("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2835690478,3167959472&fm=26&gp=0.jpg\n").into(viewHolder.imageView);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.onClick(i);
+        viewHolder.itemView.setOnClickListener(view -> {
+            mListener.onClick(i);
 //                Toast.makeText(mContext, "click..." + i, Toast.LENGTH_SHORT).show();
-            }
         });
     }
 

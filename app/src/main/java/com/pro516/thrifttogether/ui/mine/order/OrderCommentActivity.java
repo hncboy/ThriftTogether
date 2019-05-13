@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -56,6 +58,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     private final int RESULT_CODE_LARGE_IMAGE = 1;
     //晒单图片最多选择四张
     private final int MAX_PIC = 4;
+
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -68,6 +71,12 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         initListener();
         context = this;
 
+        AppCompatImageButton backBtn = findViewById(R.id.common_toolbar_function_left);
+        backBtn.setVisibility(View.VISIBLE);
+        backBtn.setImageDrawable(getDrawable(R.drawable.ic_arrow_back_24dp));
+        backBtn.setOnClickListener(this);
+        AppCompatTextView title = findViewById(R.id.title);
+        title.setText("评价");
     }
 
     private void initData() {
@@ -132,12 +141,14 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 //评价提交
                 validateComment();
                 if (imageUrls.isEmpty()) {
-                    Toast.makeText(context, "没有图片: ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "第一张图片的路径: "+imageUrls.get(0), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 }
                 break;
-
+            case R.id.common_toolbar_function_left:
+                finish();
+                break;
             case R.id.iv_choose_goods_pic:
                 //检查是否有打开照相机和文件读写的权限
                 if (PermissionCheckUtil.checkCameraAndExternalStoragePermission(this))

@@ -1,6 +1,8 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.widget.Button;
@@ -88,6 +90,12 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onTimeSelect(TimePicker picker, Date date) {
         Toast.makeText(StoreActivity.this, "点击：" + sSimpleDateFormat.format(date), Toast.LENGTH_SHORT).show();
-        startActivity(ReservationDetailsActivity.class);
+        //传递些简单的参数
+        Intent intent = new Intent();
+        intent.setClass(StoreActivity.this,ReservationDetailsActivity.class);
+        Bundle bundleSimple = new Bundle();
+        bundleSimple.putString("time", sSimpleDateFormat.format(date));
+        intent.putExtras(bundleSimple);
+        startActivity(intent);
     }
 }

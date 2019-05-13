@@ -8,6 +8,7 @@
 
     <include layout="@layout/include_toolbar" />
     <TextView
+        android:id="@+id/reservation_time"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

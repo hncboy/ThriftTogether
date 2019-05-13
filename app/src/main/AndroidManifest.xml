@@ -25,7 +25,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.mine.order.CommentLargeImageActivity"></activity>
+        <activity android:name=".ui.mine.notification.NotificationActivity"></activity>
+        <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
         <activity android:name=".ui.mine.order.OrderCommentActivity" />
         <activity android:name=".ui.home.activity.ReservationDetailsActivity" />
         <activity android:name=".ui.mine.reservation.MineReservationActivity" />
