@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".TtApplication"
@@ -33,13 +34,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.home.activity.StoreActivity"></activity>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="cffdc8e4ba6cb6218d508195bde5fdbc"/>
-        <activity android:name=".ui.mine.order.OrderDetailsActivity"></activity>
+        <activity android:name=".ui.mine.order.OrderDetailsActivity"/>
         <activity android:name=".ui.mine.feedback.MineFeedBackActivity" />
         <activity android:name=".ui.mine.voucherPackage.VoucherPackageActivity" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="cffdc8e4ba6cb6218d508195bde5fdbc" />
         <activity android:name=".ui.mine.order.OrderActivity" />
-        <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.mine.collection.MineCollectionActivity" />
         <activity android:name=".ui.mine.settings.EditPersonalInformationActivity" />
         <activity android:name=".ui.mine.settings.MineSetting" />
@@ -58,11 +59,12 @@
         <activity android:name=".ui.home.activity.hotel.HomeHotelActivity" />
         <activity android:name=".ui.home.activity.movie.HomeMovieActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.home.activity.StoreActivity" />
+        <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.login.RegisterActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -25,7 +25,7 @@ public class SurroundingShopsApapter extends BaseQuickAdapter<SurroundingShopsBe
         helper.setText(R.id.discover_store_name, item.getTitleName())
                 .setText(R.id.discover_store_address, item.getAddress())
                 .setText(R.id.discover_store_category, item.getCategory())
-                .setText(R.id.mine_order_content_price, "价格：￥" + item.getPrice());
+                .setText(R.id.discover_price, item.getPrice());
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
@@ -35,6 +35,6 @@ public class SurroundingShopsApapter extends BaseQuickAdapter<SurroundingShopsBe
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getImage()).apply(options).into((ImageView) helper.getView(R.id.mine_order_content_image));
+        Glide.with(mContext).load(item.getImage()).apply(options).into((ImageView) helper.getView(R.id.discover_store_icon));
     }
 }
