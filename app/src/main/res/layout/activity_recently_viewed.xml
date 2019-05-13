@@ -6,15 +6,9 @@
     android:orientation="vertical"
     tools:context=".ui.mine.recentlyViewed.RecentlyViewedActivity">
     <include layout="@layout/include_toolbar"/>
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mine_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ListView
-            android:id="@+id/shop_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_shop"/>
-
-    </LinearLayout>
+        tools:listitem="@layout/item_shop" />
 </LinearLayout>

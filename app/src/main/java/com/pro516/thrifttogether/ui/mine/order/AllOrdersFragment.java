@@ -20,6 +20,8 @@ import java.util.List;
 
 public class AllOrdersFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     List<OrderBean> mData;
+    private OrderAdapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     @Override
     public void onClick(View view) {
@@ -33,12 +35,13 @@ public class AllOrdersFragment extends BaseFragment implements BaseQuickAdapter.
     }
 
     private void initRecyclerView(View view) {
-        RecyclerView mRecyclerView = view.findViewById(R.id.mine_order_list);
+        mRecyclerView = view.findViewById(R.id.mine_order_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        OrderAdapter mAdapter = new OrderAdapter(R.layout.item_mine_order, mData);
+        mAdapter = new OrderAdapter(R.layout.item_mine_order, mData);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
+        onLoadMoreRequested();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
@@ -65,7 +68,17 @@ public class AllOrdersFragment extends BaseFragment implements BaseQuickAdapter.
 
     @Override
     public void onLoadMoreRequested() {
-
+        mAdapter.setOnLoadMoreListener(() -> mRecyclerView.postDelayed(() -> {
+            mAdapter.addData(new OrderBean(
+                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
+                    "新的干锅土豆鸡",
+                    "已完成",
+                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
+                    new Date(),
+                    12.0,
+                    "再来一单"));
+            mAdapter.loadMoreComplete();
+        }, 1000), mRecyclerView);
     }
 
     @Override

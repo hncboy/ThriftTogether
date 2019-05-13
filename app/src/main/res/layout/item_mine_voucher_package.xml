@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/voucher_package_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginStart="20dp"
             android:scaleType="fitXY"
             android:src="@drawable/haidilao" />
@@ -37,7 +37,7 @@
                 android:id="@+id/voucher_package_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:textColor="@color/text_grey_color"
                 android:text="优惠券名" />
 
@@ -45,7 +45,7 @@
                 android:id="@+id/voucher_package_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="有效期至2019-4-12"
                 android:textColor="@color/text_grey_color"
                 android:textSize="12sp" />
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:text="￥10"
             android:textColor="@color/text_dark_color"
             android:textSize="20sp"

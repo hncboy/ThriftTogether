@@ -258,6 +258,7 @@
             android:background="@color/split_line" />
 
         <LinearLayout
+            android:id="@+id/mine_reservation"
             android:background="@drawable/touch_bg"
             android:clickable="true"
             android:focusable="true"

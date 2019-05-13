@@ -35,6 +35,13 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
         <activity android:name=".ui.mine.order.OrderDetailsActivity"/>
+        <activity android:name=".ui.mine.notification.NotificationActivity"></activity>
+        <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
+        <activity android:name=".ui.mine.order.OrderCommentActivity" />
+        <activity android:name=".ui.home.activity.ReservationDetailsActivity" />
+        <activity android:name=".ui.mine.reservation.MineReservationActivity" />
+        <activity android:name=".ui.mall.MallExchangeActivity" />
+        <activity android:name=".ui.mine.order.OrderDetailsActivity" />
         <activity android:name=".ui.mine.feedback.MineFeedBackActivity" />
         <activity android:name=".ui.mine.voucherPackage.VoucherPackageActivity" />
         <meta-data

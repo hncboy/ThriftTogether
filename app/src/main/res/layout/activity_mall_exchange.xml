@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_mall_coupons_banner"
+                android:scaleType="fitXY"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <!--价格-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_mall_integral" />
+
+                    <TextView
+                        android:id="@+id/shop_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:text="2000"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="70px" />
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text=" +¥"-->
+                        <!--android:textColor="@color/colorPrimary" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/shop_money"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="130"-->
+                        <!--android:textColor="@color/colorPrimary"-->
+                        <!--android:textSize="50px" />-->
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/split_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+                    <!--商品简介-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="商品简介"
+                        android:textColor="@color/text_grey_color"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/shop_intro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        android:textColor="@color/text_grey_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+                    <!--兑换信息-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:text="兑换信息"
+                        android:textColor="@color/text_grey_color"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/shop_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        android:textColor="@color/text_grey_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/shop_tip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="温馨提示：团节有权在法律允许的范围内对活动规则进行解释"
+                        android:textColor="@color/text_grey_color" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <!--兑换按钮-->
+    <Button
+        android:id="@+id/shop_exchange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="兑换"
+        android:textColor="@color/white"
+        android:textSize="50px" />
+</RelativeLayout>

@@ -1,65 +1,40 @@
 package com.pro516.thrifttogether.ui.mine.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.ui.mine.bean.ShopBean;
 
-public class ShopAdapter extends BaseAdapter {
-    private Context mContext;
-    private LayoutInflater mLayoutInflater;
+import java.util.List;
 
-    public ShopAdapter(Context context) {
-        this.mContext = context;
-        mLayoutInflater = LayoutInflater.from(context);
+public class ShopAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
+    public ShopAdapter(int layoutResId, @Nullable List<ShopBean> data) {
+        super(layoutResId, data);
     }
 
     @Override
-    public int getCount() {
-        return 10;
-    }
+    protected void convert(BaseViewHolder helper, ShopBean item) {
+        helper.setText(R.id.shop_name, item.getShopName())
+                .setText(R.id.shop_address, item.getAddress())
+                .setText(R.id.shop_price, "人均：￥" + item.getAvePrice())
+                .setText(R.id.shop_score, "评分： "+item.getPoint());
 
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
+        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
+                .skipMemoryCache(true);//不做内存缓存
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+        //设置图片圆角角度
+        RoundedCorners roundedCorners = new RoundedCorners(30);
+        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-    static class ViewHolder {
-        public ImageView imageView;
-        public TextView shopName, shopAddress, shopScore, shopPrice;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
-        if (view == null) {
-            view = mLayoutInflater.inflate(R.layout.item_shop, null);
-            holder = new ViewHolder();
-            holder.imageView = view.findViewById(R.id.shop_iv);
-            holder.shopName = view.findViewById(R.id.shop_name);
-            holder.shopAddress = view.findViewById(R.id.shop_address);
-            holder.shopScore = view.findViewById(R.id.shop_score);
-            holder.shopPrice = view.findViewById(R.id.shop_price);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        holder.shopName.setText("商家名称");
-        holder.shopAddress.setText("商家地址");
-        holder.shopScore.setText("评分：5.0");
-        holder.shopPrice.setText("人均：￥50");
-        Glide.with(mContext).load("https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c").into(holder.imageView);
-        return view;
+        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.shop_iv));
     }
 }

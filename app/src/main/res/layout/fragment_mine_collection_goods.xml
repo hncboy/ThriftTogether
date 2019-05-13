@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <ListView
-        android:id="@+id/shop_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mine_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_shop">
-    </ListView>
+        tools:listitem="@layout/item_shop" />
 </LinearLayout>

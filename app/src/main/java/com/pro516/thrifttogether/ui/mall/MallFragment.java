@@ -27,11 +27,12 @@ public class MallFragment extends BaseFragment {
         mRvGrid = view.findViewById(R.id.rv_grid);
         mTitle.setText(getString(R.string.points_mall));
 
-        mRvGrid.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mRvGrid.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRvGrid.setAdapter(new GridAdapter(getActivity(), new GridAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getActivity(), "click: " + pos, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "click: " + pos, Toast.LENGTH_SHORT).show();
+                startActivity(MallExchangeActivity.class);
             }
         }));
     }
