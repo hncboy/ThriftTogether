@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.discover.util;
+package com.pro516.thrifttogether.Util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

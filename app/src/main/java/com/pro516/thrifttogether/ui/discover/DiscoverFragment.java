@@ -1,12 +1,11 @@
 package com.pro516.thrifttogether.ui.discover;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -15,15 +14,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -36,9 +40,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
-import com.pro516.thrifttogether.ui.discover.adapter.SurroundingShopsApapter;
+import com.pro516.thrifttogether.ui.discover.adapter.SurroundingShopsAdapter;
 import com.pro516.thrifttogether.ui.discover.bean.SurroundingShopsBean;
-import com.pro516.thrifttogether.ui.discover.util.GPSUtils;
+import com.pro516.thrifttogether.Util.GPSUtils;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -51,14 +55,17 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * Created by hncboy on 2019-03-19.
  */
-public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSearchListener {
+public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAdapter,PoiSearch.OnPoiSearchListener, BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener{
 
     private List<HashMap<String, Object>> data;
     private MapView mMapView = null;
     private AMap aMap = null;
     private View discoverLayout;
-    private String[] key = {"icon", "name", "pos", "address", "price", "score"};
+    private SurroundingShopsAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private double[][] storeLocation = new double[100][2];
     private int flag = 1;
+    private int page_num = 20;
     List<SurroundingShopsBean> mData;
 
     private static final int LOCATION_CODE = 1;
@@ -112,28 +119,22 @@ public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSea
         return R.layout.fragment_discover;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //checkPermission();
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         discoverLayout = inflater.inflate(getLayoutRes(), null);
         mMapView = discoverLayout.findViewById(R.id.discover_map);
-        //initData();
-        initMap(savedInstanceState);
-        initRecyclerView(discoverLayout.findViewById(R.id.discover_store_list));
+        mMapView.onCreate(savedInstanceState);
+        new Thread(this::initMap).run();
         return discoverLayout;
     }
 
     private void initRecyclerView(View view) {
-        RecyclerView mRecyclerView = view.findViewById(R.id.discover_store_list);
+        mRecyclerView = view.findViewById(R.id.discover_store_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        SurroundingShopsApapter mAdapter = new SurroundingShopsApapter(R.layout.item_discover_surrounding_shops, mData);
+        mAdapter = new SurroundingShopsAdapter(R.layout.item_discover_surrounding_shops, mData);
+        onLoadMoreRequested();
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mRecyclerView.setAdapter(mAdapter);
@@ -141,18 +142,24 @@ public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSea
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                //startActivity(OrderDetailsActivity.class);
+                double storeLatitude = storeLocation[position][0];
+                double storeLongitude = storeLocation[position][1];
+                Log.i(TAG, storeLatitude + " " + storeLongitude);
+                LatLng latLng = new LatLng(storeLatitude, storeLongitude);
+                final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+                CameraPosition cameraPosition = new CameraPosition(latLng, 20, 0, 0);
+                aMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                marker.showInfoWindow();
+
             }
         });
     }
 
-    private void initMap(@Nullable Bundle savedInstanceState) {
+    private void initMap() {
         //获取权限为前提
         if (checkPermission() == 1 || flag == 1) {
             //map init
             Log.i("BRG", "init map start");
-
-            mMapView.onCreate(savedInstanceState);
             aMap = mMapView.getMap();
             MyLocationStyle myLocationStyle;
             myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类
@@ -164,55 +171,117 @@ public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSea
             aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
             aMap.getUiSettings().setMyLocationButtonEnabled(true);//设置默认定位按钮是否显示，非必需设置。
             aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
-            aMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(30));
+            //aMap.setInfoWindowAdapter(DiscoverFragment.this);
             PoiSearch.Query query = new PoiSearch.Query("", "餐饮服务|购物服务|生活服务");
             //keyWord表示搜索字符串，
             //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
             //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
-            query.setPageSize(100);// 设置每页最多返回多少条poiitem
-            query.setPageNum(3);//设置查询页码
+            query.setPageSize(page_num);// 设置每页最多返回多少条poiitem
+            query.setPageNum(1);//设置查询页码
 
             PoiSearch poiSearch = new PoiSearch(getContext(), query);
             Location location = GPSUtils.getInstance(getContext()).getLocation();
+            Log.i(TAG, "AAA");
             if (location != null) {
                 Log.i(TAG, location.getLatitude() + " " + location.getLongitude());
-                poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(location.getLatitude(), location.getLongitude()), 500));//设置周边搜索的中心点以及半径
+                poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(location.getLatitude(), location.getLongitude()), 1000));//设置周边搜索的中心点以及半径
                 poiSearch.setOnPoiSearchListener(this);
                 poiSearch.searchPOIAsyn();
+            } else {
+                Log.e(TAG, "get location error，potion is null");
             }
         }
     }
 
-    private void initData() {
-        mData = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            SurroundingShopsBean item = new SurroundingShopsBean(
-                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
-                    "店名" + i,
-                    "宁财院 | 火锅",
-                    "浙江宁波海曙区学院路",
-                    "人均￥" + (int) (Math.random() * 100) + "元"
-            );
-            mData.add(item);
-        }
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onLoadMoreRequested() {
+        mAdapter.setOnLoadMoreListener(() -> mRecyclerView.postDelayed(() -> {
+            mData.clear();
+            page_num += 20;
+            initMap();
+            mAdapter.notifyDataSetChanged();
+        }, 1000), mRecyclerView);
     }
 
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
-        Log.i(TAG, "Call back analysis result" + poiResult.getPois().size()+"   code:"+i);
+        Log.i(TAG, "Call back analysis result" + poiResult.getPois().size() + "   code:" + i);
+        this.mData = new ArrayList<>();
+        int cnt = 0;
         for (PoiItem item : poiResult.getPois()) {
             Log.i(TAG, "onPoiSearched: " + item.getLatLonPoint().getLongitude() + item.getLatLonPoint().getLatitude());
-            LatLng latLng = new LatLng(item.getLatLonPoint().getLatitude(), item.getLatLonPoint().getLongitude());
-            final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
             SurroundingShopsBean bean = new SurroundingShopsBean(
                     "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
                     item.getTitle(),
-                    item.getTypeDes(),
+                    item.getTypeDes().split(";")[2] + " | " + item.getAdName(),
                     item.getSnippet(),
                     "人均￥" + (int) (Math.random() * 100) + "元"
             );
-            mData.add(bean);
+            storeLocation[cnt][0] = item.getLatLonPoint().getLatitude();
+            storeLocation[cnt][1] = item.getLatLonPoint().getLongitude();
+            cnt++;
+            this.mData.add(bean);
+            Log.i(TAG, "add one item" + item.getTypeDes());
+            LatLng latLng = new LatLng(item.getLatLonPoint().getLatitude(), item.getLatLonPoint().getLongitude());
+            final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
         }
+        initRecyclerView(discoverLayout.findViewById(R.id.discover_layout));
+    }
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        View infoWindow = null;
+        if(infoWindow == null) {
+            infoWindow = LayoutInflater.from(getContext()).inflate(
+                    R.layout.layout_discover_storeinfo_window, null);
+        }
+        render(marker, infoWindow);
+        return infoWindow;
+    }
+    /**
+     * 自定义infowinfow窗口
+     */
+    public void render(Marker marker, View view) {
+//        if (radioOption.getCheckedRadioButtonId() == R.id.custom_info_contents) {
+//            ((ImageView) view.findViewById(R.id.badge))
+//                    .setImageResource(R.drawable.badge_sa);
+//        } else if (radioOption.getCheckedRadioButtonId() == R.id.custom_info_window) {
+//            ImageView imageView = (ImageView) view.findViewById(R.id.badge);
+//            imageView.setImageResource(R.drawable.badge_wa);
+//        }
+//        String title = marker.getTitle();
+//        TextView titleUi = ((TextView) view.findViewById(R.id.title));
+//        if (title != null) {
+//            SpannableString titleText = new SpannableString(title);
+//            titleText.setSpan(new ForegroundColorSpan(Color.RED), 0,
+//                    titleText.length(), 0);
+//            titleUi.setTextSize(15);
+//            titleUi.setText(titleText);
+//
+//        } else {
+//            titleUi.setText("");
+//        }
+//        String snippet = marker.getSnippet();
+//        TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
+//        if (snippet != null) {
+//            SpannableString snippetText = new SpannableString(snippet);
+//            snippetText.setSpan(new ForegroundColorSpan(Color.GREEN), 0,
+//                    snippetText.length(), 0);
+//            snippetUi.setTextSize(20);
+//            snippetUi.setText(snippetText);
+//        } else {
+//            snippetUi.setText("");
+//        }
+    }
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
     }
 
     @Override
@@ -222,7 +291,6 @@ public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSea
 
     @Override
     protected void init(View view) {
-
     }
 
     @Override
@@ -248,4 +316,5 @@ public class DiscoverFragment extends BaseFragment implements PoiSearch.OnPoiSea
         super.onSaveInstanceState(outState);
         mMapView.onSaveInstanceState(outState);
     }
+
 }

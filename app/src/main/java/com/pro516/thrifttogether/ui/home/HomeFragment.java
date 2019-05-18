@@ -3,6 +3,7 @@ package com.pro516.thrifttogether.ui.home;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -73,7 +74,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initTestShop(View view) {
-        LinearLayout shop = view.findViewById(R.id.discover_layout);
+        CardView shop = view.findViewById(R.id.discover_layout);
         shop.setOnClickListener(this);
     }
 
