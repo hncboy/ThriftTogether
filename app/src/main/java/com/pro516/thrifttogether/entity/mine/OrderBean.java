@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.mine.bean;
+package com.pro516.thrifttogether.entity.mine;
 
 import java.util.Date;
 

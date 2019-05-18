@@ -5,18 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <com.amap.api.maps.MapView
+        android:id="@+id/discover_map"
         android:scaleType="centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/temp_map" />
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"/>
 
-    <ListView
-        android:id="@+id/discover_listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/discover_store_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/item_discover"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
 </LinearLayout>

@@ -3,8 +3,6 @@ package com.pro516.thrifttogether.ui.mine.collection;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -12,7 +10,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
-import com.pro516.thrifttogether.ui.mine.bean.ShopBean;
+import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -59,7 +57,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener {
                     "海底捞",
                     "宁波亚细亚店",
                     5.0,
-                    50.0,
+                    50,
                     "https://img.meituan.net/msmerchant/054b5de0ba0b50c18a620cc37482129a45739.jpg@380w_214h_1e_1c"
             ));
         }

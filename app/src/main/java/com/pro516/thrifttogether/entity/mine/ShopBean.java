@@ -1,13 +1,22 @@
-package com.pro516.thrifttogether.ui.mine.bean;
+package com.pro516.thrifttogether.entity.mine;
 
-public class ShopBean {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class ShopBean implements Serializable {
+
     private String shopName;
+    @SerializedName("shopAddress")
     private String address;
+    @SerializedName("averageScore")
     private Double point;
-    private Double avePrice;
+    @SerializedName("averagePrice")
+    private Integer avePrice;
+    @SerializedName("coverUrl")
     private String img;
 
-    public ShopBean(String shopName, String address, Double point, Double avePrice, String img) {
+    public ShopBean(String shopName, String address, Double point, Integer avePrice, String img) {
         this.shopName = shopName;
         this.address = address;
         this.point = point;
@@ -50,11 +59,11 @@ public class ShopBean {
         this.point = point;
     }
 
-    public Double getAvePrice() {
+    public Integer getAvePrice() {
         return avePrice;
     }
 
-    public void setAvePrice(Double avePrice) {
+    public void setAvePrice(Integer avePrice) {
         this.avePrice = avePrice;
     }
 

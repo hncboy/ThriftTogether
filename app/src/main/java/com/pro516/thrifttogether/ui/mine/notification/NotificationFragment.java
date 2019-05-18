@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.mine.adapter.NotificationAdapter;
-import com.pro516.thrifttogether.ui.mine.bean.NotificationBean;
+import com.pro516.thrifttogether.entity.mine.NotificationBean;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;

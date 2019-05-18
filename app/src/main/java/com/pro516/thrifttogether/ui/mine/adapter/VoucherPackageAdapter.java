@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.ui.mine.bean.VoucherPackageBean;
+import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

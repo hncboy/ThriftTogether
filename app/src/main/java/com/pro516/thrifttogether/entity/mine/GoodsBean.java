@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.mine.bean;
+package com.pro516.thrifttogether.entity.mine;
 
 public class GoodsBean {
     private String img;
