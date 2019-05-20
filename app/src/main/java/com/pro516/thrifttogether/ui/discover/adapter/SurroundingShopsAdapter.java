@@ -1,6 +1,7 @@
 package com.pro516.thrifttogether.ui.discover.adapter;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -15,8 +16,8 @@ import com.pro516.thrifttogether.ui.discover.bean.SurroundingShopsBean;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class SurroundingShopsApapter extends BaseQuickAdapter<SurroundingShopsBean, BaseViewHolder> {
-    public SurroundingShopsApapter(int layoutResId, @Nullable List<SurroundingShopsBean> data) {
+public class SurroundingShopsAdapter extends BaseQuickAdapter<SurroundingShopsBean, BaseViewHolder> {
+    public SurroundingShopsAdapter(int layoutResId, @Nullable List<SurroundingShopsBean> data) {
         super(layoutResId, data);
     }
 
@@ -29,7 +30,7 @@ public class SurroundingShopsApapter extends BaseQuickAdapter<SurroundingShopsBe
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
-
+        Log.i("Constraints","init view");
         //设置图片圆角角度
         RoundedCorners roundedCorners = new RoundedCorners(30);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗

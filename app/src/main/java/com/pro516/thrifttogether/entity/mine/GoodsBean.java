@@ -1,6 +1,8 @@
 package com.pro516.thrifttogether.entity.mine;
 
-public class GoodsBean {
+import java.io.Serializable;
+
+public class GoodsBean implements Serializable {
     private String img;
     private String shopName;
     private String address;
@@ -13,17 +15,6 @@ public class GoodsBean {
         this.address = address;
         this.goodsName = goodsName;
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "GoodsBean{" +
-                "img='" + img + '\'' +
-                ", shopName='" + shopName + '\'' +
-                ", address='" + address + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                ", price=" + price +
-                '}';
     }
 
     public String getImg() {

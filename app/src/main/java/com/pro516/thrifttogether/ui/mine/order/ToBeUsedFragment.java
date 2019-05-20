@@ -43,6 +43,8 @@ public class ToBeUsedFragment extends BaseFragment implements BaseQuickAdapter.R
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
+                startActivity(UseActivity.class);
+                //startActivity(UseActivity.class,"id","2");
             }
         });
     }
