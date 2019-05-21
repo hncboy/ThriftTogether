@@ -10,12 +10,13 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.ReservationBean;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
-import com.pro516.thrifttogether.entity.mine.ShopBean;
+import com.pro516.thrifttogether.ui.mine.adapter.ReservationAdapter;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MineReservationActivity extends BaseActivity implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
@@ -36,12 +37,12 @@ public class MineReservationActivity extends BaseActivity implements BaseQuickAd
         initData();
         initRecyclerView();
     }
-    List<ShopBean> mData;
+    List<ReservationBean> mData;
     private void initRecyclerView() {
         RecyclerView mRecyclerView = findViewById(R.id.mine_reservation);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(MineReservationActivity.this, DividerItemDecoration.VERTICAL_LIST));
-        ShopAdapter mAdapter = new ShopAdapter(R.layout.item_shop, mData);
+        ReservationAdapter mAdapter = new ReservationAdapter(R.layout.item_mine_reservation, mData);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mRecyclerView.setAdapter(mAdapter);
@@ -57,12 +58,12 @@ public class MineReservationActivity extends BaseActivity implements BaseQuickAd
     private void initData() {
         mData = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            mData.add(new ShopBean(
+            mData.add(new ReservationBean(
+                    "https://img.meituan.net/msmerchant/054b5de0ba0b50c18a620cc37482129a45739.jpg@380w_214h_1e_1c",
                     "海底捞",
                     "宁波亚细亚店",
-                    5.0,
-                    50,
-                    "https://img.meituan.net/msmerchant/054b5de0ba0b50c18a620cc37482129a45739.jpg@380w_214h_1e_1c"
+                    new Date(),
+                    2
             ));
         }
     }

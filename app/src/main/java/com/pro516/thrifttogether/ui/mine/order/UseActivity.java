@@ -12,7 +12,8 @@ import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.yzq.zxinglibrary.encode.CodeCreator;
 
-public class UseActivity extends BaseActivity implements View.OnClickListener{
+public class UseActivity extends BaseActivity implements View.OnClickListener {
+
     Bitmap bitmap = null;
 
     @Override
@@ -30,8 +31,8 @@ public class UseActivity extends BaseActivity implements View.OnClickListener{
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("使用");
 
-        Intent intent = getIntent();
-        int id = Integer.parseInt(intent.getStringExtra("id"));
+//        Intent intent = getIntent();
+//        int id = Integer.parseInt(intent.getStringExtra("id"));
 
         /*
          * contentEtString：字符串内容

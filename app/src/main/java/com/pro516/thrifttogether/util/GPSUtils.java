@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.Util;
+package com.pro516.thrifttogether.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
