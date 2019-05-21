@@ -26,11 +26,12 @@ public class SurroundingShopsAdapter extends BaseQuickAdapter<SurroundingShopsBe
         helper.setText(R.id.discover_store_name, item.getTitleName())
                 .setText(R.id.discover_store_address, item.getAddress())
                 .setText(R.id.discover_store_category, item.getCategory())
-                .setText(R.id.discover_price, item.getPrice());
+                .setText(R.id.discover_price, item.getPrice())
+                .setText(R.id.discover_store_distance, item.getDistance());
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
-        Log.i("Constraints","init view");
+        Log.i("Constraints", "init view");
         //设置图片圆角角度
         RoundedCorners roundedCorners = new RoundedCorners(30);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
