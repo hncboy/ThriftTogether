@@ -13,7 +13,6 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,76 +21,70 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <ImageView
-                    android:id="@+id/sdv_goods_img"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
-                    android:scaleType="center"
-                    android:src="@mipmap/ic_launcher" />
-
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="bottom"
-                    android:orientation="vertical"
-                    android:paddingStart="22dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="我要评星"
-                        android:textColor="#adadad"
-                        android:textSize="15sp" />
+                        android:textColor="@color/text_grey_color"
+                        android:textSize="25sp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"/>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="6dp">
 
                         <ImageView
                             android:id="@+id/iv_comment_star_1"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_comment_star_red" />
 
                         <ImageView
                             android:id="@+id/iv_comment_star_2"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_comment_star_red" />
 
                         <ImageView
                             android:id="@+id/iv_comment_star_3"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_comment_star_red" />
 
                         <ImageView
                             android:id="@+id/iv_comment_star_4"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_comment_star_red" />
 
                         <ImageView
                             android:id="@+id/iv_comment_star_5"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_comment_star_red" />
@@ -104,20 +97,11 @@
                 android:layout_height="0.5dp"
                 android:layerType="software" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                android:text="我有话要说:"
-                android:textColor="#adadad"
-                android:textSize="15sp" />
-
             <EditText
                 android:id="@+id/et_comment_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="7dp"
                 android:background="@null"
                 android:gravity="top"
@@ -127,10 +111,10 @@
                 android:minHeight="101dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textColor="#413e3e"
                 android:textColorHint="#adadad"
-                android:textSize="15sp" />
-            <!--android:hint="宝贝怎么样? 点评可以帮助其他小朋友哦~"-->
+                android:textSize="15sp"
+                android:hint="宝贝怎么样? 点评可以帮助其他小朋友哦~" />
+                
 
             <View
                 android:layout_width="match_parent"
@@ -172,21 +156,22 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#dddddd" />
+                android:layout_height="0.5dp"
+                android:background="@color/division" />
         </LinearLayout>
     </ScrollView>
 
     <TextView
+        android:layout_margin="10dp"
         android:id="@+id/tv_submit"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_gravity="bottom"
-        android:background="#ef4f3e"
+        android:background="@drawable/shape_login_btn"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:text="提交"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 </LinearLayout>

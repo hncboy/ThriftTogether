@@ -9,26 +9,23 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mine.ShopBean;
+import com.pro516.thrifttogether.entity.mine.ReservationBean;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class ShopAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
-    public ShopAdapter(int layoutResId, @Nullable List<ShopBean> data) {
+public class ReservationAdapter extends BaseQuickAdapter<ReservationBean, BaseViewHolder> {
+    public ReservationAdapter(int layoutResId, @Nullable List<ReservationBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ShopBean item) {
-        helper.setText(R.id.shop_name, item.getShopName())
-                .setText(R.id.shop_address, item.getAddress())
-                .setText(R.id.shop_price, "人均：￥" + item.getAvePrice())
-                .setText(R.id.shop_score, "评分： "+item.getPoint());
-
-        SimpleRatingBar simpleRatingBar = helper.getView(R.id.simpleRatingBar);
-        simpleRatingBar.setRating(item.getPoint().floatValue());
+    protected void convert(BaseViewHolder helper, ReservationBean item) {
+        helper.setText(R.id.mine_reservation_shop_name, item.getShopName())
+                .setText(R.id.mine_reservation_address, item.getAddress())
+                .setText(R.id.mine_reservation_count, "人数：" + item.getCount())
+                .setText(R.id.mine_reservation_time,""+new SimpleDateFormat("yyyy-MM-dd").format(item.getTime()));
 
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
@@ -39,6 +36,6 @@ public class ShopAdapter extends BaseQuickAdapter<ShopBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.shop_iv));
+        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.mine_reservation_shop_iv));
     }
 }

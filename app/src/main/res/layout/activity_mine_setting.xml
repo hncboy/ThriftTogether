@@ -203,10 +203,11 @@
         android:gravity="center">
 
         <Button
+            android:layout_margin="10dp"
             android:id="@+id/quit_account"
             android:layout_width="350dp"
             android:layout_height="50dp"
-            android:background="@color/red"
+            android:background="@drawable/shape_login_btn"
             android:text="退出账户"
             android:textColor="@color/white" />
     </LinearLayout>

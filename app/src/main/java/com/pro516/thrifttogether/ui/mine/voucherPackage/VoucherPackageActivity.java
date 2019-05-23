@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.mine.bean.VoucherPackageBean;
+import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
 import com.pro516.thrifttogether.ui.mine.adapter.VoucherPackageAdapter;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 

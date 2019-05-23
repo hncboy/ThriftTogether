@@ -2,10 +2,8 @@ package com.pro516.thrifttogether.ui.discover;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -23,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,11 +40,11 @@ import com.amap.api.services.poisearch.PoiSearch;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.Util.MapUtil;
+import com.pro516.thrifttogether.util.GPSUtils;
+import com.pro516.thrifttogether.util.MapUtil;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.discover.adapter.SurroundingShopsAdapter;
 import com.pro516.thrifttogether.ui.discover.bean.SurroundingShopsBean;
-import com.pro516.thrifttogether.Util.GPSUtils;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;

@@ -10,8 +10,8 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.mine.adapter.OrderAdapter;
-import com.pro516.thrifttogether.ui.mine.bean.OrderBean;
-import com.pro516.thrifttogether.ui.mine.bean.VoucherPackageBean;
+import com.pro516.thrifttogether.entity.mine.OrderBean;
+import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.util.ArrayList;

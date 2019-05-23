@@ -12,14 +12,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--允许程序获取网络状态-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许程序访问WiFi网络信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--允许程序读写手机状态和身份-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -34,8 +30,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.mine.order.OrderDetailsActivity"/>
-        <activity android:name=".ui.mine.notification.NotificationActivity"/>
+        <activity android:name=".ui.mine.order.UseActivity"/>
+        <activity android:name=".ui.mine.order.OrderDetailsActivity" />
+        <activity android:name=".ui.mine.notification.NotificationActivity" />
         <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
         <activity android:name=".ui.mine.order.OrderCommentActivity" />
         <activity android:name=".ui.home.activity.ReservationDetailsActivity" />
@@ -47,6 +44,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="cffdc8e4ba6cb6218d508195bde5fdbc" />
         <activity android:name=".ui.mine.order.OrderActivity" />
+        <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.mine.collection.MineCollectionActivity" />
         <activity android:name=".ui.mine.settings.EditPersonalInformationActivity" />
         <activity android:name=".ui.mine.settings.MineSetting" />
@@ -66,7 +64,6 @@
         <activity android:name=".ui.home.activity.movie.HomeMovieActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.home.activity.StoreActivity" />
-        <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.login.RegisterActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>

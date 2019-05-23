@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
@@ -13,12 +12,12 @@
     card_view:cardCornerRadius="10dp">
 
     <RelativeLayout
-        android:id="@+id/shop"
+        android:id="@+id/mine_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/shop_iv"
+            android:id="@+id/mine_reservation_shop_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
@@ -33,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/shop_name"
+                android:id="@+id/mine_reservation_shop_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -44,13 +43,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/shop_address"
+                android:id="@+id/mine_reservation_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="海曙区 | 美发"
+                android:text="地址XXXXX"
                 android:textColor="@color/text_dark_color"
                 android:textSize="14sp" />
 
@@ -65,43 +64,26 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/shop_score"
+                android:id="@+id/mine_reservation_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="评分：5.0"
+                android:text="时间2019-5-20"
                 android:textColor="@color/text_dark_color" />
-
-            <!-- 星级评分 -->
-            <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                android:id="@+id/simpleRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                app:srb_borderColor="@color/star_yellow"
-                app:srb_fillColor="@color/star_yellow"
-                app:srb_isIndicator="true"
-                app:srb_numberOfStars="5"
-                app:srb_rating="3"
-                app:srb_starBorderWidth="2"
-                app:srb_starCornerRadius="3"
-                app:srb_starSize="15dp"
-                app:srb_stepSize="0.5" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/shop_price"
+            android:id="@+id/mine_reservation_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:maxLines="1"
             android:padding="10dp"
-            android:text="人均：￥45"
+            android:text="人数：2"
             android:textColor="@color/text_dark_color"
             android:textSize="16sp" />
 
