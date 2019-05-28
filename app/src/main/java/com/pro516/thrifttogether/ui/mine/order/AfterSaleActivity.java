@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -21,9 +22,13 @@ import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
@@ -40,15 +45,15 @@ import java.util.List;
 import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-public class OrderCommentActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
+public class AfterSaleActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
+
+    private String[] mReason = {"质量问题", "服务态度问题", "商品错误", "速度过慢", "其他"};
     private EditText mEtCommentContent;
-    private TextView mTvSubmit;
+    private TextView mSubmit;
     private ImageView mIvChooseGoodsPic;
-    private HorizontalScrollView mHsvCommentImgs;
-    private ImageView iv_comment_star_1, iv_comment_star_2, iv_comment_star_3, iv_comment_star_4, iv_comment_star_5;
-    private List<ImageView> starList;
-    private List<String> imageUrls;//所有晒图图片路径
-    private int currentStarCount;
+    private HorizontalScrollView mhsvCommentImgs;
+    private TextView mReasonText;
+    private List<String> mImageUrls;//所有晒图图片路径
     private InputMethodManager manager;
     public Context context;
     public static final String KEY_IMAGE_LIST = "imageList";
@@ -57,7 +62,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public int getLayoutRes() {
-        return R.layout.activity_order_comment;
+        return R.layout.activity_mine_order_after_sale;
     }
 
     @Override
@@ -72,37 +77,61 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         backBtn.setImageDrawable(getDrawable(R.drawable.ic_arrow_back_24dp));
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
-        title.setText("评价");
+        title.setText("售后服务");
+        RelativeLayout mLinearLayout = findViewById(R.id.mine_order_after_sale_reason);
+        mLinearLayout.setOnClickListener(this);
+    }
+
+    public void singleChoice() {
+        MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(AfterSaleActivity.this);
+        mBuilder.title("选择退款原因");
+        mBuilder.titleGravity(GravityEnum.CENTER);
+        mBuilder.titleColor(Color.parseColor("#000000"));
+        mBuilder.items(mReason);
+        mBuilder.autoDismiss(false);
+        mBuilder.widgetColor(Color.parseColor("#4693EC"));
+        mBuilder.positiveText("确定");
+        mBuilder.onPositive(new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+            }
+        });
+
+        mBuilder.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+            @Override
+            public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+                if (TextUtils.isEmpty(text)) {
+                    Toast.makeText(AfterSaleActivity.this, "请选择", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AfterSaleActivity.this, text, Toast.LENGTH_LONG).show();
+                    mReasonText.setText(text);
+                    dialog.dismiss();
+                }
+                return false;
+            }
+        });
+        MaterialDialog mMaterialDialog = mBuilder.build();
+        mMaterialDialog.show();
     }
 
     private void initData() {
-        starList = new ArrayList<>();
-        imageUrls = new ArrayList<>();
-        currentStarCount = 5;//默认为五星好评
+        mImageUrls = new ArrayList<>();
         manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     private void initListener() {
-        mTvSubmit.setOnClickListener(this);
+        mSubmit.setOnClickListener(this);
         mIvChooseGoodsPic.setOnClickListener(this);
-        iv_comment_star_1.setOnClickListener(this);
-        iv_comment_star_2.setOnClickListener(this);
-        iv_comment_star_3.setOnClickListener(this);
-        iv_comment_star_4.setOnClickListener(this);
-        iv_comment_star_5.setOnClickListener(this);
         mEtCommentContent.addTextChangedListener(this);
     }
 
     private void initView() {
-        mTvSubmit = findViewById(R.id.tv_submit);
+        mSubmit = findViewById(R.id.tv_submit);
         mEtCommentContent = findViewById(R.id.et_comment_content);
         mIvChooseGoodsPic = findViewById(R.id.iv_choose_goods_pic);
-        mHsvCommentImgs = findViewById(R.id.hsv_comment_imgs);
-        starList.add(iv_comment_star_1 = findViewById(R.id.iv_comment_star_1));
-        starList.add(iv_comment_star_2 = findViewById(R.id.iv_comment_star_2));
-        starList.add(iv_comment_star_3 = findViewById(R.id.iv_comment_star_3));
-        starList.add(iv_comment_star_4 = findViewById(R.id.iv_comment_star_4));
-        starList.add(iv_comment_star_5 = findViewById(R.id.iv_comment_star_5));
+        mhsvCommentImgs = findViewById(R.id.hsv_comment_imgs);
+        mReasonText =findViewById(R.id.mine_order_after_sale_reason_text);
     }
 
     @Override
@@ -135,13 +164,16 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         //晒单图片最多选择四张
         int MAX_PIC = 4;
         switch (v.getId()) {
+            case R.id.mine_order_after_sale_reason:
+                singleChoice();
+                break;
             case R.id.tv_submit:
-                //评价提交
+                //提交
                 validateComment();
-                if (imageUrls.isEmpty()) {
-                    Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
+                if (mImageUrls.isEmpty()) {
+                    Toast.makeText(context, "没有图片: ", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "第一张图片的路径: "+ mImageUrls.get(0), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.common_toolbar_function_left:
@@ -151,34 +183,10 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 //检查是否有打开照相机和文件读写的权限
                 if (PermissionCheckUtil.checkCameraAndExternalStoragePermission(this))
                     //权限已经开启, 调出图片选择界面
-                    MultiImageSelector.create().count(MAX_PIC - imageUrls.size()).start(this, REQUEST_CODE_PICTURE);
+                    MultiImageSelector.create().count(MAX_PIC - mImageUrls.size()).start(this, REQUEST_CODE_PICTURE);
                 break;
-
-            case R.id.iv_comment_star_1:
-                currentStarCount = 1;
-                break;
-
-            case R.id.iv_comment_star_2:
-                currentStarCount = 2;
-                break;
-
-            case R.id.iv_comment_star_3:
-                currentStarCount = 3;
-                break;
-
-            case R.id.iv_comment_star_4:
-                currentStarCount = 4;
-                break;
-
-            case R.id.iv_comment_star_5:
-                currentStarCount = 5;
-                break;
-
             default:
                 break;
-        }
-        for (int i = 0, len = starList.size(); i < len; i++) {
-            starList.get(i).setImageResource(i < currentStarCount ? R.drawable.icon_comment_star_red : R.drawable.icon_comment_star_gray);
         }
     }
 
@@ -202,12 +210,12 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
                 List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                imageUrls.addAll(path);
-                handleCommentPicList(imageUrls, false);
+                mImageUrls.addAll(path);
+                handleCommentPicList(mImageUrls, false);
             }
         } else if (resultCode == RESULT_CODE_LARGE_IMAGE) {
             //晒单大图页返回, 重新设置晒单图片
-            handleCommentPicList(imageUrls = data.getStringArrayListExtra(KEY_IMAGE_LIST), true);
+            handleCommentPicList(mImageUrls = data.getStringArrayListExtra(KEY_IMAGE_LIST), true);
         }
     }
 
@@ -232,7 +240,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 String path = FileUtils.getCachePath(context);//获取app缓存路径来存放临时图片
                 BitmapUtils.compressImage(paths.get(i), path, 95);
                 sdv_pic.setImageURI(Uri.parse("file://" + path));
-                imageUrls.set(i, path);
+                mImageUrls.set(i, path);
             }
 
             final int finalI = i;
@@ -249,8 +257,8 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             AutoUtils.auto(commentView);
             rootView.addView(commentView);
         }
-        mHsvCommentImgs.removeAllViews();
-        mHsvCommentImgs.addView(rootView);
+        mhsvCommentImgs.removeAllViews();
+        mhsvCommentImgs.addView(rootView);
     }
 
     /**

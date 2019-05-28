@@ -7,6 +7,15 @@ public class SurroundingShopsBean {
     private String address;
     private String price;
     private String image;
+    private String distance;
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
 
     public String getImage() {
         return image;
@@ -16,11 +25,13 @@ public class SurroundingShopsBean {
         this.image = image;
     }
 
-    public SurroundingShopsBean(String titleImage, String titleName, String category, String address, String price) {
+    public SurroundingShopsBean(String titleName, String category, String address, String price, String image, String distance) {
         this.titleName = titleName;
         this.category = category;
         this.address = address;
         this.price = price;
+        this.image = image;
+        this.distance = distance;
     }
 
     public String getTitleName() {

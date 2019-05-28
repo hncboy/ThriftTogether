@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.mine.order.OrderCommentActivity">
+    tools:context=".ui.mine.order.AfterSaleActivity">
 
     <include layout="@layout/include_toolbar" />
 
@@ -19,81 +19,36 @@
             android:background="@android:color/white"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/mine_order_after_sale_reason"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
+                android:layout_height="50dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/mine_order_after_sale_reason_text"
+                    android:layout_marginStart="10dp"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:orientation="vertical">
+                    android:text="请选择退款原因"
+                    android:textColor="@color/text_grey_color"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="我要评星"
-                        android:textColor="@color/text_grey_color"
-                        android:textSize="25sp"
-                        android:layout_gravity="center"
-                        android:textStyle="bold"/>
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/icon_title_forword" />
 
-                    <LinearLayout
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="6dp">
-
-                        <ImageView
-                            android:id="@+id/iv_comment_star_1"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/icon_comment_star_red" />
-
-                        <ImageView
-                            android:id="@+id/iv_comment_star_2"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/icon_comment_star_red" />
-
-                        <ImageView
-                            android:id="@+id/iv_comment_star_3"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/icon_comment_star_red" />
-
-                        <ImageView
-                            android:id="@+id/iv_comment_star_4"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/icon_comment_star_red" />
-
-                        <ImageView
-                            android:id="@+id/iv_comment_star_5"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/icon_comment_star_red" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/split_line" />
@@ -106,6 +61,7 @@
                 android:layout_marginBottom="7dp"
                 android:background="@null"
                 android:gravity="top"
+                android:hint="请输入退款说明"
                 android:lineSpacingExtra="3dp"
                 android:maxHeight="101dp"
                 android:maxLength="255"
@@ -113,9 +69,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColorHint="#adadad"
-                android:textSize="15sp"
-                android:hint="宝贝怎么样? 点评可以帮助其他小朋友哦~" />
-                
+                android:textSize="15sp" />
+
 
             <View
                 android:layout_width="match_parent"
@@ -127,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="14dp"
-                android:text="晒图更真实哦~"
+                android:text="上传凭证"
                 android:textColor="#adadad"
                 android:textSize="15sp" />
 
@@ -158,16 +113,16 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/split_line" />
+                android:background="@color/division" />
         </LinearLayout>
     </ScrollView>
 
     <TextView
-        android:layout_margin="10dp"
         android:id="@+id/tv_submit"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_gravity="bottom"
+        android:layout_margin="10dp"
         android:background="@drawable/shape_login_btn"
         android:clickable="true"
         android:focusable="true"

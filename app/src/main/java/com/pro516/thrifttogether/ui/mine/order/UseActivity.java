@@ -1,6 +1,5 @@
 package com.pro516.thrifttogether.ui.mine.order;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.AppCompatImageButton;

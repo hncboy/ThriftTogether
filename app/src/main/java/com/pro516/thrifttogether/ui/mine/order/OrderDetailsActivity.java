@@ -3,6 +3,7 @@ package com.pro516.thrifttogether.ui.mine.order;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Button;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
@@ -22,6 +23,9 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("订单详情");
+
+        Button button=findViewById(R.id.mine_order_details_btn);
+        button.setOnClickListener(this);
     }
 
     @Override
@@ -29,6 +33,9 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
         switch (view.getId()) {
             case R.id.common_toolbar_function_left:
                 finish();
+                break;
+            case R.id.mine_order_details_btn:
+                startActivity(AfterSaleActivity.class);
                 break;
             default:
                 break;

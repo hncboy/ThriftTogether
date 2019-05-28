@@ -13,12 +13,13 @@
         android:id="@+id/mine_order_details_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:text="订单已完成 >"
+        android:textColor="@color/text_grey_color"
         android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp"/>
+        android:textStyle="bold" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -42,11 +43,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="巴比汉堡 >"
-                    android:layout_marginStart="10dp"/>
+                    android:textColor="@color/text_grey_color" />
             </LinearLayout>
 
             <View
@@ -62,9 +64,9 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginStart="10dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_mine_settings" />
 
@@ -77,25 +79,28 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="汉堡" />
+                        android:text="汉堡"
+                        android:textColor="@color/text_grey_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="X1"
+                        android:textColor="@color/text_grey_color"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="140dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
                     android:text="￥8"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -116,16 +121,18 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="优惠"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="310dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="-￥0"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -134,18 +141,21 @@
                 android:layout_height="0.5dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/split_line" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="合计 ￥8"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"/>
+                    android:textColor="@color/text_grey_color"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -161,87 +171,117 @@
         android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         card_view:cardCornerRadius="10dp">
+
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
+
             <TextView
-                android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:text="订单信息"
+                android:textColor="@color/text_grey_color"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/split_line" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="订单号码"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="XXXXXXXXXXXXXXXXXX"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="支付方式"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="XXXXXXXXXXXXXXXXXX"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
+
                 <TextView
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="下单时间"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="XXXXXXXXXXXXXXXXXX"
+                    android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/mine_order_details_btn"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_login_btn"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="申请售后"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 </LinearLayout>

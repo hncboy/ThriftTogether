@@ -16,7 +16,6 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mall.MallBean;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
-import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.network.Url;

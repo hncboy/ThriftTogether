@@ -93,7 +93,7 @@
     <string name="error_missing_h5_pay_url">Missing URL to load. Please configure in PayDemoActivity.h5Pay()</string>
     <string name="error">Error</string>
     <string name="pay_cross_border">Cross-border Pay with Alipay</string>
-    <string name="error_missing_global_partner_seller_rsa_private" >Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
+    <string name="error_missing_global_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
     <string name="payment_inst_hk">Payer: HK</string>
     <string name="payment_inst_cn">Payer: CN</string>
 </resources>

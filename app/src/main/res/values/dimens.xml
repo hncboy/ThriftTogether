@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_margin">8dp</dimen>
+
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_180">180dp</dimen>
+
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+    <dimen name="font_20">20sp</dimen>
+
+    <dimen name="radius_alertview">15px</dimen>
+    <!--标题文字大小-->
+    <dimen name="textSize_alert_title">22sp</dimen>
+    <dimen name="textSize_actionsheet_title">14sp</dimen>
+    <!--标题文字高度-->
+    <dimen name="height_alert_title">60dp</dimen>
+    <dimen name="height_actionsheet_title">40dp</dimen>
+    <!--消息文字大小-->
+    <dimen name="textSize_alert_msg">15sp</dimen>
+    <dimen name="textSize_actionsheet_msg">14sp</dimen>
+    <!--消息距离底部间距-->
+    <dimen name="marginBottom_alert_msg">25dp</dimen>
+    <dimen name="marginBottom_actionsheet_msg">14dp</dimen>
+    <!--窗口模式左右两边到屏幕的间距-->
+    <dimen name="margin_alert_left_right">40dp</dimen>
+    <dimen name="margin_actionsheet_left_right">10dp</dimen>
+    <!--线条粗细-->
+    <dimen name="size_divier">1dp</dimen>
+    <!--按钮的高度-->
+    <dimen name="height_alert_button">48dp</dimen>
+    <!--按钮文字大小-->
+    <dimen name="textSize_alert_button">18sp</dimen>
+
+</resources>
