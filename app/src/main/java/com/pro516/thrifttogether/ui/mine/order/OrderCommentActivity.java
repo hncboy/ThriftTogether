@@ -143,6 +143,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 }
+
                 break;
             case R.id.common_toolbar_function_left:
                 finish();

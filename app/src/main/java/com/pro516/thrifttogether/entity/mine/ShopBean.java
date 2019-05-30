@@ -1,38 +1,42 @@
 package com.pro516.thrifttogether.entity.mine;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 public class ShopBean implements Serializable {
 
-    private String shopName;
-    @SerializedName("shopAddress")
-    private String address;
-    @SerializedName("averageScore")
-    private Double point;
-    @SerializedName("averagePrice")
-    private Integer avePrice;
-    @SerializedName("coverUrl")
-    private String img;
+    //@ApiModelProperty(value = "店铺id")
+    private Integer shopId;
 
-    public ShopBean(String shopName, String address, Double point, Integer avePrice, String img) {
+    //@ApiModelProperty(value = "店铺名称")
+    private String shopName;
+
+    //@ApiModelProperty(value = "店铺封面")
+    private String shopCoverUrl;
+
+    //@ApiModelProperty(value = "店铺评分")
+    private Double averageScore;
+
+    //@ApiModelProperty(value = "人均价格")
+    private Integer averagePrice;
+
+    //@ApiModelProperty(value = "店铺区域")
+    private String shopArea;
+
+    public ShopBean(Integer shopId, String shopName, String shopCoverUrl, Double averageScore, Integer averagePrice, String shopArea) {
+        this.shopId = shopId;
         this.shopName = shopName;
-        this.address = address;
-        this.point = point;
-        this.avePrice = avePrice;
-        this.img = img;
+        this.shopCoverUrl = shopCoverUrl;
+        this.averageScore = averageScore;
+        this.averagePrice = averagePrice;
+        this.shopArea = shopArea;
     }
 
-    @Override
-    public String toString() {
-        return "ShopBean{" +
-                "shopName='" + shopName + '\'' +
-                ", address='" + address + '\'' +
-                ", point=" + point +
-                ", avePrice=" + avePrice +
-                ", img='" + img + '\'' +
-                '}';
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
     public String getShopName() {
@@ -43,35 +47,35 @@ public class ShopBean implements Serializable {
         this.shopName = shopName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getShopCoverUrl() {
+        return shopCoverUrl;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setShopCoverUrl(String shopCoverUrl) {
+        this.shopCoverUrl = shopCoverUrl;
     }
 
-    public Double getPoint() {
-        return point;
+    public Double getAverageScore() {
+        return averageScore;
     }
 
-    public void setPoint(Double point) {
-        this.point = point;
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
     }
 
-    public Integer getAvePrice() {
-        return avePrice;
+    public Integer getAveragePrice() {
+        return averagePrice;
     }
 
-    public void setAvePrice(Integer avePrice) {
-        this.avePrice = avePrice;
+    public void setAveragePrice(Integer averagePrice) {
+        this.averagePrice = averagePrice;
     }
 
-    public String getImg() {
-        return img;
+    public String getShopArea() {
+        return shopArea;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setShopArea(String shopArea) {
+        this.shopArea = shopArea;
     }
 }

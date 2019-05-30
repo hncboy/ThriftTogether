@@ -13,9 +13,11 @@ import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
+
 
     public OrderAdapter(int layoutResId, @Nullable List<OrderBean> data) {
         super(layoutResId, data);
@@ -23,11 +25,23 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, OrderBean item) {
-        helper.setText(R.id.mine_order_title_name, item.getTitleName())
-                .setText(R.id.mine_order_title_state, item.getState())
-                .setText(R.id.mine_order_content_time, "下单时间：" + new SimpleDateFormat("yyyy-MM-dd").format(item.getTime()))
-                .setText(R.id.mine_order_content_price, "价格：￥" + item.getPrice())
-                .setText(R.id.mine_order_btn, item.getBtnName());
+        ArrayList<String> change= new ArrayList<>();
+        change.add("待付款");
+        change.add("待使用");
+        change.add("待评价");
+        change.add("已完成");
+        change.add("退款售后");
+        ArrayList<String> btn= new ArrayList<>();
+        btn.add("去付款");
+        btn.add("去使用");
+        btn.add("去评价");
+        btn.add("再来一单");
+        btn.add("退款售后");
+        helper.setText(R.id.mine_order_title_name, item.getProductName())
+                .setText(R.id.mine_order_title_state, change.get(item.getOrderStatus()-1))
+                .setText(R.id.mine_order_content_time, "下单时间：" + item.getCreateTime())
+                .setText(R.id.mine_order_content_price, "价格：￥" + item.getProductAmountTotal())
+                .setText(R.id.mine_order_btn, btn.get(item.getOrderStatus()-1));
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
@@ -37,7 +51,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getTitleImage()).apply(mRequestOptions).into((ImageView) helper.getView(R.id.mine_order_title_image));
-        Glide.with(mContext).load(item.getContentImage()).apply(options).into((ImageView) helper.getView(R.id.mine_order_content_image));
+        Glide.with(mContext).load(item.getProductCoverUrl()).apply(mRequestOptions).into((ImageView) helper.getView(R.id.mine_order_title_image));
+        Glide.with(mContext).load(item.getProductCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.mine_order_content_image));
     }
 }
