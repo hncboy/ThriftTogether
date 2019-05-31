@@ -93,7 +93,19 @@
     <string name="error_missing_h5_pay_url">Missing URL to load. Please configure in PayDemoActivity.h5Pay()</string>
     <string name="error">Error</string>
     <string name="pay_cross_border">Cross-border Pay with Alipay</string>
-    <string name="error_missing_global_partner_seller_rsa_private" >Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
+    <string name="error_missing_global_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
     <string name="payment_inst_hk">Payer: HK</string>
     <string name="payment_inst_cn">Payer: CN</string>
+
+    <string name="package_details">套餐详情</string>
+    <string name="product_note">随时退 | 免预约 | 过期自动退</string>
+    <string name="half_year_sale">半年销量</string>
+    <string name="sweat_note">温馨提醒</string>
+    <string name="buy_now">立即购买</string>
+    <string name="submit_order_viable_time">周一到周日 | 免预约</string>
+    <string name="submit_order_number">数量</string>
+    <string name="submit_order_subtotal">小计</string>
+    <string name="submit_order_coupons">优惠券</string>
+    <string name="submit_order_phone">手机号</string>
+    <string name="submit_order_total">总计: </string>
 </resources>

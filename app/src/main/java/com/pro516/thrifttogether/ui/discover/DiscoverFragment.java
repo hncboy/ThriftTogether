@@ -40,6 +40,8 @@ import com.amap.api.services.poisearch.PoiSearch;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
+import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.util.GPSUtils;
 import com.pro516.thrifttogether.util.MapUtil;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
@@ -59,7 +61,6 @@ import static android.support.constraint.Constraints.TAG;
  */
 public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAdapter, PoiSearch.OnPoiSearchListener, BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
 
-    private List<HashMap<String, Object>> data;
     private MapView mMapView = null;
     private AMap aMap = null;
     private View discoverLayout;
@@ -71,10 +72,9 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
     private double latx, laty;
     private String mAddress;
     private Button guideButton;
+    private Button testButton;
     List<SurroundingShopsBean> mData;
-
     private static final int LOCATION_CODE = 1;
-    private LocationManager locationManager;//【位置管理】
 
     public int checkPermission() {
         if (GPSUtils.getInstance(getContext()).isLocationProviderEnabled()) {//开了定位服务
@@ -130,7 +130,8 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
         discoverLayout = inflater.inflate(getLayoutRes(), null);
         mMapView = discoverLayout.findViewById(R.id.discover_map);
         mMapView.onCreate(savedInstanceState);
-
+        testButton = discoverLayout.findViewById(R.id.test_product);
+        testButton.setOnClickListener(this);
         new Thread(this::initMap).run();
         return discoverLayout;
     }
@@ -220,6 +221,9 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
             case R.id.discover_guide:
                 showListDialog();
                 break;
+            case R.id.test_product:
+                startActivity(StoreActivity.class);
+                break;
         }
     }
 
@@ -232,6 +236,7 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
             mAdapter.notifyDataSetChanged();
         }, 1000), mRecyclerView);
     }
+
     //poi搜索回调接口,第二个参数为解析结果代码
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
@@ -264,6 +269,7 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
         }
         initRecyclerView(discoverLayout.findViewById(R.id.discover_layout));
     }
+
     //自定义infowindow
     @Override
     public View getInfoWindow(Marker marker) {
@@ -281,7 +287,7 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
      */
     public void render(Marker marker, View view) {
         String title = marker.getTitle();
-        TextView titleUi = ((TextView) view.findViewById(R.id.title));
+        TextView titleUi = ((TextView) view.findViewById(R.id.infoTitle));
         if (title != null) {
             SpannableString titleText = new SpannableString(title);
             titleText.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.text_dark_color)), 0,

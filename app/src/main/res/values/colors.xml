@@ -22,4 +22,5 @@
     <color name="separate_color">#F2F2F2</color>
     <color name="distance_background_color">#BFe2e2e2</color>
     <color name="processColorAccent">#FF4081</color>
+    <color name="submit_order_background_color">#E5ECEC</color>
 </resources>

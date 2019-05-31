@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/discover_store_icon"
+            android:id="@+id/store_product_image"
             android:layout_width="0dp"
             android:layout_height="90dp"
             android:layout_weight="1"
@@ -29,7 +29,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/discover_store_name"
+                android:id="@+id/store_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -42,7 +42,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/discover_store_address"
+                android:id="@+id/store_product_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -54,7 +54,7 @@
                 android:textColor="@color/pos_color"
                 android:textSize="12sp" />
             <TextView
-                android:id="@+id/discover_price"
+                android:id="@+id/store_product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -72,6 +72,7 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/store_product_buy_button"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:background="@drawable/shape_rush_buy"

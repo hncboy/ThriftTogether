@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/package_details_category_content_tv1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="xxxx"
+        android:textColor="@color/contents_text"
+        android:textSize="16sp"
+        android:textStyle="bold"  />
+
+    <TextView
+        android:id="@+id/package_details_category_content_tv2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="(1个)"
+        android:textColor="@color/contents_text"
+        android:textSize="16sp"
+        android:textStyle="bold"  />
+</LinearLayout>

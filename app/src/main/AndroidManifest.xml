@@ -30,7 +30,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.mine.order.UseActivity"/>
+        <activity android:name=".ui.buy.activity.SubmitOrderActivity"></activity>
+        <activity android:name=".ui.buy.activity.ProductInfoActivity" />
+        <activity android:name=".ui.mine.order.UseActivity" />
         <activity android:name=".ui.mine.order.OrderDetailsActivity" />
         <activity android:name=".ui.mine.notification.NotificationActivity" />
         <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
@@ -40,9 +42,11 @@
         <activity android:name=".ui.mall.MallExchangeActivity" />
         <activity android:name=".ui.mine.feedback.MineFeedBackActivity" />
         <activity android:name=".ui.mine.voucherPackage.VoucherPackageActivity" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="cffdc8e4ba6cb6218d508195bde5fdbc" />
+
         <activity android:name=".ui.mine.order.OrderActivity" />
         <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.mine.collection.MineCollectionActivity" />
@@ -68,6 +72,7 @@
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

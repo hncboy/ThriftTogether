@@ -142,9 +142,11 @@
                 android:textColor="@color/text_dark_color"
                 android:textSize="20sp" />
 
-            <include layout="@layout/item_store_product" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/store_product_recycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <include layout="@layout/item_store_product" />
             <!--评价-->
             <View
                 android:layout_width="match_parent"
