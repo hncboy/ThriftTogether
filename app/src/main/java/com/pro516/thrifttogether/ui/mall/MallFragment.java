@@ -1,6 +1,7 @@
 package com.pro516.thrifttogether.ui.mall;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mall.MallBean;
+import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
@@ -24,6 +25,9 @@ import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 import java.io.IOException;
 import java.util.List;
 
+import static com.pro516.thrifttogether.ui.network.Url.ERROR;
+import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
+
 /**
  * Created by hncboy on 2019-03-19.
  */
@@ -32,9 +36,6 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
     private SwipeRefreshLayout mSwipeRefresh;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
-    private MallAdapter mAdapter;
-    private static final int ERROR = -666;
-    private static final int LOAD_ALL = 1;
 
     @Override
     protected int getLayoutRes() {
@@ -45,28 +46,30 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
     protected void init(View view) {
         TextView mTitle = view.findViewById(R.id.title);
         mTitle.setText(getString(R.string.points_mall));
-
         initRefreshLayout(view);
         mRecyclerView = view.findViewById(R.id.mall_recyclerView);
         mProgressBar = view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
         loadData();
-        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
-            @Override
-            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                startActivity(MallExchangeActivity.class);
-            }
-        });
     }
 
-    private void initRecyclerView(List<MallBean> mData) {
+    private void initRecyclerView(List<SimpleCouponVO> mData) {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        mAdapter = new MallAdapter(R.layout.item_mall, mData);
+        MallAdapter mAdapter = new MallAdapter(R.layout.item_mall, mData);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                Toast.makeText(getActivity(), "ID：" + mData.get(position).getCouponId(), Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(),MallExchangeActivity.class);
+                intent.putExtra("ID",mData.get(position).getCouponId());
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("HandlerLeak")
@@ -80,7 +83,7 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
                     mProgressBar.setVisibility(View.GONE);
                     break;
                 case LOAD_ALL:
-                    initRecyclerView((List<MallBean>) msg.obj);
+                    initRecyclerView((List<SimpleCouponVO>) msg.obj);
                     if (mSwipeRefresh.isRefreshing()) {
                         mSwipeRefresh.setRefreshing(false);
                     }
@@ -98,7 +101,7 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(Url.COUPON);
-                    List<MallBean> mData = JsonParser.VoucherPackage(json);
+                    List<SimpleCouponVO> mData = JsonParser.VoucherPackage(json);
                     //System.out.println("---------------------------->" + mData.get(0).getImg());
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
                 } catch (IOException e) {

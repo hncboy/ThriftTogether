@@ -43,6 +43,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -64,6 +65,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/mine_order_details_order_img"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
@@ -77,12 +79,14 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/mine_order_details_order_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="汉堡"
                         android:textColor="@color/text_grey_color" />
 
                     <TextView
+                        android:id="@+id/mine_order_details_order_content_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -92,6 +96,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -125,6 +130,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_voucher_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -147,6 +153,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -206,6 +213,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -237,7 +245,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
+                    android:text="支付宝"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -257,6 +265,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/mine_order_details_order_create_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

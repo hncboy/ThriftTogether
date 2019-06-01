@@ -46,7 +46,8 @@ import java.util.Objects;
 import static com.chad.library.adapter.base.listener.SimpleClickListener.TAG;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.ORDER;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_DELETE_OR_UPDATE;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
 import static com.pro516.thrifttogether.ui.network.Url.userID;
 
 public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
@@ -105,7 +106,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         //showAlert(getActivity(), getString(R.string.pay_success) + payResult);
-                        Log.d(TAG, "handleMessage: position: "+position);
+                        Log.d(TAG, "handleMessage: position: " + position);
                         updateStatusLoadData();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
@@ -207,7 +208,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
      * 支付宝支付业务示例
      */
     public void payV2(View v, List<OrderBean> mData, int pos) {
-        position=pos;
+        position = pos;
         if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
             showAlert(getActivity(), getString(R.string.error_missing_appid_rsa_private));
             return;
@@ -377,13 +378,13 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void updateStatusLoadData(){
-        new Thread(){
+    private void updateStatusLoadData() {
+        new Thread() {
             @Override
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(
-                            "http://hncboy.natapp1.cc/thrifttogether/order/"+mData.get(position).getOrderNo()+"/status/"+2);
+                            ORDER_DELETE_OR_UPDATE + mData.get(position).getOrderNo() + "/status/" + 2);
                     JsonParser.updateOrders(json);
                     loadData();
                 } catch (IOException e) {
@@ -399,7 +400,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(ORDER + userID + "/status/1");
+                    String json = HttpUtils.getStringFromServer(ORDER_GET + userID + "/status/1");
                     mData = JsonParser.Orders(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

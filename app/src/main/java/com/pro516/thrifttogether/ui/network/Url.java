@@ -12,9 +12,17 @@ public class Url {
     public static String IP = "http://hncboy.natapp1.cc/thrifttogether";
 
     public static String RECOMMEND = IP + "/shop/recommend"; // 今日推荐
+
     public static String COUPON = IP + "/coupon"; // 优惠券
+    public static String COUPON_USER = IP + "/coupon/user/" + userID; // 用户优惠券
 
-    public static String COLLECTION = IP + "/collect/user/"; // 收藏
-    public static String ORDER = IP + "/order/user/";// 订单
+    public static String COLLECTION = IP + "/collect/user/"; //
 
+    public static String ORDER_GET = IP + "/order/user/";// 获取订单
+    public static String ORDER_DELETE_OR_UPDATE = IP + "/order/";// 订单
+
+    public static String REVIEW = IP + "/review";
+
+    public static String USER_RECENTLY_BROWSE = IP + "/user/" + userID + "/recentlybrowse";//最近浏览
+    public static String USER_FEEDBACK = IP + "/user/" + userID + "/feedback/";
 }

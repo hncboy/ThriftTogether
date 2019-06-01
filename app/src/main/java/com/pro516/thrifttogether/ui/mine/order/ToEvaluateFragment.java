@@ -25,7 +25,7 @@ import java.util.List;
 
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.ORDER;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
 import static com.pro516.thrifttogether.ui.network.Url.userID;
 
 public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener{
@@ -92,7 +92,7 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(ORDER+userID+ "/status/3");
+                    String json = HttpUtils.getStringFromServer(ORDER_GET +userID+ "/status/3");
                     List<OrderBean> mData = JsonParser.Orders(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

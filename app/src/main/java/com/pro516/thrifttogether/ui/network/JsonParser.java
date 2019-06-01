@@ -8,12 +8,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.pro516.thrifttogether.entity.ResponseMessageEntity;
-import com.pro516.thrifttogether.entity.mall.MallBean;
+import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
+import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
-import com.pro516.thrifttogether.entity.mine.CollectedShopVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
-import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
+import com.pro516.thrifttogether.entity.mine.UserCoupon;
 
 
 import java.lang.reflect.Type;
@@ -51,10 +51,10 @@ public class JsonParser {
         return mGson.fromJson(json, token);
     }
 
-    public static ArrayList<MallBean> VoucherPackage(String json) {
-        Type token = new TypeToken<ResponseMessageEntity<ArrayList<MallBean>>>() {
+    public static ArrayList<SimpleCouponVO> VoucherPackage(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<SimpleCouponVO>>>() {
         }.getType();
-        ResponseMessageEntity<ArrayList<MallBean>> entity = mGson.fromJson(json, token);
+        ResponseMessageEntity<ArrayList<SimpleCouponVO>> entity = mGson.fromJson(json, token);
         if (entity.getCode() == 200) {
             return entity.getData();
         } else {
@@ -62,10 +62,32 @@ public class JsonParser {
         }
     }
 
-    public static ArrayList<CollectedShopVO> collectionShopList(String json) {
-        Type token = new TypeToken<ResponseMessageEntity<ArrayList<CollectedShopVO>>>() {
+    public static CouponDetailsVO VoucherPackageDetails(String json){
+        Type token=new TypeToken<ResponseMessageEntity<CouponDetailsVO>>(){
         }.getType();
-        ResponseMessageEntity<ArrayList<CollectedShopVO>> entity = mGson.fromJson(json, token);
+        ResponseMessageEntity<CouponDetailsVO> entity=mGson.fromJson(json,token);
+        if (entity.getCode()==200){
+            return entity.getData();
+        }else{
+            return new CouponDetailsVO();
+        }
+    }
+
+    public static ArrayList<UserCoupon> UserVoucherPackageLists(String json){
+        Type token=new TypeToken<ResponseMessageEntity<ArrayList<UserCoupon>>>(){
+        }.getType();
+        ResponseMessageEntity<ArrayList<UserCoupon>> entity=mGson.fromJson(json,token);
+        if (entity.getCode()==200){
+            return entity.getData();
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public static ArrayList<ShopBean> collectionShopList(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<ShopBean>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<ShopBean>> entity = mGson.fromJson(json, token);
         if (entity.getCode() == 200) {
             return entity.getData();
         } else {
@@ -77,6 +99,17 @@ public class JsonParser {
         Type token = new TypeToken<ResponseMessageEntity<ArrayList<CollectedProductVO>>>() {
         }.getType();
         ResponseMessageEntity<ArrayList<CollectedProductVO>> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public static ArrayList<ShopBean> shopList(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<ShopBean>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<ShopBean>> entity = mGson.fromJson(json, token);
         if (entity.getCode() == 200) {
             return entity.getData();
         } else {

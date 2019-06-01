@@ -1,23 +1,44 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.TypedValue;
-import android.view.Gravity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.adapter.GirdDropDownAdapter;
+import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
+import com.pro516.thrifttogether.ui.mine.order.UseActivity;
+import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.JsonParser;
+import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 import com.yyydjk.library.DropDownMenu;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.pro516.thrifttogether.ui.network.Url.ERROR;
+import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
+import static com.pro516.thrifttogether.ui.network.Url.RECOMMEND;
+import static com.pro516.thrifttogether.ui.network.Url.USER_RECENTLY_BROWSE;
 
 /**
  * 美食
@@ -30,6 +51,10 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
     private GirdDropDownAdapter sortAdapter;
     private GirdDropDownAdapter filterAdapter;
     private List<View> popupViews = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
+    private SwipeRefreshLayout mSwipeRefresh;
 
     private String headers[] = {"全部美食", "附近", "智能排序", "筛选"};
     private String allFoods[] = {"不限", "特色菜", "福建菜", "日本菜", "饮品店", "面包甜点", "生日蛋糕"};
@@ -44,8 +69,82 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void init() {
+        mProgressBar = findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
+
         initToolbar();
         initDropMenu();
+
+        loadData(USER_RECENTLY_BROWSE);
+        initRefreshLayout();
+    }
+
+    private void initRecyclerView(List<ShopBean> mData) {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        ShopAdapter mAdapter = new ShopAdapter(R.layout.item_shop, mData);
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
+        mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
+
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Log.d("团节", "onItemClick: ");
+            Toast.makeText(this, "onItemClick" + position, Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this, UseActivity.class);
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("data",mData.get(position));
+            intent.putExtras(bundle);
+            startActivity(intent);
+        });
+
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case ERROR:
+                    Toast.makeText(HomeFoodActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
+                    mProgressBar.setVisibility(View.GONE);
+                    break;
+                case LOAD_ALL:
+                    initRecyclerView((List<ShopBean>) msg.obj);
+                    if (mSwipeRefresh.isRefreshing()) {
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                    mProgressBar.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void loadData(String string) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpUtils.getStringFromServer(string);
+                    List<ShopBean> mData = JsonParser.shopList(json);
+                    System.out.println("---------------------------->" + mData);
+                    mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void initRefreshLayout() {
+        mSwipeRefresh = findViewById(R.id.swipe_refresh);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefresh.setOnRefreshListener(() -> {
+            loadData(USER_RECENTLY_BROWSE);
+        });
     }
 
     private void initToolbar() {
@@ -70,6 +169,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         allFoodView.setOnItemClickListener((parent, view, position, id) -> {
             allFoodAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[0] : allFoods[position]);
+            loadData(RECOMMEND);
             mDropDownMenu.closeMenu();
         });
 
@@ -81,6 +181,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         nearbyView.setOnItemClickListener((parent, view, position, id) -> {
             nearbyAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[1] : nearbys[position]);
+            loadData(RECOMMEND);
             mDropDownMenu.closeMenu();
         });
 
@@ -92,6 +193,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         sortView.setOnItemClickListener((parent, view, position, id) -> {
             sortAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[2] : sortings[position]);
+            loadData(RECOMMEND);
             mDropDownMenu.closeMenu();
         });
 
@@ -103,6 +205,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         filterView.setOnItemClickListener((parent, view, position, id) -> {
             filterAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[3] : filters[position]);
+            loadData(RECOMMEND);
             mDropDownMenu.closeMenu();
         });
 
@@ -111,14 +214,11 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         popupViews.add(sortView);
         popupViews.add(filterView);
 
-        TextView contentView = new TextView(this);
-        contentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        contentView.setText("内容显示区域");
-        contentView.setGravity(Gravity.CENTER);
-        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        mRecyclerView=new RecyclerView(this);
+        mRecyclerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         mDropDownMenu = findViewById(R.id.dropDownMenu);
-        mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, contentView);
+        mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, mRecyclerView);
     }
 
     @Override

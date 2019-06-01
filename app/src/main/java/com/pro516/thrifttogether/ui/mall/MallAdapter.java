@@ -10,21 +10,21 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mall.MallBean;
+import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 
 import java.util.List;
 
-public class MallAdapter extends BaseQuickAdapter<MallBean, BaseViewHolder> {
+public class MallAdapter extends BaseQuickAdapter<SimpleCouponVO, BaseViewHolder> {
 
 
-    public MallAdapter(int layoutResId, @Nullable List<MallBean> data) {
+    public MallAdapter(int layoutResId, @Nullable List<SimpleCouponVO> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, MallBean item) {
-        helper.setText(R.id.coupons_title, item.getName())
-                .setText(R.id.coupons_required_integral, ""+item.getRequiredIntegral());
+    protected void convert(BaseViewHolder helper, SimpleCouponVO item) {
+        helper.setText(R.id.coupons_title, item.getCouponName())
+                .setText(R.id.coupons_required_integral, ""+item.getCouponIntegral());
 
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
@@ -35,7 +35,7 @@ public class MallAdapter extends BaseQuickAdapter<MallBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.coupons_image));
+        Glide.with(mContext).load(item.getCouponImageUrl()).apply(options).into((ImageView) helper.getView(R.id.coupons_image));
         //Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.voucher_image));
     }
 }

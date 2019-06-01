@@ -2,8 +2,10 @@ package com.pro516.thrifttogether.ui.mine.order;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -47,7 +49,8 @@ import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.show
 import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.showToast;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.ORDER;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_DELETE_OR_UPDATE;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
 import static com.pro516.thrifttogether.ui.network.Url.userID;
 
 public class AllOrdersFragment extends BaseFragment implements View.OnClickListener {
@@ -131,6 +134,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             }
         }
     };
+
     /**
      * 权限获取回调
      */
@@ -206,7 +210,6 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
     }
 
 
-
     private void initRecyclerView(List<OrderBean> mData) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -218,18 +221,32 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
 
+            Intent intent;
+            Bundle bundle;
             switch (mData.get(position).getOrderStatus()) {
                 case 1:
-                    payV2(view,mData,position);
+                    payV2(view, mData, position);
                     break;
                 case 2:
-                    startActivity(UseActivity.class);
+                    intent=new Intent(getActivity(),UseActivity.class);
+                    bundle=new Bundle();
+                    bundle.putSerializable("data",mData.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                     break;
                 case 3:
-                    startActivity(OrderCommentActivity.class);
+                    intent=new Intent(getActivity(),OrderCommentActivity.class);
+                    bundle=new Bundle();
+                    bundle.putSerializable("data",mData.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                     break;
                 case 4:
-                    startActivity(OrderDetailsActivity.class);
+                    intent=new Intent(getActivity(),OrderDetailsActivity.class);
+                    bundle=new Bundle();
+                    bundle.putSerializable("data",mData.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                     break;
                 case 5:
                     break;
@@ -242,7 +259,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             Log.d("团节", "onItemLongClick: ");
             Toast.makeText(getActivity(), "productID" + mData.get(position).getOrderNo(), Toast.LENGTH_SHORT).show();
             if (mData.get(position).getOrderStatus() == 4) {
-                deleteConfirmationDialog(position, ORDER + userID + "/order/" + mData.get(position).getOrderNo(), getActivity());
+                deleteConfirmationDialog(position, ORDER_DELETE_OR_UPDATE + mData.get(position).getOrderNo(), getActivity());
             }
             return false;
         });
@@ -289,7 +306,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(
-                            "http://hncboy.natapp1.cc/thrifttogether/order/" + mData.get(position).getOrderNo() + "/status/" + 2);
+                            ORDER_DELETE_OR_UPDATE + mData.get(position).getOrderNo() + "/status/" + 2);
                     JsonParser.updateOrders(json);
                     loadData();
                 } catch (IOException e) {
@@ -305,7 +322,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(ORDER + userID);
+                    String json = HttpUtils.getStringFromServer(ORDER_GET + userID);
                     mData = JsonParser.Orders(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
