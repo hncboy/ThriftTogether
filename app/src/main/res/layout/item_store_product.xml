@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="4dp">
+    android:paddingTop="8dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,6 +18,7 @@
             android:layout_height="90dp"
             android:layout_weight="1"
             android:layout_gravity="start"
+            android:scaleType="fitXY"
             android:contentDescription="@string/store_icon"
             android:src="@drawable/temp_map" />
 
@@ -36,17 +37,17 @@
                 android:lines="1"
                 android:maxEms="15"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="双人套餐A"
                 android:textColor="@color/text_dark_color"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/store_product_time"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="2dp"
+                android:layout_below="@id/store_product_name"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxEms="15"
@@ -54,16 +55,50 @@
                 android:textColor="@color/pos_color"
                 android:textSize="12sp" />
             <TextView
-                android:id="@+id/store_product_price"
-                android:layout_width="match_parent"
+                android:id="@+id/store_product_month_sale"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@id/store_product_time"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
-                android:maxEms="18"
-                android:text="￥108"
-                android:textColor="@color/text_dark_color"
+                android:lines="1"
+                android:maxEms="15"
+                android:text="周一至周日"
+                android:textColor="@color/pos_color"
                 android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true">
+                <TextView
+                    android:id="@+id/store_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+
+                    android:ellipsize="end"
+                    android:layout_marginEnd="12dp"
+                    android:maxEms="18"
+                    android:text="￥108"
+                    android:textColor="@color/order_tag_color"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/store_product_old_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_gravity="right"
+                    android:ellipsize="end"
+                    android:layout_marginEnd="12dp"
+                    android:maxEms="18"
+                    android:text="￥108"
+                    android:textColor="@color/text_grey_color"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <LinearLayout

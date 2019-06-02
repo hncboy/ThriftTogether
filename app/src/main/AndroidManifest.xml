@@ -30,9 +30,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.buy.activity.SubmitOrderActivity"></activity>
+        <activity android:name=".ui.buy.activity.SubmitOrderActivity"/>
         <activity android:name=".ui.buy.activity.ProductInfoActivity" />
         <activity android:name=".ui.mine.order.UseActivity" />
+        <activity android:name=".ui.mine.order.AfterSaleActivity"/>
         <activity android:name=".ui.mine.order.OrderDetailsActivity" />
         <activity android:name=".ui.mine.notification.NotificationActivity" />
         <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
@@ -76,6 +77,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.pro516.thrifttogether.fileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            tools:replace="name,authorities,exported,grantUriPermissions">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="name,resource" />
+        </provider>
+
     </application>
 
 </manifest>

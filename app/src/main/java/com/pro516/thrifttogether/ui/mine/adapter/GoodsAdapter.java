@@ -10,21 +10,22 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.entity.mine.GoodsBean;
 
 import java.util.List;
 
-public class GoodsAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder> {
-    public GoodsAdapter(int layoutResId, @Nullable List<GoodsBean> data) {
+public class GoodsAdapter extends BaseQuickAdapter<CollectedProductVO, BaseViewHolder> {
+    public GoodsAdapter(int layoutResId, @Nullable List<CollectedProductVO> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GoodsBean item) {
+    protected void convert(BaseViewHolder helper, CollectedProductVO item) {
         helper.setText(R.id.shop_name, item.getShopName())
-                .setText(R.id.shop_address, item.getAddress())
-                .setText(R.id.goods_name, "商品名称： "+item.getGoodsName())
-                .setText(R.id.goods_price,"￥"+item.getPrice());
+                .setText(R.id.shop_address, item.getShopArea())
+                .setText(R.id.goods_name, "商品名称： "+item.getProductName())
+                .setText(R.id.goods_price,"￥"+item.getProductPrice());
 
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
@@ -35,6 +36,6 @@ public class GoodsAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getImg()).apply(options).into((ImageView) helper.getView(R.id.goods_iv));
+        Glide.with(mContext).load(item.getCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.goods_iv));
     }
 }

@@ -1,8 +1,11 @@
 package com.pro516.thrifttogether.ui.login;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +19,15 @@ import android.widget.Toast;
 
 import com.pro516.thrifttogether.MainActivity;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.ShopBean;
+import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.JsonParser;
+import com.pro516.thrifttogether.ui.network.Url;
+
+import java.io.IOException;
+import java.util.List;
+
+import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,7 +36,9 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatButton loginBtn;
     private TextView link;
     private static final int MY_PERMISSION_REQUEST_CODE = 10000;
-
+    private static final int LOGIN_SUCCESS = 1;
+    private static final int LOGIN_FAIL = 2;
+    private String account = null, password = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,17 +121,54 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new LoginClickListener());
         link.setOnClickListener(new LoginClickListener());
     }
+//    @SuppressLint("HandlerLeak")
+//    private Handler mHandler = new Handler() {
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case LOGIN_SUCCESS:
+//                    Toast.makeText(LoginActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
+//                    break;
+//                case LOGIN_FAIL:
+//                    //initListView((List<ShopBean>) msg.obj);
+//                    initRecyclerView((List<ShopBean>) msg.obj);
+//                    if (mSwipeRefresh.isRefreshing()) {
+//                        mSwipeRefresh.setRefreshing(false);
+//                    }
+//                    mProgressBar.setVisibility(View.GONE);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    };
 
     private class LoginClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.btn_login) {
-                String account = null, password = null;
+
                 if (accountEditTxt.getText() != null)
                     account = accountEditTxt.getText().toString();
                 if (passwordEditTxt.getText() != null)
                     password = passwordEditTxt.getText().toString();
+//                new Thread() {
+////                    @Override
+////                    public void run() {
+////                        try {
+////                            Response json = HttpUtils.doGet(Url.RECOMMEND);
+////                            boolean mData = JsonParser.login(json.body().string());
+////                            //System.out.println("---------------------------->" + mData);
+////                            mHandler.obtainMessage(LOGIN_SUCCESS).sendToTarget();
+////                        } catch (IOException e) {
+////                            mHandler.obtainMessage(LOGIN_FAIL).sendToTarget();
+////                            e.printStackTrace();
+////                        }
+////                    }
+////                }.start();
+
                 if (account != null && password != null) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

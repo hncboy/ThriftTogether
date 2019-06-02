@@ -41,12 +41,11 @@ import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 public class OrderCommentActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
-    private EditText et_comment_content;
-    private TextView tv_submit;
-    private ImageView iv_choose_goods_pic;
-    private HorizontalScrollView hsv_comment_imgs;
+    private EditText mEtCommentContent;
+    private TextView mTvSubmit;
+    private ImageView mIvChooseGoodsPic;
+    private HorizontalScrollView mHsvCommentImgs;
     private ImageView iv_comment_star_1, iv_comment_star_2, iv_comment_star_3, iv_comment_star_4, iv_comment_star_5;
-
     private List<ImageView> starList;
     private List<String> imageUrls;//所有晒图图片路径
     private int currentStarCount;
@@ -55,9 +54,6 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     public static final String KEY_IMAGE_LIST = "imageList";
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
-    private final int RESULT_CODE_LARGE_IMAGE = 1;
-    //晒单图片最多选择四张
-    private final int MAX_PIC = 4;
 
     @Override
     public int getLayoutRes() {
@@ -87,21 +83,21 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initListener() {
-        tv_submit.setOnClickListener(this);
-        iv_choose_goods_pic.setOnClickListener(this);
+        mTvSubmit.setOnClickListener(this);
+        mIvChooseGoodsPic.setOnClickListener(this);
         iv_comment_star_1.setOnClickListener(this);
         iv_comment_star_2.setOnClickListener(this);
         iv_comment_star_3.setOnClickListener(this);
         iv_comment_star_4.setOnClickListener(this);
         iv_comment_star_5.setOnClickListener(this);
-        et_comment_content.addTextChangedListener(this);
+        mEtCommentContent.addTextChangedListener(this);
     }
 
     private void initView() {
-        tv_submit = findViewById(R.id.tv_submit);
-        et_comment_content = findViewById(R.id.et_comment_content);
-        iv_choose_goods_pic = findViewById(R.id.iv_choose_goods_pic);
-        hsv_comment_imgs = findViewById(R.id.hsv_comment_imgs);
+        mTvSubmit = findViewById(R.id.tv_submit);
+        mEtCommentContent = findViewById(R.id.et_comment_content);
+        mIvChooseGoodsPic = findViewById(R.id.iv_choose_goods_pic);
+        mHsvCommentImgs = findViewById(R.id.hsv_comment_imgs);
         starList.add(iv_comment_star_1 = findViewById(R.id.iv_comment_star_1));
         starList.add(iv_comment_star_2 = findViewById(R.id.iv_comment_star_2));
         starList.add(iv_comment_star_3 = findViewById(R.id.iv_comment_star_3));
@@ -136,6 +132,8 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        //晒单图片最多选择四张
+        int MAX_PIC = 4;
         switch (v.getId()) {
             case R.id.tv_submit:
                 //评价提交
@@ -145,6 +143,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 }
+
                 break;
             case R.id.common_toolbar_function_left:
                 finish();
@@ -199,6 +198,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        int RESULT_CODE_LARGE_IMAGE = 1;
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
@@ -250,18 +250,17 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             AutoUtils.auto(commentView);
             rootView.addView(commentView);
         }
-        hsv_comment_imgs.removeAllViews();
-        hsv_comment_imgs.addView(rootView);
+        mHsvCommentImgs.removeAllViews();
+        mHsvCommentImgs.addView(rootView);
     }
 
     /**
      * 评价内容验证
      */
     private void validateComment() {
-        String content = et_comment_content.getText().toString();
+        String content = mEtCommentContent.getText().toString();
         if (TextUtils.isEmpty(content)) {
             Toast.makeText(context, "评论内容不能为空", Toast.LENGTH_SHORT).show();
-            return;
         }
     }
 
@@ -272,7 +271,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        String content = et_comment_content.getText().toString();
+        String content = mEtCommentContent.getText().toString();
         if (content.length() >= 255) {
             Toast.makeText(context, "评论内容不能多于255个字符", Toast.LENGTH_SHORT).show();
         }

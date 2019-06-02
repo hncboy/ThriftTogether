@@ -1,6 +1,9 @@
 package com.pro516.thrifttogether.ui.buy.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,13 +12,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.buy.fragment.SingleProductFragment;
+import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
+import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
+import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductInfoActivity extends BaseActivity implements View.OnClickListener {
     //写一个List集合，把每个页面，也就是Fragment,存进去
@@ -54,7 +62,29 @@ public class ProductInfoActivity extends BaseActivity implements View.OnClickLis
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("选择团购");
     }
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
 
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void initPage(ShopDetailsVO obj) {
+
+    }
+
+    private void initData(){
+
+    }
+
+    private void initView(){
+
+    }
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);

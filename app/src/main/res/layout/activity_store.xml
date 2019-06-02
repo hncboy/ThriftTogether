@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!--标题栏-->
@@ -73,6 +74,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/store_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/store_name"
@@ -84,12 +86,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp">
 
-                    <ImageView
-                        android:layout_width="75dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/three_and_half" />
+                    <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                        android:id="@+id/store_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:srb_borderColor="@color/star_yellow"
+                        app:srb_fillColor="@color/star_yellow"
+                        app:srb_isIndicator="true"
+                        app:srb_numberOfStars="5"
+                        app:srb_rating="3"
+                        app:srb_starBorderWidth="2"
+                        app:srb_starCornerRadius="3"
+                        app:srb_starSize="15dp"
+                        app:srb_stepSize="0.5" />
 
                     <TextView
+                        android:id="@+id/store_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -107,6 +120,7 @@
                         android:src="@drawable/ic_place_black_24dp" />
 
                     <TextView
+                        android:id="@+id/store_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -122,9 +136,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/shape_rush_buy"
-                android:text="预约"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/store_booking"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/white"/>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:scrollbarStyle="insideOverlay"
+                android:visibility="gone" />
             <!-- 团购 -->
             <View
                 android:layout_width="match_parent"
@@ -164,9 +190,10 @@
                 android:textColor="@color/text_dark_color"
                 android:textSize="20sp" />
 
-            <include layout="@layout/item_store_evaluation" />
-
-            <include layout="@layout/item_store_evaluation" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/store_product_comments_recycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>

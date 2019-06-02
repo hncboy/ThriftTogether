@@ -11,9 +11,6 @@ import android.view.View;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.mine.order.AllOrdersFragment;
-import com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment;
-import com.pro516.thrifttogether.ui.mine.order.OrderActivity;
 
 import java.util.ArrayList;
 import java.util.List;

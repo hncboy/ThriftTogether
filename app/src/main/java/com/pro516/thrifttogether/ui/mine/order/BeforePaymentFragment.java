@@ -12,38 +12,51 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.mine.adapter.OrderAdapter;
-import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.ui.mine.alipay.AuthResult;
 import com.pro516.thrifttogether.ui.mine.alipay.H5PayDemoActivity;
 import com.pro516.thrifttogether.ui.mine.alipay.PayResult;
+import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 import com.pro516.thrifttogether.util.OrderInfoUtil2_0;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener{
+import static com.chad.library.adapter.base.listener.SimpleClickListener.TAG;
+import static com.pro516.thrifttogether.ui.network.Url.ERROR;
+import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER;
+import static com.pro516.thrifttogether.ui.network.Url.userID;
 
-    List<OrderBean> mData;
+public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
+
+    private RecyclerView mRecyclerView;
+
+    private ProgressBar mProgressBar;
+    private SwipeRefreshLayout mSwipeRefresh;
+    private List<OrderBean> mData;
+    private int position;
     /**
      * 用于支付宝支付业务的入参 app_id。
      */
@@ -60,20 +73,20 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
     public static final String TARGET_ID = "";
 
     /**
-     *  pkcs8 格式的商户私钥。
-     *
-     * 	如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个，如果两个都设置了，本 Demo 将优先
-     * 	使用 RSA2_PRIVATE。RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议商户使用
-     * 	RSA2_PRIVATE。
-     *
-     * 	建议使用支付宝提供的公私钥生成工具生成和获取 RSA2_PRIVATE。
-     * 	工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1
+     * pkcs8 格式的商户私钥。
+     * <p>
+     * 如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个，如果两个都设置了，本 Demo 将优先
+     * 使用 RSA2_PRIVATE。RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议商户使用
+     * RSA2_PRIVATE。
+     * <p>
+     * 建议使用支付宝提供的公私钥生成工具生成和获取 RSA2_PRIVATE。
+     * 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1
      */
     public static final String RSA2_PRIVATE = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCh3+Zs12HJst1zqLdtUqBsXC9NVZ7fC8750IytAjP/cZewpvKxdnLkA1S2M6pE7UMbG2Hm1uASqe1VacRbAc87Eb7Xj7hnC6ANPOvglBl/N5kUsvIfyJf0Kv90u12QjyHO3/sQZDhRiBEtawYmrW840qLM7ipcCrjYTbfR385U/npPFD4vu1QDx/uc7mWqI40EHZiikaUJG4JO8YhfieiDnRLJBsM94tS9W4u58D6/wqaXDyaj+dZk3dT0pd5vMxbEl4FNmGDMxP6eK83u3WrtNMt2JlzZw1pSWgzWxfqsKJcWjOXJvpZiKBer0tnIKdvbUqw0g8YhHTNYZWyAyNkrAgMBAAECggEAWcVq66eSsqIAUBkcCIPPNej1zqSSI85PrZkruvLC1YIwhqY/Z41x7+OtAhKq9ejC03CfHb7Cq3cTiM/MNlBNlcukk7U/pd37l/vWMEjRzwyNV75Zqqi7JI0H+LvECtxl+m2atZ9u4EBejlqRIbgDO3cNFCts0HidxE9thvXgXp+UbaDxk8D99uyGahCaZ3Fy2L3nY0vcQBNa3/AbOvc1MoPRzfylVWqQaw0tvtxpW3Q8jCUoAbjNy1KYZ9CqjuuO8kWP6qjA6f8HhWqncuf22Iu57gxX3SNdTGkX+LWE6a/8YSNeploChLmTXVrSjsR3qBc12NTLvHjk9aZ0Xg0xGQKBgQDPmz1+lIPJa1oPpozlBIlA2CvQmiyxfMbz2HAib5fANRxEdqhrC2xSq+c1Q1nPyHDQL7WMcR/PsF5VzJ36q6YFFkI9K0Rld3QiyXvAS2GNKUQ+xnEuC8+4A6oxoJtfohA6PE7X3xnzJHj6EGVP3huh1xqTxIIOi36FuTIk7StllQKBgQDHm6YDJH/8pWoS0y1Bu6hFIG/cb8zBmGfkPOj1jlUed/ub6XjP6O2osOV825BPn3tPbm5RB81tt4uQd3fYYmI1qwFBdLn9ho0T837G8esoNKlbP7ST5Bhe0votgrEZVkIotTHdBZSNDGRnSKZqn1Y3ZG+OqgqhXfTwMbnBjeYTvwKBgGtJQoJDpcdVXvlvjKhdq8CC9kGbKzWd0gL5+xkQqk9+ItmOqIKJKLWgeJ+h6qviXcp4nU2yuEnQTy/vykRcqDNAyYJq9bGqBa5kiTtauVMF3GrEioDNQc9KtY1n/mNxkQlHWUdd2D86vfoctv6LPaRpUSbECqIRnJTmm+9RUXfxAoGBAJRP01csbKiVY65fGJZpz8qlIliA/XuvOSp+E3445ogAEIS1Qh4BbWzVG37dSWnQDvhjDjbI/FuUcG/ERNkTqPNFf2ZaS8PTkMmNN9qsb9Ts5BU3zX3BklYKnvbnz50K2ZeTolweRFVVKtkPQw+gGpiH2NgBAmsJ++/okqP9QkHTAoGASlHKXYQpJ0uGz/pyLbeBTeDhAXC6G7+xU1WInBTxUfpsuE7xpBgPjX2b+yR/+r9orJ3vOIn3qIc2zhx0beqeFKMyxHmkB9LFlSpQ2m4HzzrrH5zdJR0sZuVY+BVFT5odJugsmQFT7Kv4FboaYvb6tnevCXjm+UJIARY+KWYCc58=";
     public static final String RSA_PRIVATE = "";
 
-    private static final int SDK_PAY_FLAG = 1;
-    private static final int SDK_AUTH_FLAG = 2;
+    public static final int SDK_PAY_FLAG = 1;
+    public static final int SDK_AUTH_FLAG = 2;
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -91,7 +104,9 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        showAlert(getActivity(), getString(R.string.pay_success) + payResult);
+                        //showAlert(getActivity(), getString(R.string.pay_success) + payResult);
+                        Log.d(TAG, "handleMessage: position: "+position);
+                        updateStatusLoadData();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         showAlert(getActivity(), getString(R.string.pay_failed) + payResult);
@@ -112,32 +127,29 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
                     } else {
                         // 其他状态值则为授权失败
                         showAlert(getActivity(), getString(R.string.auth_failed) + authResult);
-                        Log.i("学霸！","NB!");
                     }
                     break;
                 }
+                case ERROR:
+                    Toast.makeText(getActivity(), getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
+                    mProgressBar.setVisibility(View.GONE);
+                    break;
+                case LOAD_ALL:
+                    initRecyclerView((List<OrderBean>) msg.obj);
+                    if (mSwipeRefresh.isRefreshing()) {
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                    mProgressBar.setVisibility(View.GONE);
+                    break;
                 default:
                     break;
             }
-        };
+        }
     };
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    protected void init(View view) {
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
-        initData();
-        initRecyclerView(view);
-        requestPermission();
-
-    }
     /**
      * 获取权限使用的 RequestCode
      */
-    private static final int PERMISSIONS_REQUEST_CODE = 1002;
+    public static final int PERMISSIONS_REQUEST_CODE = 1002;
 
     /**
      * 检查支付宝 SDK 所需的权限，并在必要的时候动态获取。
@@ -194,7 +206,8 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
     /**
      * 支付宝支付业务示例
      */
-    public void payV2(View v) {
+    public void payV2(View v, List<OrderBean> mData, int pos) {
+        position=pos;
         if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
             showAlert(getActivity(), getString(R.string.error_missing_appid_rsa_private));
             return;
@@ -208,7 +221,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
          * orderInfo 的获取必须来自服务端；
          */
         boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2, mData, pos);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
@@ -315,7 +328,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
         startActivity(intent);
     }
 
-    private static void showAlert(Context ctx, String info) {
+    public static void showAlert(Context ctx, String info) {
         showAlert(ctx, info, null);
     }
 
@@ -327,38 +340,83 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
                 .show();
     }
 
-    private static void showToast(Context ctx, String msg) {
+    public static void showToast(Context ctx, String msg) {
         Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show();
     }
-    private void initRecyclerView(View view) {
-        RecyclerView mRecyclerView = view.findViewById(R.id.mine_order_list);
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    @Override
+    protected void init(View view) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        mRecyclerView = view.findViewById(R.id.mine_order_list);
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
+        loadData();
+        initRefreshLayout(view);
+    }
+
+    private void initRecyclerView(List<OrderBean> mData) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         OrderAdapter mAdapter = new OrderAdapter(R.layout.item_mine_order, mData);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                payV2(view);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.d("团节", "onItemClick: ");
+                Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
+                payV2(view, mData, position);
             }
         });
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void initData() {
-        mData = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            mData.add(new OrderBean(
-                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
-                    "干锅土豆鸡",
-                    "待付款",
-                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
-                    new Date(),
-                    12.0,
-                    "付款"));
-        }
+    private void updateStatusLoadData(){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    String json = HttpUtils.getStringFromServer(
+                            "http://hncboy.natapp1.cc/thrifttogether/order/"+mData.get(position).getOrderNo()+"/status/"+2);
+                    JsonParser.updateOrders(json);
+                    loadData();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void loadData() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpUtils.getStringFromServer(ORDER + userID + "/status/1");
+                    mData = JsonParser.Orders(json);
+                    System.out.println("---------------------------->" + mData);
+                    mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void initRefreshLayout(View view) {
+        mSwipeRefresh = view.findViewById(R.id.swipe_refresh);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefresh.setOnRefreshListener(() -> {
+            loadData();
+        });
     }
 
     @Override

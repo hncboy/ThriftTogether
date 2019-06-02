@@ -93,9 +93,10 @@
             </LinearLayout>
 
             <View
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layerType="software" />
+                android:background="@color/split_line" />
 
             <EditText
                 android:id="@+id/et_comment_content"
@@ -119,7 +120,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layerType="software" />
+                android:background="@color/split_line" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,7 +158,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/division" />
+                android:background="@color/split_line" />
         </LinearLayout>
     </ScrollView>
 

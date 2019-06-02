@@ -1,6 +1,7 @@
 package com.pro516.thrifttogether.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -97,7 +98,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                startActivity(StoreActivity.class);
+                Intent intent = new Intent(getActivity(),StoreActivity.class);
+                intent.putExtra("storeId",position+1);
+                startActivity(intent);
             }
         });
     }

@@ -10,10 +10,11 @@
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     android:orientation="vertical"
-    card_view:cardCornerRadius="10dp">
+    card_view:cardCornerRadius="10dp"
+    android:id="@+id/goods">
 
     <RelativeLayout
-        android:id="@+id/goods"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

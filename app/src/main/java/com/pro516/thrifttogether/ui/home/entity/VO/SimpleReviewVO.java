@@ -5,12 +5,26 @@ import java.util.List;
 
 public class SimpleReviewVO {
 
+    //@ApiModelProperty(value = "评价id")
     private Integer reviewId;
+
+    //@ApiModelProperty(value = "用户名")
     private String username;
+
+    //@ApiModelProperty(value = "用户头像")
     private String avatorUrl;
+
+    //@ApiModelProperty(value = "评价内容")
     private String reviewContent;
+
+    //@ApiModelProperty(value = "评论图片")
     private List<String> reviewPicUrlList;
+
+    //@ApiModelProperty(value = "评价分数")
     private Double reviewScore;
+
+    //@JsonFormat(pattern = "yyyy-MM-dd")
+    //@ApiModelProperty(value = "评价时间")
     private Date reviewTime;
 
     public Integer getReviewId() {

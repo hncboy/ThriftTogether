@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/store_icon"
+                android:scaleType="fitXY"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:src="@drawable/temp_map" />

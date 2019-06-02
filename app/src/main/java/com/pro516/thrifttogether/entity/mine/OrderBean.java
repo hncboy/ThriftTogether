@@ -1,80 +1,93 @@
 package com.pro516.thrifttogether.entity.mine;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class OrderBean {
-    private String titleImage;
-    private String titleName;
-    private String state;
-    private String contentImage;
-    private Date time;
-    private Double price;
-    private String btnName;
+public class OrderBean implements Serializable {
+    //@ApiModelProperty(value = "订单号")
+    private String orderNo;
 
+    //@ApiModelProperty(value = "店铺类型")
+    private Integer shopCategoryId;
 
-    public OrderBean(String titleImage, String titleName, String state, String contentImage, Date time, Double price, String btnName) {
-        this.titleImage = titleImage;
-        this.titleName = titleName;
-        this.state = state;
-        this.contentImage = contentImage;
-        this.time = time;
-        this.price = price;
-        this.btnName = btnName;
+    //@ApiModelProperty(value = "商品名称")
+    private String productName;
+
+    //@ApiModelProperty(value = "店铺id")
+    private Integer shopId;
+
+    //@ApiModelProperty(value = "商品封面")
+    private String productCoverUrl;
+
+    //@ApiModelProperty(value = "商品总价")
+    private Double productAmountTotal;
+
+    //@ApiModelProperty(value = "订单状态 1待付款 2待使用 3待评价 4表示已完成 5退款售后")
+    private Integer orderStatus;
+
+    //@ApiModelProperty(value = "订单创建时间")
+    private String createTime;
+
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public String getTitleImage() {
-        return titleImage;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
-    public void setTitleImage(String titleImage) {
-        this.titleImage = titleImage;
+    public Integer getShopCategoryId() {
+        return shopCategoryId;
     }
 
-    public String getTitleName() {
-        return titleName;
+    public void setShopCategoryId(Integer shopCategoryId) {
+        this.shopCategoryId = shopCategoryId;
     }
 
-    public void setTitleName(String titleName) {
-        this.titleName = titleName;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getState() {
-        return state;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public Integer getShopId() {
+        return shopId;
     }
 
-    public String getContentImage() {
-        return contentImage;
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
-    public void setContentImage(String contentImage) {
-        this.contentImage = contentImage;
+    public String getProductCoverUrl() {
+        return productCoverUrl;
     }
 
-    public Date getTime() {
-        return time;
+    public void setProductCoverUrl(String productCoverUrl) {
+        this.productCoverUrl = productCoverUrl;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public Double getProductAmountTotal() {
+        return productAmountTotal;
     }
 
-    public Double getPrice() {
-        return price;
+    public void setProductAmountTotal(Double productAmountTotal) {
+        this.productAmountTotal = productAmountTotal;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public String getBtnName() {
-        return btnName;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public void setBtnName(String btnName) {
-        this.btnName = btnName;
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

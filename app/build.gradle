@@ -102,4 +102,30 @@ dependencies {
     implementation(name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
     implementation 'com.android.support:support-v4:28.0.0'
     implementation "com.android.support:appcompat-v7:28.0.0"
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    //retrofit和rxjava
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.2'
+
+    implementation 'io.reactivex:rxjava:1.2.3'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.9'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.9'
+
 }
