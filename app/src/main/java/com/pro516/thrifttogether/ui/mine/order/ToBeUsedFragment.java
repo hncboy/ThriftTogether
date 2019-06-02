@@ -25,6 +25,7 @@ import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 import java.io.IOException;
 import java.util.List;
 
+import static com.chad.library.adapter.base.listener.SimpleClickListener.TAG;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
@@ -53,12 +54,22 @@ public class ToBeUsedFragment extends BaseFragment implements BaseQuickAdapter.R
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            Log.d(TAG, "onItemChildClick: ");
+            Toast.makeText(getActivity(), "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), UseActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", mData.get(position));
+            intent.putExtras(bundle);
+            startActivity(intent);
+        });
+
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(getActivity(),UseActivity.class);
-            Bundle bundle=new Bundle();
-            bundle.putSerializable("data",mData.get(position));
+            Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", mData.get(position));
             intent.putExtras(bundle);
             startActivity(intent);
         });

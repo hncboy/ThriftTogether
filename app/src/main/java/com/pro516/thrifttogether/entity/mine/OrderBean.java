@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class OrderBean implements Serializable {
     //@ApiModelProperty(value = "订单号")
-    private String orderNo;
+    private Long orderNo;
 
     //@ApiModelProperty(value = "店铺类型")
     private Integer shopCategoryId;
@@ -27,11 +27,11 @@ public class OrderBean implements Serializable {
     //@ApiModelProperty(value = "订单创建时间")
     private String createTime;
 
-    public String getOrderNo() {
+    public Long getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(String orderNo) {
+    public void setOrderNo(Long orderNo) {
         this.orderNo = orderNo;
     }
 

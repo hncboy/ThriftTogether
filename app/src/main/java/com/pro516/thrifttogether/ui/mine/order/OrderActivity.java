@@ -70,7 +70,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     //创建Fragment的适配器
     class MyAdapter extends FragmentPagerAdapter {
 
-        public MyAdapter(FragmentManager fm) {
+        MyAdapter(FragmentManager fm) {
             super(fm);
         }
         //获得每个页面的下标

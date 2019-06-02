@@ -36,12 +36,14 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
         btn.add("去使用");
         btn.add("去评价");
         btn.add("再来一单");
-        btn.add("退款售后");
+        btn.add("退款售后中");
         helper.setText(R.id.mine_order_title_name, item.getProductName())
                 .setText(R.id.mine_order_title_state, change.get(item.getOrderStatus()-1))
                 .setText(R.id.mine_order_content_time, "下单时间：" + item.getCreateTime())
                 .setText(R.id.mine_order_content_price, "价格：￥" + item.getProductAmountTotal())
-                .setText(R.id.mine_order_btn, btn.get(item.getOrderStatus()-1));
+                .setText(R.id.mine_order_btn, btn.get(item.getOrderStatus()-1))
+                .addOnClickListener(R.id.mine_order_btn);
+
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存

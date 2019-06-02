@@ -10,7 +10,7 @@ public class CollectedProductVO implements Serializable {
 
     private String coverUrl;
 
-    private Integer productPrice;
+    private Double productPrice;
 
     private String shopName;
 
@@ -40,11 +40,11 @@ public class CollectedProductVO implements Serializable {
         this.coverUrl = coverUrl;
     }
 
-    public Integer getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 

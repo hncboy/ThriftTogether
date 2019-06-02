@@ -1,17 +1,23 @@
 package com.pro516.thrifttogether.ui.mall;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
@@ -24,6 +30,7 @@ import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
@@ -36,7 +43,9 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
     private SwipeRefreshLayout mSwipeRefresh;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
-
+    private ImageView headPortrait;
+    private TextView username;
+    private TextView integral;
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_mall;
@@ -50,7 +59,19 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
         mRecyclerView = view.findViewById(R.id.mall_recyclerView);
         mProgressBar = view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
+        headPortrait = view.findViewById(R.id.head_portrait);
+        username = view.findViewById(R.id.username);
+        integral=view.findViewById(R.id.integral);
         loadData();
+        SharedPreferences userSettings =  Objects.requireNonNull(getActivity()).getSharedPreferences("setting", Context.MODE_PRIVATE);
+        String avatorUrl=userSettings.getString("avatorUrl","http://img.52z.com/upload/news/image/20180122/20180122093427_87666.jpg");
+        String name=userSettings.getString("name","mike");
+        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
+                .skipMemoryCache(true);//不做内存缓存
+        Glide.with(this).load(avatorUrl).apply(mRequestOptions).into(headPortrait);
+        username.setText(name);
+        integral.setText("积分："+userSettings.getInt("integral",0));
     }
 
     private void initRecyclerView(List<SimpleCouponVO> mData) {

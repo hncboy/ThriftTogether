@@ -45,7 +45,7 @@ public class MallExchangeActivity extends BaseActivity implements View.OnClickLi
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("兑换");
 
-        Button button=findViewById(R.id.exchange_btn);
+        Button button = findViewById(R.id.exchange_btn);
         button.setOnClickListener(this);
         Intent intent = getIntent();
         mID = intent.getIntExtra("ID", 2);
@@ -98,20 +98,21 @@ public class MallExchangeActivity extends BaseActivity implements View.OnClickLi
         }.start();
     }
 
-    public void exchange(){
-        new Thread(){
+    public void exchange() {
+        new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-                    HttpUtils.doGet(COUPON+"/"+ mID+"/user"+userID);
+                    HttpUtils.doGet(COUPON + "/" + mID + "/user/" + userID);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
-        Toast.makeText(this,"兑换成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "兑换成功", Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -120,7 +121,6 @@ public class MallExchangeActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.exchange_btn:
                 exchange();
-                finish();
                 break;
             default:
                 break;

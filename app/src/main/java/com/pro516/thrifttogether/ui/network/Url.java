@@ -38,5 +38,7 @@ public class Url {
     public static String REVIEW = IP + "/review";
 
     public static String USER_RECENTLY_BROWSE = IP + "/user/" + userID + "/recentlybrowse";//最近浏览
+    public static String USER_INFO = IP + "/user/" + userID;//最近浏览
     public static String USER_FEEDBACK = IP + "/user/" + userID + "/feedback/";
+
 }

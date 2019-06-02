@@ -10,7 +10,8 @@
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     android:orientation="vertical"
-    card_view:cardCornerRadius="10dp">
+    card_view:cardCornerRadius="10dp"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,6 +115,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_login_btn"
+                android:focusable="false"
                 android:text="付款"
                 android:textColor="@color/white"
                 android:textSize="15sp" />

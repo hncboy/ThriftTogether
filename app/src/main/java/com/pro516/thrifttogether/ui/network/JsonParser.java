@@ -13,13 +13,12 @@ import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
+import com.pro516.thrifttogether.entity.mine.User;
 import com.pro516.thrifttogether.entity.mine.UserCoupon;
-
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by hncboy on 2019-05-07.
@@ -151,4 +150,14 @@ public class JsonParser {
         }
     }
 
+    public static User getUserInfo(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<User>>() {
+        }.getType();
+        ResponseMessageEntity<User> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new User();
+        }
+    }
 }

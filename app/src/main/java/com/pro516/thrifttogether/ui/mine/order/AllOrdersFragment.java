@@ -173,7 +173,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             showAlert(getActivity(), getString(R.string.error_missing_appid_rsa_private));
             return;
         }
-
+        OrderBean data=mData.get(pos);
         /*
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
          * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
@@ -182,7 +182,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
          * orderInfo 的获取必须来自服务端；
          */
         boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2, mData, pos);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2, data);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
@@ -217,34 +217,29 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
-        mAdapter.setOnItemClickListener((adapter, view, position) -> {
-            Log.d("团节", "onItemClick: ");
-            Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
-
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            Log.d(TAG, "onItemChildClick: ");
+            Toast.makeText(getActivity(), "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent;
             Bundle bundle;
+            bundle = new Bundle();
+            bundle.putSerializable("data", mData.get(position));
             switch (mData.get(position).getOrderStatus()) {
                 case 1:
                     payV2(view, mData, position);
                     break;
                 case 2:
-                    intent=new Intent(getActivity(),UseActivity.class);
-                    bundle=new Bundle();
-                    bundle.putSerializable("data",mData.get(position));
+                    intent = new Intent(getActivity(), UseActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     break;
                 case 3:
-                    intent=new Intent(getActivity(),OrderCommentActivity.class);
-                    bundle=new Bundle();
-                    bundle.putSerializable("data",mData.get(position));
+                    intent = new Intent(getActivity(), OrderCommentActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     break;
                 case 4:
-                    intent=new Intent(getActivity(),OrderDetailsActivity.class);
-                    bundle=new Bundle();
-                    bundle.putSerializable("data",mData.get(position));
+                    intent = new Intent(getActivity(), OrderDetailsActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     break;
@@ -253,6 +248,16 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
                 default:
                     break;
             }
+        });
+
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Log.d("团节", "onItemClick: ");
+            Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", mData.get(position));
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
 
         mAdapter.setOnItemLongClickListener((adapter, view, position) -> {
