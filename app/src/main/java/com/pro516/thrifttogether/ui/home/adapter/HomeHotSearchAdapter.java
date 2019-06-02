@@ -4,6 +4,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class HomeHotSearchAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-    public HomeHotSearchAdapter(List<String> datas) {
+    public HomeHotSearchAdapter(ArrayList<String> datas) {
         super(R.layout.item_home_search_recording, datas);
     }
 

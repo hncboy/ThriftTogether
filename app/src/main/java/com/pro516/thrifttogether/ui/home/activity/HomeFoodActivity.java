@@ -21,7 +21,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.adapter.GirdDropDownAdapter;
 import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 import com.pro516.thrifttogether.ui.mine.order.UseActivity;
@@ -38,7 +37,7 @@ import java.util.List;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.RECOMMEND;
-import static com.pro516.thrifttogether.ui.network.Url.USER_RECENTLY_BROWSE;
+import static com.pro516.thrifttogether.ui.network.Url.SHOP_FOODS;
 
 /**
  * 美食
@@ -75,7 +74,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         initToolbar();
         initDropMenu();
 
-        loadData(USER_RECENTLY_BROWSE);
+        loadData(SHOP_FOODS);
         initRefreshLayout();
     }
 
@@ -143,7 +142,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         mSwipeRefresh = findViewById(R.id.swipe_refresh);
         mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefresh.setOnRefreshListener(() -> {
-            loadData(USER_RECENTLY_BROWSE);
+            loadData(SHOP_FOODS);
         });
     }
 
@@ -169,7 +168,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         allFoodView.setOnItemClickListener((parent, view, position, id) -> {
             allFoodAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[0] : allFoods[position]);
-            loadData(RECOMMEND);
+            loadData(SHOP_FOODS);
             mDropDownMenu.closeMenu();
         });
 

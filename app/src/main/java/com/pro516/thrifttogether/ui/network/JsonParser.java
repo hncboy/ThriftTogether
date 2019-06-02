@@ -19,6 +19,7 @@ import com.pro516.thrifttogether.entity.mine.UserCoupon;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by hncboy on 2019-05-07.
@@ -49,6 +50,17 @@ public class JsonParser {
         Type token = new TypeToken<ArrayList<ShopBean>>() {
         }.getType();
         return mGson.fromJson(json, token);
+    }
+
+    public static ArrayList<String> Search(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<String>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<String>> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public static ArrayList<SimpleCouponVO> VoucherPackage(String json) {

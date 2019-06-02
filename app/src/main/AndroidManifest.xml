@@ -29,9 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-
         tools:replace="android:label">
-        <activity android:name=".ui.mine.order.AfterSaleActivity"></activity>
+        <activity android:name=".ui.home.activity.HomeSearchResultActivity"></activity>
+        <activity android:name=".ui.mine.order.AfterSaleActivity" />
         <activity android:name=".ui.mine.order.UseActivity" />
         <activity android:name=".ui.mine.order.OrderDetailsActivity" />
         <activity android:name=".ui.mine.notification.NotificationActivity" />
@@ -57,7 +57,7 @@
         <activity
             android:name=".ui.home.activity.nav.HomeCityPickerActivity"
             android:theme="@style/DefaultCityPickerTheme" />
-        <activity android:name=".ui.home.activity.nav.HomeSearchActivity" />
+        <activity android:name=".ui.home.activity.HomeSearchActivity" />
         <activity android:name=".ui.home.activity.HomeFoodActivity" />
         <activity android:name=".ui.home.activity.HomeLookingAroundActivity" />
         <activity android:name=".ui.home.activity.HomeTicketActivity" />
@@ -80,15 +80,14 @@
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.pro516.thrifttogether.fileProvider"
-            android:grantUriPermissions="true"
             android:exported="false"
+            android:grantUriPermissions="true"
             tools:replace="name,authorities,exported,grantUriPermissions">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"
                 tools:replace="name,resource" />
         </provider>
-
     </application>
 
 </manifest>

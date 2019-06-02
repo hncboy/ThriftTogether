@@ -1,4 +1,4 @@
-package com.pro516.thrifttogether.ui.mine.recentlyViewed;
+package com.pro516.thrifttogether.ui.home.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,15 +30,19 @@ import java.util.List;
 
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.USER_RECENTLY_BROWSE;
+import static com.pro516.thrifttogether.ui.network.Url.SEARCH;
+import static com.pro516.thrifttogether.ui.network.Url.keyWord;
 
-public class RecentlyViewedActivity extends BaseActivity implements View.OnClickListener {
+public class HomeSearchResultActivity extends BaseActivity implements View.OnClickListener{
 
+    @Override
+    public int getLayoutRes() {
+        return R.layout.activity_home_search_result;
+    }
 
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefresh;
-
     @Override
     protected void init() {
         AppCompatImageButton backBtn = findViewById(R.id.common_toolbar_function_left);
@@ -46,8 +50,12 @@ public class RecentlyViewedActivity extends BaseActivity implements View.OnClick
         backBtn.setImageDrawable(getDrawable(R.drawable.ic_arrow_back_24dp));
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
-        title.setText(R.string.recentlyView);
-        mRecyclerView = findViewById(R.id.mine_recently_viewed);
+        title.setText("搜索结果");
+
+        Intent intent=getIntent();
+        keyWord=intent.getStringExtra("key");
+
+        mRecyclerView = findViewById(R.id.search_result);
         mProgressBar = findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
         loadData();
@@ -68,7 +76,6 @@ public class RecentlyViewedActivity extends BaseActivity implements View.OnClick
             Bundle bundle=new Bundle();
             bundle.putSerializable("data",mData.get(position));
             intent.putExtras(bundle);
-
         });
 
         mRecyclerView.setAdapter(mAdapter);
@@ -81,7 +88,7 @@ public class RecentlyViewedActivity extends BaseActivity implements View.OnClick
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ERROR:
-                    Toast.makeText(RecentlyViewedActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeSearchResultActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
                     mProgressBar.setVisibility(View.GONE);
                     break;
                 case LOAD_ALL:
@@ -102,7 +109,7 @@ public class RecentlyViewedActivity extends BaseActivity implements View.OnClick
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(USER_RECENTLY_BROWSE);
+                    String json = HttpUtils.getStringFromServer(SEARCH);
                     List<ShopBean> mData = JsonParser.shopList(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
@@ -120,11 +127,6 @@ public class RecentlyViewedActivity extends BaseActivity implements View.OnClick
         mSwipeRefresh.setOnRefreshListener(() -> {
             loadData();
         });
-    }
-
-    @Override
-    public int getLayoutRes() {
-        return R.layout.activity_recently_viewed;
     }
 
     @Override
