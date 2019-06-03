@@ -3,6 +3,7 @@
 buildscript {
     
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
@@ -15,9 +16,18 @@ buildscript {
 
 allprojects {
     repositories {
+        // 支付宝 SDK AAR 包所需的配置
+        flatDir {
+            dirs 'libs'
+        }
+
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven {
+            // 腾讯云对象存储
+            url "https://dl.bintray.com/tencentqcloudterminal/maven"
+        }
     }
 }
 

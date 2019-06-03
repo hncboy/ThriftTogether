@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/discover_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <com.amap.api.maps.MapView
+        android:id="@+id/discover_map"
         android:scaleType="centerCrop"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/temp_map" />
+        android:layout_weight="1.3"/>
 
-    <ListView
-        android:id="@+id/discover_listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/discover_store_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/item_discover"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
 </LinearLayout>

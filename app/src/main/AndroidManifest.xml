@@ -12,21 +12,43 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".TtApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/we_app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
+        <activity android:name=".ui.home.activity.HomeSearchResultActivity"></activity>
+        <activity android:name=".ui.mine.order.AfterSaleActivity" />
+        <activity android:name=".ui.mine.order.UseActivity" />
+        <activity android:name=".ui.mine.order.OrderDetailsActivity" />
+        <activity android:name=".ui.mine.notification.NotificationActivity" />
+        <activity android:name=".ui.mine.order.CommentLargeImageActivity" />
+        <activity android:name=".ui.mine.order.OrderCommentActivity" />
+        <activity android:name=".ui.home.activity.ReservationDetailsActivity" />
+        <activity android:name=".ui.mine.reservation.MineReservationActivity" />
+        <activity android:name=".ui.mall.MallExchangeActivity" />
+        <activity android:name=".ui.mine.feedback.MineFeedBackActivity" />
+        <activity android:name=".ui.mine.voucherPackage.VoucherPackageActivity" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="d3c468c6b5953a2e2f231ce4475728d3" />
+
         <activity android:name=".ui.mine.order.OrderActivity" />
-        <activity android:name=".ui.mine.order.BeforePaymentActivity" />
-        <activity android:name=".ui.mine.RecentlyViewedActivity" />
+        <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
         <activity android:name=".ui.mine.collection.MineCollectionActivity" />
         <activity android:name=".ui.mine.settings.EditPersonalInformationActivity" />
         <activity android:name=".ui.mine.settings.MineSetting" />
@@ -35,7 +57,7 @@
         <activity
             android:name=".ui.home.activity.nav.HomeCityPickerActivity"
             android:theme="@style/DefaultCityPickerTheme" />
-        <activity android:name=".ui.home.activity.nav.HomeSearchActivity" />
+        <activity android:name=".ui.home.activity.HomeSearchActivity" />
         <activity android:name=".ui.home.activity.HomeFoodActivity" />
         <activity android:name=".ui.home.activity.HomeLookingAroundActivity" />
         <activity android:name=".ui.home.activity.HomeTicketActivity" />
@@ -44,7 +66,7 @@
         <activity android:name=".ui.home.activity.HomeBeautyActivity" />
         <activity android:name=".ui.home.activity.hotel.HomeHotelActivity" />
         <activity android:name=".ui.home.activity.movie.HomeMovieActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.home.activity.StoreActivity" />
         <activity android:name=".ui.login.RegisterActivity" />
         <activity android:name=".ui.login.LoginActivity">
@@ -54,6 +76,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.pro516.thrifttogether.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="name,authorities,exported,grantUriPermissions">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="name,resource" />
+        </provider>
     </application>
 
 </manifest>

@@ -156,21 +156,44 @@
 
     </LinearLayout>
 
-    <com.yyydjk.library.DropDownMenu
-        android:id="@id/dropDownMenu"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="118dp"
-        app:dddividerColor="@color/gray"
-        app:ddmaskColor="@color/mask_color"
-        app:ddmenuBackgroundColor="@color/white"
-        app:ddmenuMenuHeightPercent="0.5"
-        app:ddmenuSelectedIcon="@drawable/ic_drop_down_selected"
-        app:ddmenuTextSize="13sp"
-        app:ddmenuUnselectedIcon="@drawable/ic_drop_down"
-        app:ddtextSelectedColor="@color/colorPrimary"
-        app:ddtextUnselectedColor="@color/text_grey_color"
-        app:ddunderlineColor="@color/gray" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
+
+            <com.yyydjk.library.DropDownMenu
+                android:id="@id/dropDownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="118dp"
+                app:dddividerColor="@color/gray"
+                app:ddmaskColor="@color/mask_color"
+                app:ddmenuBackgroundColor="@color/white"
+                app:ddmenuMenuHeightPercent="0.5"
+                app:ddmenuSelectedIcon="@drawable/ic_drop_down_selected"
+                app:ddmenuTextSize="13sp"
+                app:ddmenuUnselectedIcon="@drawable/ic_drop_down"
+                app:ddtextSelectedColor="@color/colorPrimary"
+                app:ddtextUnselectedColor="@color/text_grey_color"
+                app:ddunderlineColor="@color/gray" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:scrollbarStyle="insideOverlay"
+                android:visibility="gone" />
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <View
         android:layout_width="match_parent"

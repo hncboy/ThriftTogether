@@ -1,73 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shop"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_margin="8dp"
+    android:background="@drawable/touch_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="10dp">
 
-    <LinearLayout
-        android:id="@+id/shop"
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginLeft="10dp"
-            android:adjustViewBounds="true"
             android:id="@+id/shop_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
             android:src="@drawable/icon_shop" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp">
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/shop_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="店名：XXXXXXXXX"
-                android:textColor="@color/text_dark_color" />
+                android:textColor="@color/text_dark_color"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/shop_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="海曙区 | 美发"
-                android:textColor="@color/text_dark_color" />
+                android:textColor="@color/text_dark_color"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="165dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/shop_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="评分：5.0"
                 android:textColor="@color/text_dark_color" />
 
-            <ImageView
+            <!-- 星级评分 -->
+            <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                android:id="@+id/simpleRatingBar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                app:srb_borderColor="@color/star_yellow"
+                app:srb_fillColor="@color/star_yellow"
+                app:srb_isIndicator="true"
+                app:srb_numberOfStars="5"
+                app:srb_rating="3"
+                app:srb_starBorderWidth="2"
+                app:srb_starCornerRadius="3"
+                app:srb_starSize="15dp"
+                app:srb_stepSize="0.5" />
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/shop_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:maxLines="1"
+            android:padding="10dp"
             android:text="人均：￥45"
             android:textColor="@color/text_dark_color"
-            android:textSize="18sp"
-            android:layout_marginTop="20dp"/>
-    </LinearLayout>
+            android:textSize="16sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/split_line" />
-</LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

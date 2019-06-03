@@ -116,7 +116,15 @@
                 </LinearLayout>
 
             </LinearLayout>
-
+            <Button
+                android:id="@+id/store_reservation"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_rush_buy"
+                android:text="预约"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"/>
             <!-- 团购 -->
             <View
                 android:layout_width="match_parent"

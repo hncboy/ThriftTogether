@@ -56,6 +56,7 @@ public class HomeLookingAroundActivity extends BaseActivity implements View.OnCl
         recyclerView.setAdapter(adapter);
         CardConfig.initConfig(this);
         CardConfig.MAX_SHOW_COUNT = 6;
+
         ItemTouchHelper.Callback callback = new RenRenCallback(recyclerView, adapter, bannerInfos);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);

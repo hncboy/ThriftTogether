@@ -4,17 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ui.mine.RecentlyViewedActivity">
-    <include layout="@layout/include_toolbar"/>
-    <LinearLayout
+    tools:context=".ui.mine.recentlyViewed.RecentlyViewedActivity">
+
+    <include layout="@layout/include_toolbar" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ListView
-            android:id="@+id/shop_list"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_shop"/>
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:scrollbarStyle="insideOverlay"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mine_recently_viewed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_shop" />
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

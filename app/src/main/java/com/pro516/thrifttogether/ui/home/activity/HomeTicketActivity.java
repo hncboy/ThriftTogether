@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
-import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
 
 /**
  * 车票
