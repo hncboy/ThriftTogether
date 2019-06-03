@@ -54,6 +54,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private SwipeRefreshLayout mSwipeRefresh;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
+    private RecyclerView lookAroundRecyclerView;
     private ShopAdapter mAdapter;
     private static final int ERROR = -666;
     private static final int LOAD_ALL = 1;
@@ -90,12 +91,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         initBanner(view);
         initRefreshLayout(view);
         mRecyclerView = view.findViewById(R.id.daily_recommendation);
+        lookAroundRecyclerView=view.findViewById(R.id.look_around);
         mProgressBar = view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
         loadData();
+        loadLookingAroundData();
         //传true 可以滑动 false不可以滑动
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
+                startActivity(StoreActivity.class);
+            }
+        });
+
+        //传true 可以滑动 false不可以滑动
+        lookAroundRecyclerView.setNestedScrollingEnabled(false);
+        lookAroundRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
@@ -111,6 +124,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void initLookingAroundRecyclerView(List<ShopBean> mData) {
+        lookAroundRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        lookAroundRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        mAdapter = new ShopAdapter(R.layout.item_shop, mData);
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
+        mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
+        lookAroundRecyclerView.setAdapter(mAdapter);
     }
 
     @SuppressLint("HandlerLeak")
@@ -131,6 +153,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     }
                     mProgressBar.setVisibility(View.GONE);
                     break;
+                case 123:
+                    //initListView((List<ShopBean>) msg.obj);
+                    initLookingAroundRecyclerView((List<ShopBean>) msg.obj);
+                    if (mSwipeRefresh.isRefreshing()) {
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                    mProgressBar.setVisibility(View.GONE);
+                    break;
                 default:
                     break;
             }
@@ -143,9 +173,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(Url.RECOMMEND);
-                    List<ShopBean> mData = JsonParser.dailyRecommendation(json);
+                    List<ShopBean> mData = JsonParser.shopList(json);
                     //System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void loadLookingAroundData() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpUtils.getStringFromServer(Url.LOOKING_AROUND);
+                    List<ShopBean> mData = JsonParser.shopList(json);
+                    //System.out.println("---------------------------->" + mData);
+                    mHandler.obtainMessage(123, mData).sendToTarget();
                 } catch (IOException e) {
                     mHandler.obtainMessage(ERROR).sendToTarget();
                     e.printStackTrace();

@@ -52,7 +52,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -90,8 +89,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="35dp"
-                android:src="@drawable/ic_mall_integral" />
+                android:layout_marginBottom="35dp" />
         </LinearLayout>
 
 
@@ -150,7 +148,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -202,7 +199,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>

@@ -34,24 +34,6 @@ public class JsonParser {
         }
     }).setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
-    public static ArrayList<ShopBean> dailyRecommendation(String json) {
-        Type token = new TypeToken<ResponseMessageEntity<ArrayList<ShopBean>>>() {
-        }.getType();
-        ResponseMessageEntity<ArrayList<ShopBean>> entity = mGson.fromJson(json, token);
-        if (entity.getCode() == 200) {
-            return entity.getData();
-        } else {
-            return new ArrayList<>();
-        }
-
-    }
-
-    public static ArrayList<ShopBean> lookAround(String json) {
-        Type token = new TypeToken<ArrayList<ShopBean>>() {
-        }.getType();
-        return mGson.fromJson(json, token);
-    }
-
     public static ArrayList<String> Search(String json) {
         Type token = new TypeToken<ResponseMessageEntity<ArrayList<String>>>() {
         }.getType();
