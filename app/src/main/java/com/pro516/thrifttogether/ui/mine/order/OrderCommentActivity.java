@@ -14,6 +14,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.app.cos.CosModel;
+import com.pro516.thrifttogether.app.cos.IDataRequestListener;
 import com.pro516.thrifttogether.entity.mine.SimpleReviewVO;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.order.tools.BitmapUtils;
@@ -34,13 +37,14 @@ import com.pro516.thrifttogether.ui.mine.order.tools.FileUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.KeyBoardManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.PermissionCheckUtil;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
-import com.pro516.thrifttogether.ui.network.Url;
 import com.zhy.autolayout.utils.AutoUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
@@ -48,6 +52,9 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 import static com.pro516.thrifttogether.ui.network.Url.REVIEW;
 
 public class OrderCommentActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
+
+    private List<String> mReviewImages = new ArrayList<>();
+    private CountDownLatch latch;
     private EditText mEtCommentContent;
     private TextView mTvSubmit;
     private ImageView mIvChooseGoodsPic;
@@ -62,6 +69,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
     private SimpleReviewVO simpleReviewVO;
+
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -137,18 +145,18 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         return onTouchEvent(ev);
     }
 
-    private void submit(){
-        new Thread(){
+    private void submit() {
+        new Thread() {
             @Override
             public void run() {
                 try {
-                    HttpUtils.doPost(REVIEW,simpleReviewVO);
+                    HttpUtils.doPost(REVIEW, simpleReviewVO);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
-        Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -162,7 +170,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 if (imageUrls.isEmpty()) {
                     Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 } else {
-                    simpleReviewVO=new SimpleReviewVO();
+                    simpleReviewVO = new SimpleReviewVO();
                     simpleReviewVO.setUserId(1);//TODO
                     simpleReviewVO.setOrderId("111d");//TODO
                     simpleReviewVO.setReviewContent(mEtCommentContent.getText().toString());
@@ -231,12 +239,38 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
                 List<String> paths = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                System.out.println("上传图片");
                 imageUrls.addAll(paths);
                 handleCommentPicList(imageUrls, false);
+                uploadReviewImages();
             }
         } else if (resultCode == RESULT_CODE_LARGE_IMAGE) {
             //晒单大图页返回, 重新设置晒单图片
             handleCommentPicList(imageUrls = data.getStringArrayListExtra(KEY_IMAGE_LIST), true);
+        }
+    }
+
+    /**
+     * 上传评论图片
+     */
+    private void uploadReviewImages() {
+        // 设置一个数量锁
+        latch = new CountDownLatch(imageUrls.size());
+        CosModel cosModel = new CosModel(getApplication());
+        for (String path : imageUrls) {
+            //用作图片的名字
+            String str = UUID.randomUUID().toString().replaceAll("-", "") + new Random().nextLong();
+            String fileName = str.substring(1, 10);
+            Log.i("评论图片", "uploadImage: fileName = " + fileName);
+            cosModel.uploadPic(fileName, path, new IDataRequestListener() {
+                @Override
+                public void loadSuccess(Object object) {
+                    //加上http
+                    String url = "http://" + object;
+                    mReviewImages.add(url);
+                    latch.countDown();
+                }
+            });
         }
     }
 
