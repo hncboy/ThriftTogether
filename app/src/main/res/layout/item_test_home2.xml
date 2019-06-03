@@ -20,7 +20,7 @@
             android:layout_height="80dp"
             android:layout_gravity="start"
             android:contentDescription="@string/store_icon"
-            android:src="@drawable/item_test_home1" />
+            android:src="@drawable/item_test_home2" />
 
         <LinearLayout
             android:layout_width="200dp"
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="名羊天下"
+                android:text="许府牛火锅·祖传牛骨头汤"
                 android:textColor="@color/text_dark_color"
                 android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_height="wrap_content"
-                android:text="兴宁路"
+                android:text="培罗成广场"
                 android:textColor="@color/pos_color"
                 android:textSize="13sp" />
 
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="鄞州区兴宁路47-2号"
+                android:text="鄞州区鄞县大道培罗成广场裙楼1楼"
                 android:textColor="@color/pos_color"
                 android:textSize="12sp" />
 
@@ -69,7 +69,7 @@
             android:id="@+id/discover_price"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="人均￥48"
+            android:text="人均￥64"
             android:textColor="@color/text_dark_color"
             android:textSize="14sp" />
 

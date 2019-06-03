@@ -151,12 +151,12 @@
 
                     </RelativeLayout>
 
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
-                    <include layout="@layout/item_discover"/>
+                    <include layout="@layout/item_test_home1"/>
+                    <include layout="@layout/item_test_home2"/>
+                    <include layout="@layout/item_test_home3"/>
+                    <include layout="@layout/item_test_home4"/>
+                    <include layout="@layout/item_test_home5"/>
+                    <include layout="@layout/item_test_home5"/>
 
                 </LinearLayout>
 
