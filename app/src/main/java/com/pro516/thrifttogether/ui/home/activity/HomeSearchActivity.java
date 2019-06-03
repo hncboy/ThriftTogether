@@ -59,6 +59,7 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
         super.onResume();
         mHotSearchData.clear();
         mHistorySearchData.clear();
+        initData();
     }
 
     private void initToolbar() {
@@ -92,6 +93,9 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
         mHomeHotSearchAdapter.setOnItemClickListener((adapter, view, position) -> {
             String content = (String) adapter.getData().get(position);
             toast(content);
+            Intent intent = new Intent(HomeSearchActivity.this, HomeSearchResultActivity.class);
+            intent.putExtra("key", content);
+            startActivity(intent);
         });
     }
 
@@ -107,6 +111,9 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
         mHomeHistorySearchAdapter.setOnItemClickListener((adapter, view, position) -> {
             String content = (String) adapter.getData().get(position);
             toast(content);
+            Intent intent = new Intent(HomeSearchActivity.this, HomeSearchResultActivity.class);
+            intent.putExtra("key", content);
+            startActivity(intent);
         });
     }
 

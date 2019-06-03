@@ -34,8 +34,11 @@ import com.pro516.thrifttogether.ui.mine.order.tools.FileUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.KeyBoardManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.PermissionCheckUtil;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.Url;
+import com.pro516.thrifttogether.util.UploadUtil;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -228,8 +231,41 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
-                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                imageUrls.addAll(path);
+                List<String> paths = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (String path : paths) {
+                            File file = new File(path);
+                            UploadUtil.uploadFile(file, Url.UPLOAD_PIC);
+                        }
+                    }
+                });
+
+
+
+                /*for (String path :paths) {
+                    String fileName = "file://" + path;
+                    Uri pathUri = Uri.parse(fileName);
+
+                    try {
+                        String[] slash = fileName.split("/");
+                        String picName = slash[slash.length - 1];
+                        System.out.println(picName);
+                        InputStream inputStream = getContentResolver().openInputStream(pathUri);
+                        String mCoverPicName = picName;
+                        InputStream mInputStream = inputStream;
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }*/
+
+
+
+
+                imageUrls.addAll(paths);
                 handleCommentPicList(imageUrls, false);
             }
         } else if (resultCode == RESULT_CODE_LARGE_IMAGE) {

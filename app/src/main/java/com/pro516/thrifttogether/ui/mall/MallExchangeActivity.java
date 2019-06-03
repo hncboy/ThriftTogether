@@ -1,7 +1,10 @@
 package com.pro516.thrifttogether.ui.mall;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.AppCompatImageButton;
@@ -12,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
@@ -21,6 +27,7 @@ import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static com.pro516.thrifttogether.ui.network.Url.COUPON;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
@@ -30,7 +37,6 @@ import static com.pro516.thrifttogether.ui.network.Url.userID;
 public class MallExchangeActivity extends BaseActivity implements View.OnClickListener {
 
     private int mID;
-
     @Override
     public int getLayoutRes() {
         return R.layout.activity_mall_exchange;
@@ -113,6 +119,27 @@ public class MallExchangeActivity extends BaseActivity implements View.OnClickLi
         Toast.makeText(this, "兑换成功", Toast.LENGTH_SHORT).show();
     }
 
+    public void exchangeConfirmationDialog(Context context) {
+        MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(context);
+        mBuilder.content("确认兑换吗？");
+        mBuilder.contentColor(Color.parseColor("#000000"));
+        mBuilder.positiveText("确定");
+        mBuilder.titleGravity(GravityEnum.CENTER);
+        mBuilder.buttonsGravity(GravityEnum.START);
+        mBuilder.negativeText("取消");
+        mBuilder.cancelable(false);
+        MaterialDialog mMaterialDialog = mBuilder.build();
+        mMaterialDialog.show();
+        mBuilder.onAny((dialog, which) -> {
+            if (which == DialogAction.POSITIVE) {
+                exchange();
+                mMaterialDialog.dismiss();
+            } else if (which == DialogAction.NEGATIVE) {
+                mMaterialDialog.dismiss();
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -120,7 +147,7 @@ public class MallExchangeActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.exchange_btn:
-                exchange();
+                exchangeConfirmationDialog(this);
                 break;
             default:
                 break;

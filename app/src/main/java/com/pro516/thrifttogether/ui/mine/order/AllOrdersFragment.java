@@ -230,7 +230,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
                     break;
                 case 2:
                     intent = new Intent(getActivity(), UseActivity.class);
-                    intent.putExtras(bundle);
+                    intent.putExtra("orderID",mData.get(position).getOrderNo());
                     startActivity(intent);
                     break;
                 case 3:
@@ -240,7 +240,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
                     break;
                 case 4:
                     intent = new Intent(getActivity(), OrderDetailsActivity.class);
-                    intent.putExtras(bundle);
+                    intent.putExtra("orderID",mData.get(position).getOrderNo());
                     startActivity(intent);
                     break;
                 case 5:
@@ -254,9 +254,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("data", mData.get(position));
-            intent.putExtras(bundle);
+            intent.putExtra("orderID",mData.get(position).getOrderNo());
             startActivity(intent);
         });
 

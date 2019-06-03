@@ -31,7 +31,6 @@ import java.util.List;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.SEARCH;
-import static com.pro516.thrifttogether.ui.network.Url.keyWord;
 
 public class HomeSearchResultActivity extends BaseActivity implements View.OnClickListener{
 
@@ -43,6 +42,7 @@ public class HomeSearchResultActivity extends BaseActivity implements View.OnCli
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefresh;
+    private String keyWord;
     @Override
     protected void init() {
         AppCompatImageButton backBtn = findViewById(R.id.common_toolbar_function_left);
@@ -109,7 +109,8 @@ public class HomeSearchResultActivity extends BaseActivity implements View.OnCli
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(SEARCH);
+                    String json = HttpUtils.getStringFromServer(SEARCH+keyWord+"/city/1/user/1");
+                    Log.d("sss", "init: SEARCH: "+SEARCH);
                     List<ShopBean> mData = JsonParser.shopList(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

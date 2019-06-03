@@ -16,7 +16,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:text="订单已完成 >"
         android:textColor="@color/text_grey_color"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -48,7 +47,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="巴比汉堡 >"
                     android:textColor="@color/text_grey_color" />
             </LinearLayout>
 
@@ -69,8 +67,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/icon_mine_settings" />
+                    android:scaleType="fitXY" />
 
                 <LinearLayout
                     android:layout_width="150dp"
@@ -82,7 +79,6 @@
                         android:id="@+id/mine_order_details_order_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="汉堡"
                         android:textColor="@color/text_grey_color" />
 
                     <TextView
@@ -90,7 +86,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="X1"
                         android:textColor="@color/text_grey_color"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -104,7 +99,6 @@
                     android:layout_marginStart="140dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
-                    android:text="￥8"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -160,7 +154,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="合计 ￥8"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -220,7 +213,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -253,7 +245,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -272,7 +265,34 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="XXXXXXXXXXXXXXXXXX"
+                    android:textColor="@color/text_grey_color"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:id="@+id/mine_order_details_order_pay">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="付款时间"
+                    android:textColor="@color/text_grey_color"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/mine_order_details_order_pay_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:textColor="@color/text_grey_color"
                     android:textStyle="bold" />
             </RelativeLayout>
