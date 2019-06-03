@@ -34,7 +34,8 @@ public class ShowStoreProductAdapter extends BaseQuickAdapter<SimpleProductVO,Ba
         helper.setText(R.id.store_product_name, item.getProductName())
                 .setText(R.id.store_product_price, "￥"+item.getProductPrice().toString())
                 .setText(R.id.store_product_time, item.getProductUseTime())
-                .setText(R.id.store_product_old_price,item.getProductOriginalPrice().toString());
+                .setText(R.id.store_product_old_price,"￥"+item.getProductOriginalPrice().toString())
+                .setText(R.id.store_product_month_sale,String.format("月销%s件",item.getProductSales()));
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存

@@ -192,7 +192,10 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
             @Override
             public void run() {
                 try {
-                    location = GPSUtils.getInstance(getContext()).getLocation();
+                    //location = GPSUtils.getInstance(getContext()).getLocation();
+                    location = aMap.getMyLocation();
+                    if (location==null)
+                        //location = new Location(29.88600455,121.47420162);
                     Log.i(TAG, location.getLatitude() + " " + location.getLongitude());
                     String json = HttpUtils.getStringFromServer(Url.SHOP + "/city/1/lat/" + location.getLatitude() + "/lng/" + location.getLongitude() + "?size=" + size);
                     List<DiscoverShopVO> mData = JsonParser.surroundingShop(json);

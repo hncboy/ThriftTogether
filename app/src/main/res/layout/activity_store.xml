@@ -40,14 +40,14 @@
             android:background="@color/colorPrimary"
             android:src="@drawable/ic_favorite_border_black" />
 
-        <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/common_toolbar_function_right_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:background="@color/colorPrimary"
-            android:src="@drawable/ic_share_black" />
+        <!--<android.support.v7.widget.AppCompatImageButton-->
+            <!--android:id="@+id/common_toolbar_function_right_2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:src="@drawable/ic_share_black" />-->
 
     </android.support.v7.widget.Toolbar>
 
@@ -77,7 +77,6 @@
                     android:id="@+id/store_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/store_name"
                     android:textColor="@color/text_dark_color"
                     android:textSize="20sp" />
 
@@ -106,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="￥108/人" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="8dp"
-                        android:text="海曙区药行街169号亚细亚商城A座5层" />
+                         />
 
                 </LinearLayout>
 
@@ -142,15 +141,6 @@
                 android:text="@string/store_booking"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/white"/>
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="90dp"
-                android:indeterminateDrawable="@drawable/progressbar"
-                android:scrollbarStyle="insideOverlay"
-                android:visibility="gone" />
             <!-- 团购 -->
             <View
                 android:layout_width="match_parent"
@@ -167,7 +157,16 @@
                 android:text="@string/store_product"
                 android:textColor="@color/text_dark_color"
                 android:textSize="20sp" />
-
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:scrollbarStyle="insideOverlay"
+                android:visibility="gone" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/store_product_recycle"
                 android:layout_width="wrap_content"
@@ -189,7 +188,16 @@
                 android:text="@string/store_evaluation"
                 android:textColor="@color/text_dark_color"
                 android:textSize="20sp" />
-
+            <ProgressBar
+                android:id="@+id/progress_bar2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:scrollbarStyle="insideOverlay"
+                android:visibility="gone" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/store_product_comments_recycle"
                 android:layout_width="wrap_content"

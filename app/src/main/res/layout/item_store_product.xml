@@ -16,10 +16,10 @@
             android:id="@+id/store_product_image"
             android:layout_width="0dp"
             android:layout_height="90dp"
-            android:layout_weight="1"
             android:layout_gravity="start"
-            android:scaleType="fitXY"
+            android:layout_weight="1"
             android:contentDescription="@string/store_icon"
+            android:scaleType="fitXY"
             android:src="@drawable/temp_map" />
 
         <RelativeLayout
@@ -33,71 +33,80 @@
                 android:id="@+id/store_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxEms="15"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="4dp"
                 android:text="双人套餐A"
                 android:textColor="@color/text_dark_color"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/store_product_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/store_product_name"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:maxEms="15"
-                android:text="周一至周日"
-                android:textColor="@color/pos_color"
-                android:textSize="12sp" />
-            <TextView
-                android:id="@+id/store_product_month_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/store_product_time"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:maxEms="15"
-                android:text="周一至周日"
-                android:textColor="@color/pos_color"
-                android:textSize="12sp" />
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true">
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/store_product_name">
+
                 <TextView
-                    android:id="@+id/store_product_price"
+                    android:id="@+id/store_product_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-
                     android:ellipsize="end"
-                    android:layout_marginEnd="12dp"
-                    android:maxEms="18"
-                    android:text="￥108"
-                    android:textColor="@color/order_tag_color"
-                    android:textSize="20sp" />
+                    android:lines="1"
+                    android:maxEms="15"
+                    android:text="周一至周日"
+                    android:textColor="@color/pos_color"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/store_product_month_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxEms="15"
+                    android:layout_marginStart="6dp"
+                    android:text="周一至周日"
+                    android:textColor="@color/pos_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
                 <TextView
                     android:id="@+id/store_product_old_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_gravity="right"
-                    android:ellipsize="end"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
                     android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
                     android:maxEms="18"
                     android:text="￥108"
                     android:textColor="@color/text_grey_color"
                     android:textSize="12sp" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/store_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_toEndOf="@id/store_product_old_price"
+                    android:ellipsize="end"
+                    android:maxEms="18"
+                    android:text="￥108"
+                    android:textColor="@color/order_tag_color"
+                    android:textSize="20sp" />
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -110,10 +119,10 @@
                 android:id="@+id/store_product_buy_button"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/shape_rush_buy"
                 android:text="抢购"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

@@ -27,7 +27,15 @@ public class ShopDetailsVO {
 
     //@ApiModelProperty(value = "用户是否收藏 0不收藏 1收藏")
     private Integer isCollected;
+    private Integer productSales;
 
+    public Integer getProductSales() {
+        return productSales;
+    }
+
+    public void setProductSales(Integer productSales) {
+        this.productSales = productSales;
+    }
 
     public Integer getShopId() {
         return shopId;

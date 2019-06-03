@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
@@ -18,6 +19,7 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
+import com.pro516.thrifttogether.ui.home.widget.NineGridView;
 
 import java.util.List;
 
@@ -45,9 +47,8 @@ public class ShowCommentsAdapter extends BaseQuickAdapter<SimpleReviewVO, BaseVi
         Glide.with(mContext).load(item.getAvatorUrl()).apply(options).into((ImageView) helper.getView(R.id.store_evaluation_user_img));
         SimpleRatingBar bar = helper.getView(R.id.store_evaluation_rating);
         bar.setRating(item.getReviewScore().floatValue());
-        RecyclerView recyclerView = helper.getView(R.id.store_evaluation_content_img);
-        recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
-        StoreCommentsImageAdapter adapter = new StoreCommentsImageAdapter(mContext, R.layout.item_store_comments_img, item.getReviewPicUrlList());
-        recyclerView.setAdapter(adapter);
+
+        NineGridView nineGridView = helper.getView(R.id.store_evaluation_content_img);
+        nineGridView.setUrlList(item.getReviewPicUrlList());
     }
 }

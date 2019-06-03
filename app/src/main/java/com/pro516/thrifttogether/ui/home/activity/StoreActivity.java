@@ -22,6 +22,7 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
+import com.pro516.thrifttogether.ui.buy.layoutManage.MyLinearLayoutManager;
 import com.pro516.thrifttogether.ui.home.adapter.ShowCommentsAdapter;
 import com.pro516.thrifttogether.ui.home.adapter.ShowStoreProductAdapter;
 import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
@@ -50,7 +51,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     private TextView storeNameTv, priceTv, storeAddressTv;
     private SimpleRatingBar ratingBar;
     private ShowStoreProductAdapter mAdapter;
-    private ProgressBar mProgressBar;
+    private ProgressBar mProgressBar,mProgressBar2;
     private Button buyButton;
     private AppCompatImageButton love, share;
     private int storeId, isStar = 0;
@@ -81,6 +82,9 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
 
     private void initView() {
         mProgressBar = findViewById(R.id.progress_bar);
+        mProgressBar2 = findViewById(R.id.progress_bar2);
+        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBar2.setVisibility(View.VISIBLE);
         mProductsRV = findViewById(R.id.store_product_recycle);
         mCommentsRV = findViewById(R.id.store_product_comments_recycle);
         storeNameTv = findViewById(R.id.store_name_tv);
@@ -88,7 +92,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         storeAddressTv = findViewById(R.id.store_address);
         ratingBar = findViewById(R.id.store_rating);
         love = findViewById(R.id.common_toolbar_function_right_1);
-        share = findViewById(R.id.common_toolbar_function_right_2);
+        //share = findViewById(R.id.common_toolbar_function_right_2);
         AppCompatImageButton backImgBtn = findViewById(R.id.common_toolbar_function_left);
         backImgBtn.setOnClickListener(this);
         love.setOnClickListener(this);
@@ -142,11 +146,11 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
                     initPage((ShopDetailsVO) msg.obj);
                     initProductsRV(((ShopDetailsVO) msg.obj).getSimpleProductList());
                     mProgressBar.setVisibility(View.GONE);
-                    love.setImageResource(R.drawable.ic_favorite_black);
-                    isStar = 1;
+
                     break;
                 case LOAD_ALL_REVIEW:
                     initCommentsRV((List<SimpleReviewVO>)msg.obj);
+                    mProgressBar2.setVisibility(View.GONE);
                     break;
                 case STAR_SUCCESSFUL:
                     toast("收藏成功");
@@ -175,13 +179,21 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         storeAddressTv.setText(obj.getShopAddress());
         priceTv.setText(String.format(Locale.CHINA, "￥%d/人", obj.getShopAveragePrice()));
         ratingBar.setRating(obj.getShopAverageScore().floatValue());
+        if (obj.getIsCollected()==1){
+            love.setImageResource(R.drawable.ic_favorite_black);
+            isStar = 1;
+        } else {
+            love.setImageResource(R.drawable.ic_favorite_border_black);
+            isStar = 0;
+        }
+
     }
 
     private void initProductsRV(List<SimpleProductVO> data) {
         mProductsRV.setLayoutManager(new LinearLayoutManager(this));
-        mCommentsRV.setLayoutManager(new LinearLayoutManager(this));
         mProductsRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mAdapter = new ShowStoreProductAdapter(R.layout.item_store_product, data);
+        mProductsRV.setNestedScrollingEnabled(false);
         //mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         //mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mProductsRV.setAdapter(mAdapter);
@@ -199,6 +211,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     private void initCommentsRV(List<SimpleReviewVO> data){
         mCommentsRV.setLayoutManager(new LinearLayoutManager(this));
         mCommentsRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        mCommentsRV.setNestedScrollingEnabled(false);
         ShowCommentsAdapter mAdapter = new ShowCommentsAdapter(this,R.layout.item_store_evaluation, data);
         //mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         //mAdapter.isFirstOnly(false);   // 是否第一次才加载动画

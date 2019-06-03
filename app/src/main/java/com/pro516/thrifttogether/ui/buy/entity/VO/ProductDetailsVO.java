@@ -38,6 +38,17 @@ public class ProductDetailsVO implements Serializable {
     //@ApiModelProperty(value = "商品销量")
     private Integer productSales;
 
+    //@ApiModelProperty(value = "用户是否收藏 0不收藏 1收藏")
+    private Integer isCollected;
+
+    public Integer getIsCollected() {
+        return isCollected;
+    }
+
+    public void setIsCollected(Integer isCollected) {
+        this.isCollected = isCollected;
+    }
+
     public String getProductCoverUrl() {
         return productCoverUrl;
     }

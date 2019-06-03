@@ -81,6 +81,7 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
     private boolean isHaveCoupon, isUseCoupon = false;
     private int usedCouponId;
     public static final DateFormat sSimpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.CHINA);
+
     @Override
     public int getLayoutRes() {
         return R.layout.activity_submit_order;
@@ -114,6 +115,7 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("确认订单");
+
         phoneTv.setText(userSettings.getString("phone","110"));
         priceTv.setText(String.valueOf(intent.getDoubleExtra("price",0)));
         tempPriceTv.setText(String.format("￥%s",intent.getDoubleExtra("price",0)));

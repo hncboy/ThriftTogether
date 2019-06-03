@@ -1,21 +1,28 @@
 package com.pro516.thrifttogether.ui.buy.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
+import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
 import com.pro516.thrifttogether.ui.buy.activity.SubmitOrderActivity;
 import com.pro516.thrifttogether.ui.buy.adapter.ProductInfoAdapter;
 import com.pro516.thrifttogether.ui.buy.adapter.SingleProductAdapter;
@@ -23,11 +30,23 @@ import com.pro516.thrifttogether.ui.buy.entity.DetailAndNoteEntity;
 import com.pro516.thrifttogether.ui.buy.entity.SingleProductEntity;
 import com.pro516.thrifttogether.ui.buy.entity.VO.ProductDetailsVO;
 import com.pro516.thrifttogether.ui.buy.layoutManage.MyLinearLayoutManager;
+import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
+import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
+import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
+import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.JsonParser;
+import com.pro516.thrifttogether.ui.network.Url;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleProductFragment extends BaseFragment {
+import okhttp3.Response;
+
+import static android.support.constraint.Constraints.TAG;
+import static com.pro516.thrifttogether.ui.network.Url.ERROR;
+
+public class SingleProductFragment extends BaseFragment{
 
     TextView title, saleNum,priceTv,discountTv,orgrialTv;
     RecyclerView detailRv, noteRv;
@@ -35,6 +54,7 @@ public class SingleProductFragment extends BaseFragment {
     ProductDetailsVO mData;
     ImageView img;
     private TextView tagTv;
+    private boolean isStar;
     public SingleProductFragment() {
         // Required empty public constructor
     }
@@ -92,17 +112,6 @@ public class SingleProductFragment extends BaseFragment {
         Glide.with(getActivity()).load(mData.getProductCoverUrl()).apply(options).into(img);
     }
     public void initRecyclerView() {
-        // 将网络请求获取到的json字符串转成的对象进行二次重组，生成集合List<Object>
-//        List<Object> list = null;
-//        DetailAndNoteEntity.CategoryDetailEntity a = new DetailAndNoteEntity.CategoryDetailEntity("aaa", 2);
-//        List<DetailAndNoteEntity.CategoryDetailEntity> b = new ArrayList<>();
-//        b.add(a);
-//        DetailAndNoteEntity c = new DetailAndNoteEntity("vvv", b);
-//        List<DetailAndNoteEntity> e = new ArrayList<>();
-//        e.add(c);
-//        SingleProductEntity d = new SingleProductEntity(200, "no message", e);
-//        //SingleProductEntity data = new Gson().fromJson(HttpUtils.getStringFromServer(""),SingleProductEntity.class);
-//        list = sortData(d);
         MyLinearLayoutManager manager = new MyLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         MyLinearLayoutManager manager2 = new MyLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         detailRv.setLayoutManager(manager);
@@ -136,6 +145,5 @@ public class SingleProductFragment extends BaseFragment {
     protected int getLayoutRes() {
         return R.layout.fragment_single_product;
     }
-
 
 }
