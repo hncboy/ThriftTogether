@@ -18,7 +18,7 @@ public class Url {
 
     public static String IP = "http://hncboy.natapp1.cc/thrifttogether";
 
-    public static String RECOMMEND = IP + "/shop/recommend"; // 今日推荐
+    public static String RECOMMEND = IP + "/shop/city/"+cityID+"/recommend"; // 今日推荐
 
     public static String SEARCH = IP + "/search/" + keyWord + "/city/" + cityID + "/user/" + userID; // 搜索
     public static String SEARCH_HISTORY = IP + "/search/city/" + cityID + "/user/" + userID; // 历史纪录搜索
@@ -42,5 +42,8 @@ public class Url {
     public static String USER_FEEDBACK = IP + "/user/" + userID + "/feedback/";
 
     public static String SHOP = IP +"/shop";//店铺
-    public static String REVIEW = IP + "/review";//评价
+
+    public static String ORDER = IP + "/order";//订单
+    public static String RESERVATION = IP + "/reservation";//预订
+
 }

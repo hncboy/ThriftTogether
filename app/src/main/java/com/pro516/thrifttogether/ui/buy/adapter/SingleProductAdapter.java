@@ -25,14 +25,11 @@ public class SingleProductAdapter extends BaseQuickAdapter<Object, BaseViewHolde
                 // 当前例子中只有两种类型
                 if (o instanceof String) {
                     // 加载布局1
-                    Log.i("Constraints", "return 1");
                     return ITEM_TITLE;
                 } else if (o instanceof DetailAndNoteEntity.CategoryDetailEntity) {
                     // 加载布局2
-                    Log.i("Constraints", "return 2");
                     return ITEM_CONTENT;
                 }
-                Log.i("Constraints", "return 0");
                 return 0;
             }
         });
@@ -53,7 +50,6 @@ public class SingleProductAdapter extends BaseQuickAdapter<Object, BaseViewHolde
             case ITEM_CONTENT:
                 helper.setText(R.id.package_details_category_content_tv1, ((DetailAndNoteEntity.CategoryDetailEntity) item).getName());
                         //.setText(R.id.package_details_category_content_tv2, String.valueOf(((DetailAndNoteEntity.CategoryDetailEntity) item).getNum()));
-                Log.i("Constraints", ((DetailAndNoteEntity.CategoryDetailEntity) item).getName() + " " + String.valueOf(((DetailAndNoteEntity.CategoryDetailEntity) item).getNum()));
                 break;
         }
 

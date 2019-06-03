@@ -1,10 +1,14 @@
 package com.pro516.thrifttogether.ui.home.adapter;
 
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -41,5 +45,15 @@ public class ShowStoreProductAdapter extends BaseQuickAdapter<SimpleProductVO,Ba
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
         Glide.with(mContext).load(item.getProductCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.store_product_image));
+        TextView oldPrice = helper.getView(R.id.store_product_old_price);
+        oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG );
+
+        Button button = helper.getView(R.id.store_product_buy_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

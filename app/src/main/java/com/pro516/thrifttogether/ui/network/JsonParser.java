@@ -14,6 +14,8 @@ import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
+import com.pro516.thrifttogether.ui.buy.entity.VO.CreatedOrderVO;
+import com.pro516.thrifttogether.ui.buy.entity.VO.ProductDetailsVO;
 import com.pro516.thrifttogether.ui.discover.bean.DiscoverShopVO;
 import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
 import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
@@ -209,7 +211,16 @@ public class JsonParser {
             return false;
         }
     }
-
+    public static boolean newReservation(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<Object>>() {
+        }.getType();
+        ResponseMessageEntity<Object> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static ArrayList<SimpleReviewVO> storeReview(String json) {
         Type token = new TypeToken<ResponseMessageEntity<ArrayList<SimpleReviewVO>>>() {
         }.getType();
@@ -228,6 +239,28 @@ public class JsonParser {
             return entity.getData();
         } else {
             return new User();
+        }
+    }
+    public static String getNewOrderId(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<String>>() {
+        }.getType();
+        ResponseMessageEntity<String> entity = mGson.fromJson(json, token);
+        System.out.println("---------------------------->getNewOrderId"+entity.getCode());
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return "";
+        }
+    }
+
+    public static ArrayList<ProductDetailsVO> storeProductDetails(String json){
+        Type token=new TypeToken<ResponseMessageEntity<ArrayList<ProductDetailsVO>>>(){
+        }.getType();
+        ResponseMessageEntity<ArrayList<ProductDetailsVO>> entity=mGson.fromJson(json,token);
+        if (entity.getCode()==200){
+            return entity.getData();
+        }else{
+            return new ArrayList<>();
         }
     }
 }

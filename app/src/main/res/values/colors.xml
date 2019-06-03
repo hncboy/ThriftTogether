@@ -11,6 +11,7 @@
     <color name="tabbar_color">#aaaaaa</color>
     <color name="text_dark_color">#474747</color>
     <color name="text_grey_color">#666666</color>
+    <color name="text_light_color">#B4B3B3</color>
     <color name="order_tag_color">#FF9900</color>
     <color name="group_tag_color">#66CC33</color>
     <color name="buy_tag_color">#FF3300</color>

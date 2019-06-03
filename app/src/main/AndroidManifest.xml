@@ -30,9 +30,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.buy.activity.SubmitOrderActivity"/>
+        <activity android:name=".ui.buy.activity.ChooseCouponsActivity"></activity>
+        <activity android:name=".ui.buy.activity.SubmitOrderActivity" />
         <activity android:name=".ui.buy.activity.ProductInfoActivity" />
-        <activity android:name=".ui.home.activity.HomeSearchResultActivity"/>
+        <activity android:name=".ui.home.activity.HomeSearchResultActivity" />
         <activity android:name=".ui.mine.order.AfterSaleActivity" />
         <activity android:name=".ui.mine.order.UseActivity" />
         <activity android:name=".ui.mine.order.OrderDetailsActivity" />

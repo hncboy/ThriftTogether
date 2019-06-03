@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/submit_order"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/submit_order_background_color"
@@ -43,7 +44,8 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:id="@+id/submit_order_name_tv"
@@ -52,7 +54,7 @@
                     android:layout_centerVertical="true"
                     android:text="xxxxxxxxxxx"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/submit_order_price_tv"
@@ -106,7 +108,7 @@
                 android:textColor="@color/text_dark_color"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <!--TODO 数量控件-->
+
             <com.pro516.thrifttogether.ui.buy.widget.AddAndSubView
                 android:id="@+id/submit_order_number_control"
                 android:layout_width="wrap_content"
@@ -135,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="￥12"
+                android:text="￥0"
                 android:textColor="@color/order_tag_color"
                 android:layout_centerVertical="true"
                 android:textSize="14sp" />
@@ -163,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/submit_order_arrow_right"
-                android:text="暂无优惠券"
+
                 android:textSize="14sp" />
 
             <ImageView
@@ -195,7 +197,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:text="123124324"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </RelativeLayout>

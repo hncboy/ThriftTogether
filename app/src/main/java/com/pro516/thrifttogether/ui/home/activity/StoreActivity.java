@@ -3,7 +3,6 @@ package com.pro516.thrifttogether.ui.home.activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -48,7 +47,7 @@ import okhttp3.Response;
 
 public class StoreActivity extends BaseActivity implements View.OnClickListener, TimePicker.OnTimeSelectListener {
     private RecyclerView mProductsRV, mCommentsRV;
-    private TextView storeNameTv, priceTv, storeAddressTv, oldPriceTv;
+    private TextView storeNameTv, priceTv, storeAddressTv;
     private SimpleRatingBar ratingBar;
     private ShowStoreProductAdapter mAdapter;
     private ProgressBar mProgressBar;
@@ -64,6 +63,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     private static final int CANCEL_STAR_UNSUCCESSFUL = 5;
     public static final DateFormat sSimpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.CHINA);
     public static final SimpleDateFormat mDateFormat = new SimpleDateFormat("MM月dd日  E", Locale.CHINA);
+    private int clickPosition;
 
     @Override
     public int getLayoutRes() {
@@ -85,7 +85,6 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         mCommentsRV = findViewById(R.id.store_product_comments_recycle);
         storeNameTv = findViewById(R.id.store_name_tv);
         priceTv = findViewById(R.id.store_price);
-        oldPriceTv = findViewById(R.id.store_product_old_price);
         storeAddressTv = findViewById(R.id.store_address);
         ratingBar = findViewById(R.id.store_rating);
         love = findViewById(R.id.common_toolbar_function_right_1);
@@ -93,7 +92,6 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         AppCompatImageButton backImgBtn = findViewById(R.id.common_toolbar_function_left);
         backImgBtn.setOnClickListener(this);
         love.setOnClickListener(this);
-        oldPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG );
     }
 
     private void initData() {
@@ -192,6 +190,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 buyButton = view.findViewById(R.id.store_product_buy_button);
+                clickPosition = position;
                 //导航按钮点击事件
                 buyButton.setOnClickListener(StoreActivity.this);
             }
@@ -247,7 +246,10 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
                 mTimePicker.show();
                 break;
             case R.id.store_product_buy_button:
-                startActivity(ProductInfoActivity.class);
+                Intent intent = new Intent(StoreActivity.this,ProductInfoActivity.class);
+                intent.putExtra("storeId",storeId);
+                intent.putExtra("clickedPos", clickPosition);
+                startActivity(intent);
                 break;
             case R.id.common_toolbar_function_right_1:
                 if (isStar==0){
@@ -301,6 +303,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         intent.setClass(StoreActivity.this, ReservationDetailsActivity.class);
         Bundle bundleSimple = new Bundle();
         bundleSimple.putString("time", sSimpleDateFormat.format(date));
+        bundleSimple.putInt("storeId",storeId);
         intent.putExtras(bundleSimple);
         startActivity(intent);
     }
