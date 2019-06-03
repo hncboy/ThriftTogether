@@ -34,8 +34,10 @@ import com.pro516.thrifttogether.ui.mine.order.tools.FileUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.KeyBoardManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.PermissionCheckUtil;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.ui.network.Url;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -228,8 +230,8 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
-                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                imageUrls.addAll(path);
+                List<String> paths = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                imageUrls.addAll(paths);
                 handleCommentPicList(imageUrls, false);
             }
         } else if (resultCode == RESULT_CODE_LARGE_IMAGE) {

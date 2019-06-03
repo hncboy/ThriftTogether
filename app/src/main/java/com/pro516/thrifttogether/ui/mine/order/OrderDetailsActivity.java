@@ -13,15 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mine.OrderBean;
+import com.pro516.thrifttogether.entity.mine.OrderDetailsVO;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.alipay.AuthResult;
 import com.pro516.thrifttogether.ui.mine.alipay.PayResult;
@@ -31,10 +31,8 @@ import com.pro516.thrifttogether.util.OrderInfoUtil2_0;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-import static com.chad.library.adapter.base.listener.SimpleClickListener.TAG;
 import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.APPID;
 import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.PERMISSIONS_REQUEST_CODE;
 import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.RSA2_PRIVATE;
@@ -46,6 +44,7 @@ import static com.pro516.thrifttogether.ui.mine.order.BeforePaymentFragment.show
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.ORDER_DELETE_OR_UPDATE;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_DETAILS;
 
 public class OrderDetailsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -55,7 +54,12 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
     }
 
     private Intent intent;
-    private OrderBean mData;
+    private OrderDetailsVO mData;
+    private TextView orderStatus;
+    private Button button;
+    private String orderNO;
+    ArrayList<String> btn;
+    ArrayList<String> change;
 
     @Override
     protected void init() {
@@ -66,16 +70,11 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("订单详情");
         intent = getIntent();
-        mData = (OrderBean) intent.getSerializableExtra("data");
-        initView();
+        orderNO = intent.getStringExtra("orderID");
+        loadData();
     }
 
-    private TextView orderStatus;
-    private Button button;
-    ArrayList<String> btn;
-    ArrayList<String> change;
-
-    private void initView() {
+    private void initView(OrderDetailsVO m) {
         button = findViewById(R.id.mine_order_details_btn);
         button.setOnClickListener(this);
         orderStatus = findViewById(R.id.mine_order_details_state);
@@ -88,36 +87,44 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
         TextView orderTotalPrice = findViewById(R.id.mine_order_details_order_total_price);
         TextView orderNO = findViewById(R.id.mine_order_details_order_no);
         TextView orderCreateTime = findViewById(R.id.mine_order_details_order_create_time);
-
+        TextView orderPayTime = findViewById(R.id.mine_order_details_order_pay_time);
+        RelativeLayout relativeLayout=findViewById(R.id.mine_order_details_order_pay);
         change = new ArrayList<>();
         change.add("待付款");
         change.add("待使用");
         change.add("待评价");
         change.add("已完成");
         change.add("退款售后");
-        orderStatus.setText(change.get(mData.getOrderStatus() - 1));
+        Log.d("test", "initView: " + m.getOrderStatus());
+        orderStatus.setText(change.get(m.getOrderStatus() - 1));
 
         btn = new ArrayList<>();
         btn.add("去付款");
         btn.add("去使用");
         btn.add("去评价");
-        btn.add("再来一单");
+        btn.add("申请售后");
         btn.add("退款售后中");
-        button.setText(btn.get(mData.getOrderStatus() - 1));
+        button.setText(btn.get(m.getOrderStatus() - 1));
 
-        orderTitle.setText(mData.getProductName());
+        orderTitle.setText(m.getShopName());
         //设置图片圆角角度
         RoundedCorners roundedCorners = new RoundedCorners(30);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
-        Glide.with(this).load(mData.getProductCoverUrl()).apply(options).into(orderImg);
-        orderContent.setText(mData.getProductName());//TODO
-        orderContentCount.setText("x" + mData.getProductAmountTotal());
-        orderPrice.setText("" + mData.getProductAmountTotal());
-        orderVoucherPrice.setText("");
-        orderTotalPrice.setText("" + mData.getProductAmountTotal());
-        orderNO.setText(""+mData.getOrderNo());
-        orderCreateTime.setText(mData.getCreateTime());
+        Glide.with(this).load(m.getProductCoverUrl()).apply(options).into(orderImg);
+        orderContent.setText(m.getProductName());//TODO
+        orderContentCount.setText("x" + m.getProductCount());
+        orderPrice.setText("￥" + m.getProductBuyPrice() * m.getProductCount());
+        if (m.getIsUseCoupon() == 1) {
+            orderVoucherPrice.setText("￥" + m.getDiscountedPrice());
+        }
+        orderTotalPrice.setText("合计 ￥" + m.getProductAmountTotal());
+        orderNO.setText("" + m.getOrderNo());
+        orderCreateTime.setText(m.getCreateTime());
+        if (m.getOrderStatus() == 2) {
+            relativeLayout.setVisibility(View.VISIBLE);
+            orderPayTime.setText(m.getPayTime());
+        }
     }
 
     private void updateStatusLoadData() {
@@ -127,7 +134,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                 try {
                     String json = HttpUtils.getStringFromServer(
                             ORDER_DELETE_OR_UPDATE + mData.getOrderNo() + "/status/" + 2);
-                    Log.d("ddd",json);
+                    Log.d("ddd", json);
                     JsonParser.updateOrders(json);
                 } catch (IOException e) {
                     mHandler.obtainMessage(ERROR).sendToTarget();
@@ -136,6 +143,23 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             }
         }.start();
 
+    }
+
+    private void loadData() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpUtils.getStringFromServer(ORDER_DETAILS + orderNO);
+                    mData = JsonParser.OrdersDetails(json);
+                    System.out.println("---------------------------->" + mData);
+                    mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     @SuppressLint("HandlerLeak")
@@ -182,6 +206,10 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     }
                     break;
                 }
+                case LOAD_ALL:
+                    initView((OrderDetailsVO) msg.obj);
+                    break;
+
                 default:
                     break;
             }
@@ -220,7 +248,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
     /**
      * 支付宝支付业务示例
      */
-    public void payV2(OrderBean mData) {
+    public void payV2(OrderDetailsVO mData) {
         if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
             showAlert(OrderDetailsActivity.this, getString(R.string.error_missing_appid_rsa_private));
             return;
@@ -276,15 +304,18 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                         break;
                     case 2:
                         intent = new Intent(this, UseActivity.class);
-                        intent.putExtras(bundle);
+                        intent.putExtra("orderID", mData.getOrderNo());
                         startActivity(intent);
                         break;
                     case 3:
                         intent = new Intent(this, OrderCommentActivity.class);
-                        intent.putExtras(bundle);
+                        intent.putExtra("orderID", mData.getOrderNo());
                         startActivity(intent);
                         break;
                     case 4:
+                        intent = new Intent(this, AfterSaleActivity.class);
+                        intent.putExtra("orderID", mData.getOrderNo());
+                        startActivity(intent);
                         break;
                     case 5:
                         break;

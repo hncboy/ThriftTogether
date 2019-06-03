@@ -12,6 +12,7 @@ import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
 import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
+import com.pro516.thrifttogether.entity.mine.OrderDetailsVO;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.entity.mine.User;
 import com.pro516.thrifttogether.entity.mine.UserCoupon;
@@ -136,6 +137,17 @@ public class JsonParser {
             return entity.getData();
         } else {
             return new ArrayList<>();
+        }
+    }
+
+    public static OrderDetailsVO OrdersDetails(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<OrderDetailsVO>>() {
+        }.getType();
+        ResponseMessageEntity<OrderDetailsVO> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new OrderDetailsVO();
         }
     }
 

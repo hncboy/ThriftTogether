@@ -93,6 +93,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mProgressBar = view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
         loadData();
+        //传true 可以滑动 false不可以滑动
+        mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
