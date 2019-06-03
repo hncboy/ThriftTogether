@@ -37,7 +37,7 @@ public class UseActivity extends BaseActivity implements View.OnClickListener {
         TextView useTime=findViewById(R.id.use_time);
         useTime.setText(orderBean.getCreateTime());
         TextView orderNo=findViewById(R.id.order_no);
-        orderNo.setText(orderBean.getOrderNo());
+        orderNo.setText(""+orderBean.getOrderNo());
         TextView createTime=findViewById(R.id.create_time);
         createTime.setText(orderBean.getCreateTime());
         /*
@@ -49,7 +49,7 @@ public class UseActivity extends BaseActivity implements View.OnClickListener {
         /*生成的图片*/
         ImageView contentIv = findViewById(R.id.contentIv);
         Bitmap logo = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        bitmap = CodeCreator.createQRCode(orderBean.getOrderNo(), 400, 400, logo);
+        bitmap = CodeCreator.createQRCode(""+orderBean.getOrderNo(), 400, 400, logo);
         contentIv.setImageBitmap(bitmap);
     }
 

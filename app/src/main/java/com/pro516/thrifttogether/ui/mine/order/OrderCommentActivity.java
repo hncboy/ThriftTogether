@@ -26,19 +26,24 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.entity.mine.SimpleReviewVO;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.order.tools.BitmapUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.CleanCacheManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.FileUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.KeyBoardManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.PermissionCheckUtil;
+import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+
+import static com.pro516.thrifttogether.ui.network.Url.REVIEW;
 
 public class OrderCommentActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
     private EditText mEtCommentContent;
@@ -54,7 +59,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     public static final String KEY_IMAGE_LIST = "imageList";
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
-
+    private SimpleReviewVO simpleReviewVO;
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -130,6 +135,20 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         return onTouchEvent(ev);
     }
 
+    private void submit(){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    HttpUtils.doPost(REVIEW,simpleReviewVO);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onClick(View v) {
         //晒单图片最多选择四张
@@ -141,9 +160,16 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 if (imageUrls.isEmpty()) {
                     Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 } else {
+                    simpleReviewVO=new SimpleReviewVO();
+                    simpleReviewVO.setUserId(1);//TODO
+                    simpleReviewVO.setOrderId("111d");//TODO
+                    simpleReviewVO.setReviewContent(mEtCommentContent.getText().toString());
+                    simpleReviewVO.setReviewPicUrlList(imageUrls);
+                    simpleReviewVO.setReviewScore(currentStarCount);
+                    simpleReviewVO.setProductId(1);//TODO
                     Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
+                    submit();
                 }
-
                 break;
             case R.id.common_toolbar_function_left:
                 finish();

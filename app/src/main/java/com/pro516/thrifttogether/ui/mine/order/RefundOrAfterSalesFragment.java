@@ -1,6 +1,8 @@
 package com.pro516.thrifttogether.ui.mine.order;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,9 +25,10 @@ import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
 import java.io.IOException;
 import java.util.List;
 
+import static com.chad.library.adapter.base.listener.SimpleClickListener.TAG;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.ORDER;
+import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
 import static com.pro516.thrifttogether.ui.network.Url.userID;
 
 public class RefundOrAfterSalesFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
@@ -55,12 +58,24 @@ public class RefundOrAfterSalesFragment extends BaseFragment implements BaseQuic
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.d("团节", "onItemClick: ");
-                Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
-            }
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+//            Log.d(TAG, "onItemChildClick: ");
+//            Toast.makeText(getActivity(), "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(getActivity(), UseActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("data", mData.get(position));
+//            intent.putExtras(bundle);
+//            startActivity(intent);
+        });
+
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Log.d("团节", "onItemClick: ");
+            Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", mData.get(position));
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
 
         mRecyclerView.setAdapter(mAdapter);
@@ -94,7 +109,7 @@ public class RefundOrAfterSalesFragment extends BaseFragment implements BaseQuic
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(ORDER + userID + "/status/4");
+                    String json = HttpUtils.getStringFromServer(ORDER_GET + userID + "/status/5");
                     List<OrderBean> mData = JsonParser.Orders(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

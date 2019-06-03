@@ -31,7 +31,7 @@ import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.ui.home.activity.hotel.HomeHotelActivity;
 import com.pro516.thrifttogether.ui.home.activity.movie.HomeMovieActivity;
 import com.pro516.thrifttogether.ui.home.activity.nav.HomeCityPickerActivity;
-import com.pro516.thrifttogether.ui.home.activity.nav.HomeSearchActivity;
+import com.pro516.thrifttogether.ui.home.activity.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;

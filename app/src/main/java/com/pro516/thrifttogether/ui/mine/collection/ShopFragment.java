@@ -18,9 +18,9 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mine.CollectedShopVO;
+import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
-import com.pro516.thrifttogether.ui.mine.adapter.CollectionShopAdapter;
+import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
@@ -48,10 +48,10 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener {
         initRefreshLayout(view);
     }
 
-    private void initRecyclerView(List<CollectedShopVO> mData) {
+    private void initRecyclerView(List<ShopBean> mData) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        CollectionShopAdapter mAdapter = new CollectionShopAdapter(R.layout.item_shop, mData);
+        ShopAdapter mAdapter = new ShopAdapter(R.layout.item_shop, mData);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
@@ -67,8 +67,8 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.d("团节", "onItemLongClick: ");
-                Toast.makeText(getActivity(), "shopID" + mData.get(position).getId(), Toast.LENGTH_SHORT).show();
-                deleteConfirmationDialog(position,COLLECTION+userID+"/shop/"+mData.get(position).getId(),getActivity());
+                Toast.makeText(getActivity(), "shopID" + mData.get(position).getShopId(), Toast.LENGTH_SHORT).show();
+                deleteConfirmationDialog(position,COLLECTION+userID+"/shop/"+mData.get(position).getShopId(),getActivity());
                 loadData();
                 return false;
             }
@@ -88,7 +88,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener {
                     mProgressBar.setVisibility(View.GONE);
                     break;
                 case LOAD_ALL:
-                    initRecyclerView((List<CollectedShopVO>) msg.obj);
+                    initRecyclerView((List<ShopBean>) msg.obj);
                     if (mSwipeRefresh.isRefreshing()) {
                         mSwipeRefresh.setRefreshing(false);
                     }
@@ -139,7 +139,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener {
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(COLLECTION+userID+"/shop");
-                    List<CollectedShopVO> mData = JsonParser.collectionShopList(json);
+                    List<ShopBean> mData = JsonParser.collectionShopList(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();
                 } catch (IOException e) {

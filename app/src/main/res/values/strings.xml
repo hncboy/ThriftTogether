@@ -109,4 +109,5 @@
     <string name="submit_order_phone">手机号</string>
     <string name="submit_order_total">总计: </string>
     <string name="store_booking">预约</string>
+    <string name="recentlyView">最近浏览</string>
 </resources>

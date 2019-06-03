@@ -13,15 +13,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:orientation="vertical">
+
             <ImageView
+                android:id="@+id/coupon_details_imageUrl"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/ic_mall_coupons_banner"
                 android:scaleType="fitXY"
-                />
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,8 +33,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -43,27 +44,13 @@
                         android:src="@drawable/ic_mall_integral" />
 
                     <TextView
-                        android:id="@+id/shop_value"
+                        android:id="@+id/coupon_integral"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:text="2000"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="70px" />
+                        android:textSize="30sp" />
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text=" +¥"-->
-                        <!--android:textColor="@color/colorPrimary" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/shop_money"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="130"-->
-                        <!--android:textColor="@color/colorPrimary"-->
-                        <!--android:textSize="50px" />-->
                 </LinearLayout>
 
                 <View
@@ -74,8 +61,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <!--商品简介-->
                     <TextView
@@ -89,18 +76,17 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/shop_intro"
+                        android:id="@+id/coupon_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
                         android:textColor="@color/text_grey_color" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <!--兑换信息-->
                     <TextView
@@ -112,18 +98,17 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/shop_content"
+                        android:id="@+id/coupon_exchangeInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
                         android:textColor="@color/text_grey_color" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -141,12 +126,12 @@
     </ScrollView>
     <!--兑换按钮-->
     <Button
-        android:id="@+id/shop_exchange"
+        android:id="@+id/exchange_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
         android:text="兑换"
         android:textColor="@color/white"
-        android:textSize="50px" />
+        android:textSize="20sp" />
 </RelativeLayout>
