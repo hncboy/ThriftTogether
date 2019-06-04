@@ -59,7 +59,9 @@ public class AfterSaleActivity extends BaseActivity implements View.OnClickListe
     public static final String KEY_IMAGE_LIST = "imageList";
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
-
+    private final int RESULT_CODE_LARGE_IMAGE = 1;
+    //晒单图片最多选择四张
+    private final int MAX_PIC = 4;
     @Override
     public int getLayoutRes() {
         return R.layout.activity_mine_order_after_sale;
@@ -161,8 +163,6 @@ public class AfterSaleActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //晒单图片最多选择四张
-        int MAX_PIC = 4;
         switch (v.getId()) {
             case R.id.mine_order_after_sale_reason:
                 singleChoice();
@@ -205,7 +205,6 @@ public class AfterSaleActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        int RESULT_CODE_LARGE_IMAGE = 1;
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表

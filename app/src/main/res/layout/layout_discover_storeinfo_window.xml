@@ -3,6 +3,7 @@
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:background="@drawable/custom_info_bubble"
+    android:id="@+id/info_window"
     android:orientation="horizontal">
 
     <ImageView
@@ -17,7 +18,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/infoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -27,14 +28,29 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/snippet"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="#ff7f7f7f"
-            android:textSize="14sp" />
+            android:singleLine="true">
+
+            <TextView
+                android:id="@+id/snippet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff7f7f7f"
+                android:layout_alignParentStart="true"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff7f7f7f"
+                android:text="查看详情"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>

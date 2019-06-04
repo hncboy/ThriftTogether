@@ -89,6 +89,12 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
     public static final int SDK_PAY_FLAG = 1;
     public static final int SDK_AUTH_FLAG = 2;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")

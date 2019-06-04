@@ -69,6 +69,7 @@
     <string name="store_product">团购</string>
     <string name="store_evaluation">评价</string>
     <string name="busy_server">服务器繁忙，请稍后重试</string>
+    <string name="new_order_failed">创建订单失败，请稍后重试</string>
 
     <string name="app_name">Alipay SDK Demo</string>
     <string name="demo_info_text">Warning: \n\nFor demonstration purpose, the assembling and signing of the request parameters are done on the client side.\nHowever, in practice, both assembling and signing MUST BE carried out on the server side.</string>
@@ -96,5 +97,19 @@
     <string name="error_missing_global_partner_seller_rsa_private">Error: Missing \"PARTNER\", \"SELLER\", or \"RSA_PRIVATE\\ in OrderUtils1_0_Global.</string>
     <string name="payment_inst_hk">Payer: HK</string>
     <string name="payment_inst_cn">Payer: CN</string>
+
+    <string name="package_details">套餐详情</string>
+    <string name="product_note">随时退 | 免预约 | 过期自动退</string>
+    <string name="half_year_sale">半年销量</string>
+    <string name="sweat_note">温馨提醒</string>
+    <string name="buy_now">立即购买</string>
+    <string name="submit_order_viable_time">周一到周日 | 免预约</string>
+    <string name="submit_order_number">数量</string>
+    <string name="submit_order_subtotal">小计</string>
+    <string name="submit_order_coupons">优惠券</string>
+    <string name="submit_order_phone">手机号</string>
+    <string name="submit_order_total">总计: </string>
+    <string name="store_booking">预约</string>
     <string name="recentlyView">最近浏览</string>
+    <string name="reservation_number">请选择用餐人数</string>
 </resources>

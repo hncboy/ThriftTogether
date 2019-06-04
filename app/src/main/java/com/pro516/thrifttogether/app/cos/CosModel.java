@@ -30,7 +30,7 @@ public class CosModel {
         }
     }
 
-    public void uploadPic(final String fileName, final InputStream is, final IDataRequestListener listener) {
+    public void uploadAvatorPic(final String fileName, final InputStream is, final IDataRequestListener listener) {
         new AsyncTask<Object, Object, PutObjectResult>() {
             @Override
             protected PutObjectResult doInBackground(Object... objects) {
@@ -57,7 +57,34 @@ public class CosModel {
         }.execute();
     }
 
-    public void uploadPic(final String fileName, final String path, final IDataRequestListener listener) {
+    public void uploadReviewPic(final String fileName, final InputStream is, final IDataRequestListener listener) {
+        new AsyncTask<Object, Object, PutObjectResult>() {
+            @Override
+            protected PutObjectResult doInBackground(Object... objects) {
+                PutObjectRequest putObjectRequest = null;
+                try {
+                    putObjectRequest = new PutObjectRequest(BUCKET, cosReviewPath + fileName, is);
+                    return mService.putObject(putObjectRequest);
+                } catch (CosXmlClientException e) {
+                    e.printStackTrace();
+                    return null;
+                } catch (CosXmlServiceException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(PutObjectResult o) {
+                super.onPostExecute(o);
+                if (o != null) {
+                    listener.loadSuccess(o.accessUrl);
+                }
+            }
+        }.execute();
+    }
+
+    public void uploadic(final String fileName, final String path, final IDataRequestListener listener) {
         new AsyncTask<Object, Object, PutObjectResult>() {
             @Override
             protected PutObjectResult doInBackground(Object... objects) {

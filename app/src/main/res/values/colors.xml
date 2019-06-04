@@ -12,6 +12,7 @@
     <color name="tabbar_color">#aaaaaa</color>
     <color name="text_dark_color">#474747</color>
     <color name="text_grey_color">#666666</color>
+    <color name="text_light_color">#B4B3B3</color>
     <color name="order_tag_color">#FF9900</color>
     <color name="group_tag_color">#66CC33</color>
     <color name="buy_tag_color">#FF3300</color>
@@ -21,8 +22,9 @@
     <color name="division">#bfbfbf</color>
     <color name="pos_color">#515151</color>
     <color name="separate_color">#F2F2F2</color>
-    <color name="processColorAccent">#FF4081</color>
     <color name="distance_background_color">#BFe2e2e2</color>
+    <color name="processColorAccent">#FF4081</color>
+    <color name="submit_order_background_color">#E5ECEC</color>
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
     <!--窗口背景颜色-->

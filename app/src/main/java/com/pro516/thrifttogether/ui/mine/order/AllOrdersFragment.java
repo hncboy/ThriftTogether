@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -74,6 +73,12 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
         mProgressBar.setVisibility(View.VISIBLE);
         loadData();
         initRefreshLayout(view);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @SuppressLint("HandlerLeak")
@@ -221,9 +226,6 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
             Log.d(TAG, "onItemChildClick: ");
             Toast.makeText(getActivity(), "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent;
-            Bundle bundle;
-            bundle = new Bundle();
-            bundle.putSerializable("data", mData.get(position));
             switch (mData.get(position).getOrderStatus()) {
                 case 1:
                     payV2(view, mData, position);
@@ -235,7 +237,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
                     break;
                 case 3:
                     intent = new Intent(getActivity(), OrderCommentActivity.class);
-                    intent.putExtras(bundle);
+                    intent.putExtra("orderID",mData.get(position).getOrderNo());
                     startActivity(intent);
                     break;
                 case 4:

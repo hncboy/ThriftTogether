@@ -9,6 +9,7 @@
 
     <!-- 图片 -->
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/shop_iv"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
@@ -53,6 +54,7 @@
 
         <!-- 星级评分 -->
         <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -68,6 +70,7 @@
 
         <!-- 价格 -->
         <TextView
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -80,6 +83,7 @@
 
     <!-- 位置 -->
     <TextView
+        android:id="@+id/shop_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -107,6 +111,7 @@
 
         <!-- 团购信息 -->
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -119,35 +124,35 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="20dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:orientation="horizontal">-->
 
-        <!-- 买单标签 -->
-        <android.support.v7.widget.AppCompatButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/shape_home_bug_tag"
-            android:text="@string/bug_tag"
-            android:textColor="@color/white" />
+        <!--&lt;!&ndash; 买单标签 &ndash;&gt;-->
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:background="@drawable/shape_home_bug_tag"-->
+            <!--android:text="@string/bug_tag"-->
+            <!--android:textColor="@color/white" />-->
 
-        <!-- 买单信息 -->
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:maxWidth="300dp"
-            android:maxLines="1"
-            android:text="88代100元"
-            android:textColor="@color/text_grey_color"
-            android:textSize="13sp" />
+        <!--&lt;!&ndash; 买单信息 &ndash;&gt;-->
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:maxWidth="300dp"-->
+            <!--android:maxLines="1"-->
+            <!--android:text="88代100元"-->
+            <!--android:textColor="@color/text_grey_color"-->
+            <!--android:textSize="13sp" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <android.support.v7.widget.AppCompatImageButton
         android:layout_width="wrap_content"

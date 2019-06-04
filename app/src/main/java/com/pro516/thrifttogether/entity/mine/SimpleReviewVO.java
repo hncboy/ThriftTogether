@@ -13,11 +13,8 @@ public class SimpleReviewVO implements Serializable {
 //    @ApiModelProperty(value = "评论图片")
     private List<String> reviewPicUrlList;
 
-//    @ApiModelProperty(value = "评价商品id")
-    private Integer productId;
-
 //    @ApiModelProperty(value = "评价订单id")
-    private String orderId;
+    private String orderNo;
 
 //    @ApiModelProperty(value = "评价分数")
     private Integer reviewScore;
@@ -46,20 +43,12 @@ public class SimpleReviewVO implements Serializable {
         this.reviewPicUrlList = reviewPicUrlList;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public Integer getReviewScore() {

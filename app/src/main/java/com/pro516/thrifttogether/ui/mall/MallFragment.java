@@ -73,6 +73,7 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         updateData();
+        initView();
     }
 
     private void updateData(){
