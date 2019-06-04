@@ -2,11 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@color/white"
+    android:orientation="horizontal"
     android:scrollbars="none">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -21,6 +22,7 @@
             android:src="@drawable/icon_mine_notification" />
 
         <LinearLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -33,13 +35,13 @@
                 android:src="@drawable/icon_head_portrait" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/username"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/text_dark_color" />
+                android:layout_marginTop="10dp"
+                android:textColor="@color/text_dark_color"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -50,13 +52,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_collection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -74,13 +76,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_recently_viewed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -98,13 +100,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_voucher_package"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -133,13 +135,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_all_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -157,13 +159,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_order_pending_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -180,14 +182,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
+                android:id="@+id/mine_order_to_be_used"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
-                android:id="@+id/mine_order_to_be_used"
                 android:orientation="vertical">
 
                 <ImageView
@@ -204,13 +206,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_order_to_be_evaluate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -228,13 +230,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/touch_bg"
-                android:clickable="true"
-                android:focusable="true"
                 android:id="@+id/mine_order_refund_or_after_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/touch_bg"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -261,11 +263,11 @@
 
         <LinearLayout
             android:id="@+id/mine_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@drawable/touch_bg"
             android:clickable="true"
-            android:focusable="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/icon_mine_my_reservation"
@@ -291,12 +293,12 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:background="@drawable/touch_bg"
-            android:clickable="true"
-            android:focusable="true"
             android:id="@+id/mine_setting"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/icon_mine_settings"
@@ -321,12 +323,12 @@
             android:background="@color/split_line" />
 
         <LinearLayout
-            android:background="@drawable/touch_bg"
-            android:clickable="true"
-            android:focusable="true"
             android:id="@+id/mine_feedback"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/icon_mine_feedback"
@@ -352,11 +354,11 @@
             android:background="@color/split_line" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@drawable/touch_bg"
             android:clickable="true"
-            android:focusable="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/icon_mine_check_for_updates"
@@ -382,11 +384,11 @@
             android:background="@color/split_line" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@drawable/touch_bg"
             android:clickable="true"
-            android:focusable="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/icon_mine_advisory_service"

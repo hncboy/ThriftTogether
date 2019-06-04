@@ -63,7 +63,7 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void jump(){
+    private void jump() {
         String searchContent = Objects.requireNonNull(appCompatEditText.getText()).toString();
         if (!searchContent.equals("")) {
             Intent intent = new Intent(HomeSearchActivity.this, HomeSearchResultActivity.class);
@@ -71,6 +71,7 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
             startActivity(intent);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();

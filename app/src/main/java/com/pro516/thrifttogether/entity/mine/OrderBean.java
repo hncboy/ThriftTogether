@@ -7,7 +7,7 @@ public class OrderBean implements Serializable {
     private String orderNo;
 
     //@ApiModelProperty(value = "店铺类型")
-    private Integer shopCategoryId;
+    private String shopCategoryIconUrl;
 
     //@ApiModelProperty(value = "商品名称")
     private String productName;
@@ -35,12 +35,12 @@ public class OrderBean implements Serializable {
         this.orderNo = orderNo;
     }
 
-    public Integer getShopCategoryId() {
-        return shopCategoryId;
+    public String getShopCategoryIconUrl() {
+        return shopCategoryIconUrl;
     }
 
-    public void setShopCategoryId(Integer shopCategoryId) {
-        this.shopCategoryId = shopCategoryId;
+    public void setShopCategoryIconUrl(String shopCategoryIconUrl) {
+        this.shopCategoryIconUrl = shopCategoryIconUrl;
     }
 
     public String getProductName() {
