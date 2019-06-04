@@ -12,6 +12,7 @@ import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
 import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
+import com.pro516.thrifttogether.entity.mine.ReservationBean;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
 import com.pro516.thrifttogether.ui.buy.entity.VO.CreatedOrderVO;
@@ -22,6 +23,7 @@ import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
 
 import com.pro516.thrifttogether.entity.mine.User;
 import com.pro516.thrifttogether.entity.mine.UserCoupon;
+import com.pro516.thrifttogether.ui.mine.reservation.vo.SimpleReservationVO;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -260,6 +262,17 @@ public class JsonParser {
         if (entity.getCode()==200){
             return entity.getData();
         }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public static ArrayList<SimpleReservationVO> getUserAllReservation(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<SimpleReservationVO>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<SimpleReservationVO>> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
             return new ArrayList<>();
         }
     }

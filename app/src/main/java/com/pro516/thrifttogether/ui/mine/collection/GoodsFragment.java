@@ -2,6 +2,7 @@ package com.pro516.thrifttogether.ui.mine.collection;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
+import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
 import com.pro516.thrifttogether.ui.mine.adapter.GoodsAdapter;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
@@ -66,6 +68,12 @@ public class GoodsFragment extends BaseFragment implements View.OnClickListener 
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.d("团节", "onItemClick: ");
                 Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
+                List<CollectedProductVO> data = adapter.getData();
+                CollectedProductVO item = data.get(position);
+                Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+                intent.putExtra("storeId",item.getShopId());
+                intent.putExtra("productId",item.getId());
+                startActivity(intent);
             }
         });
 
