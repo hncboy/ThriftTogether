@@ -11,6 +11,7 @@ import com.pro516.thrifttogether.entity.ResponseMessageEntity;
 import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
 import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
+import com.pro516.thrifttogether.entity.mine.LookingAroundShopVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.OrderDetailsVO;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
@@ -152,6 +153,17 @@ public class JsonParser {
             return entity.getData();
         } else {
             return new User();
+        }
+    }
+
+    public static ArrayList<LookingAroundShopVO> lookingAroundShopVO(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<LookingAroundShopVO>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<LookingAroundShopVO>> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new ArrayList<>();
         }
     }
 }

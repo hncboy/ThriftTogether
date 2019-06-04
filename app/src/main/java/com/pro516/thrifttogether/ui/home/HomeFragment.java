@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.home.BannerInfo;
+import com.pro516.thrifttogether.entity.mine.LookingAroundShopVO;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.home.activity.HomeBeautyActivity;
@@ -25,12 +26,12 @@ import com.pro516.thrifttogether.ui.home.activity.HomeEntertainmentActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeFoodActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeKtvActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeLookingAroundActivity;
+import com.pro516.thrifttogether.ui.home.activity.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.home.activity.HomeTicketActivity;
 import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
 import com.pro516.thrifttogether.ui.home.activity.hotel.HomeHotelActivity;
 import com.pro516.thrifttogether.ui.home.activity.movie.HomeMovieActivity;
 import com.pro516.thrifttogether.ui.home.activity.nav.HomeCityPickerActivity;
-import com.pro516.thrifttogether.ui.home.activity.HomeSearchActivity;
 import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
@@ -126,10 +127,20 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void initLookingAroundRecyclerView(List<ShopBean> mData) {
+    private void initLookingAroundRecyclerView(List<LookingAroundShopVO> mData) {
         lookAroundRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         lookAroundRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        mAdapter = new ShopAdapter(R.layout.item_shop, mData);
+        List<ShopBean> shopBeans=new ArrayList<>();
+        for (LookingAroundShopVO lookingAroundShopVO:mData){
+            ShopBean shopBean=new ShopBean();
+            shopBean.setShopName(lookingAroundShopVO.getShopName());
+            shopBean.setShopArea(lookingAroundShopVO.getShopAddress());
+            shopBean.setShopCoverUrl(lookingAroundShopVO.getShopCoverUrl());
+            shopBean.setAveragePrice(lookingAroundShopVO.getAveragePrice());
+            shopBean.setAverageScore(lookingAroundShopVO.getAverageScore());
+            shopBeans.add(shopBean);
+        }
+        mAdapter = new ShopAdapter(R.layout.item_shop, shopBeans);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         lookAroundRecyclerView.setAdapter(mAdapter);
@@ -155,7 +166,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     break;
                 case 123:
                     //initListView((List<ShopBean>) msg.obj);
-                    initLookingAroundRecyclerView((List<ShopBean>) msg.obj);
+                    initLookingAroundRecyclerView((List<LookingAroundShopVO>) msg.obj);
                     if (mSwipeRefresh.isRefreshing()) {
                         mSwipeRefresh.setRefreshing(false);
                     }
@@ -190,7 +201,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void run() {
                 try {
                     String json = HttpUtils.getStringFromServer(Url.LOOKING_AROUND);
-                    List<ShopBean> mData = JsonParser.shopList(json);
+                    List<LookingAroundShopVO> mData = JsonParser.lookingAroundShopVO(json);
                     //System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(123, mData).sendToTarget();
                 } catch (IOException e) {

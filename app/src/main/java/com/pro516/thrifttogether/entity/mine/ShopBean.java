@@ -22,6 +22,8 @@ public class ShopBean implements Serializable {
     //@ApiModelProperty(value = "店铺区域")
     private String shopArea;
 
+    public ShopBean(){}
+
     public ShopBean(Integer shopId, String shopName, String shopCoverUrl, Double averageScore, Integer averagePrice, String shopArea) {
         this.shopId = shopId;
         this.shopName = shopName;
