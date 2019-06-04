@@ -118,6 +118,8 @@ public class SingleProductFragment extends BaseFragment{
         manager.setScrollEnabled(false);
         manager2.setScrollEnabled(false);
         noteRv.setLayoutManager(manager2);
+        noteRv.setNestedScrollingEnabled(false);
+        detailRv.setNestedScrollingEnabled(false);
         ProductInfoAdapter adapter = new ProductInfoAdapter(R.layout.item_product_detail,mData.getProductContent());
         ProductInfoAdapter adapter1 = new ProductInfoAdapter(R.layout.item_product_detail,mData.getProductReminder());
         detailRv.setAdapter(adapter);

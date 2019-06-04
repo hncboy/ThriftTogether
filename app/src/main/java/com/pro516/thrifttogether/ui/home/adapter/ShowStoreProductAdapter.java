@@ -40,7 +40,6 @@ public class ShowStoreProductAdapter extends BaseQuickAdapter<SimpleProductVO,Ba
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
-        Log.i("Constraints", "init view");
         //设置图片圆角角度
         RoundedCorners roundedCorners = new RoundedCorners(30);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗

@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -26,6 +27,7 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
+import com.pro516.thrifttogether.ui.buy.layoutManage.MyLinearLayoutManager;
 import com.pro516.thrifttogether.ui.home.adapter.ShowCommentsAdapter;
 import com.pro516.thrifttogether.ui.home.adapter.ShowStoreProductAdapter;
 import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
@@ -219,14 +221,40 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
         });
     }
     private void initCommentsRV(List<SimpleReviewVO> data){
-        mCommentsRV.setLayoutManager(new LinearLayoutManager(this));
+        Log.i("aaa", "initCommentsRV: "+data.size());
+        MyLinearLayoutManager linearLayoutManager = new MyLinearLayoutManager(this);
+        linearLayoutManager.setScrollEnabled(false);
+        mCommentsRV.setLayoutManager(linearLayoutManager);
         mCommentsRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mCommentsRV.setNestedScrollingEnabled(false);
+        //mCommentsRV.setNestedScrollingEnabled(false);
         ShowCommentsAdapter mAdapter = new ShowCommentsAdapter(this,R.layout.item_store_evaluation, data);
         //mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         //mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         mCommentsRV.setAdapter(mAdapter);
+        //setListViewHeightBasedOnChildren(mCommentsRV,mAdapter);
         //item点击事件
+    }
+    public void setListViewHeightBasedOnChildren(RecyclerView listView,ShowCommentsAdapter listAdapter) {
+// 获取ListView对应的Adapter
+//        ShowCommentsAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getItemCount(); i < len; i++) {
+            // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getViewByPosition(i,0 );
+            // 计算子项View 的宽高
+            listItem.measure(0, 0);
+// 统计所有子项的总高度
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getMeasuredHeight() *
+                (listAdapter.getItemCount() - 1));
+// listView.getDividerHeight()获取子项间分隔符占用的高度
+// params.height最后得到整个ListView完整显示需要的高度
+        listView.setLayoutParams(params);
     }
     @Override
     public void onClick(View view) {
