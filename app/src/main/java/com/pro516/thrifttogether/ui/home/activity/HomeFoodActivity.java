@@ -30,10 +30,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
-import static com.pro516.thrifttogether.ui.network.Url.RECOMMEND;
 import static com.pro516.thrifttogether.ui.network.Url.SHOP_FOODS;
 
 /**
@@ -78,7 +78,14 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
     private void initRecyclerView(List<ShopBean> mData) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        ShopAdapter mAdapter = new ShopAdapter(R.layout.item_shop, mData);
+
+        Random r = new Random();
+        int n2 = r.nextInt(100);
+        int n3 = r.nextInt(500) + 499;
+        System.out.println("n2:"+n2);
+        System.out.println("n3:"+n3);
+
+        ShopAdapter mAdapter = new ShopAdapter(R.layout.item_shop, mData.subList(n2,n3));
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
@@ -173,7 +180,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         nearbyView.setOnItemClickListener((parent, view, position, id) -> {
             nearbyAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[1] : nearbys[position]);
-            loadData(RECOMMEND);
+            loadData(SHOP_FOODS);
             mDropDownMenu.closeMenu();
         });
 
@@ -185,7 +192,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         sortView.setOnItemClickListener((parent, view, position, id) -> {
             sortAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[2] : sortings[position]);
-            loadData(RECOMMEND);
+            loadData(SHOP_FOODS);
             mDropDownMenu.closeMenu();
         });
 
@@ -197,7 +204,7 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         filterView.setOnItemClickListener((parent, view, position, id) -> {
             filterAdapter.setCheckItem(position);
             mDropDownMenu.setTabText(position == 0 ? headers[3] : filters[position]);
-            loadData(RECOMMEND);
+            loadData(SHOP_FOODS);
             mDropDownMenu.closeMenu();
         });
 
