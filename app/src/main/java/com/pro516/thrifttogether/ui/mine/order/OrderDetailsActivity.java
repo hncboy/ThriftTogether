@@ -311,6 +311,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                         intent = new Intent(this, OrderCommentActivity.class);
                         intent.putExtra("orderID", mData.getOrderNo());
                         startActivity(intent);
+                        finish();
                         break;
                     case 4:
                         intent = new Intent(this, AfterSaleActivity.class);
