@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/reservation_price"
-            android:text="预计花费"
+            android:text=""
             android:textColor="@color/text_dark_color"
             android:textSize="18sp" />
 
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="￥120"
+            android:text=""
             android:textColor="@color/order_tag_color"
             android:textSize="18sp" />
     </RelativeLayout>
