@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
+    android:layout_width="350dp"
     android:layout_height="450dp"
     android:background="@drawable/shape_home_looking_around"
     android:elevation="5dp"
@@ -154,12 +154,12 @@
 
     <!--</LinearLayout>-->
 
-    <android.support.v7.widget.AppCompatImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_favorite_black_24dp" />
+    <!--<android.support.v7.widget.AppCompatImageButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:src="@drawable/ic_favorite_black_24dp" />-->
 
 </LinearLayout>

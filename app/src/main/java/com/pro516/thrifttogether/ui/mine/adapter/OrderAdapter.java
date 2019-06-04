@@ -12,7 +12,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
 
-        Glide.with(mContext).load(item.getProductCoverUrl()).apply(mRequestOptions).into((ImageView) helper.getView(R.id.mine_order_title_image));
+        Glide.with(mContext).load(item.getShopCategoryIconUrl()).apply(mRequestOptions).into((ImageView) helper.getView(R.id.mine_order_title_image));
         Glide.with(mContext).load(item.getProductCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.mine_order_content_image));
     }
 }
