@@ -22,10 +22,10 @@
     <application
         android:name=".TtApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="@string/we_app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
@@ -48,7 +48,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d3c468c6b5953a2e2f231ce4475728d3" />
+            android:value="b54848372e8b98377350080b813babb0" />
 
         <activity android:name=".ui.mine.order.OrderActivity" />
         <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />

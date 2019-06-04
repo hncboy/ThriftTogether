@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.buy.activity.ProductInfoActivity"
     android:orientation="vertical">
+
     <!--标题栏-->
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
