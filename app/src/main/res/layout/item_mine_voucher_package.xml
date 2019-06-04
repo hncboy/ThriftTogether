@@ -61,15 +61,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="55dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/voucher_package_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
                 android:text="已使用"
                 android:textColor="@color/order_tag_color"
                 android:textSize="20sp"
@@ -79,7 +79,6 @@
                 android:id="@+id/voucher_package_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
                 android:layout_marginTop="20dp"
                 android:text="￥10"
                 android:textColor="@color/order_tag_color"
