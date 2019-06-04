@@ -32,6 +32,7 @@ import com.pro516.thrifttogether.ui.buy.entity.VO.CreatedOrderVO;
 import com.pro516.thrifttogether.ui.buy.widget.AddAndSubView;
 import com.pro516.thrifttogether.ui.mine.alipay.AuthResult;
 import com.pro516.thrifttogether.ui.mine.alipay.PayResult;
+import com.pro516.thrifttogether.ui.mine.order.OrderDetailsActivity;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.network.Url;
@@ -192,9 +193,11 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                     bean.setCreateTime(sSimpleDateFormat.format(new Date(Calendar.getInstance().getTimeInMillis())));
                     bean.setProductName(intent.getStringExtra("name"));
                     payV2(parentRL,bean,0);
+
                     break;
                 case SUBMIT_ORDER_ERROR:
                     Toast.makeText(SubmitOrderActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
+
                     break;
                 case SDK_PAY_FLAG: {
                     @SuppressWarnings("unchecked")
@@ -213,6 +216,10 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         showAlert(SubmitOrderActivity.this, getString(R.string.pay_failed) + payResult);
+                        Intent intent1 = new Intent(SubmitOrderActivity.this, OrderDetailsActivity.class);
+                        intent1.putExtra("orderID",newOrderId);
+                        startActivity(intent1);
+                        finish();
                     }
                     break;
                 }
@@ -369,7 +376,11 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                     String json = HttpUtils.getStringFromServer(
                             ORDER_DELETE_OR_UPDATE + newOrderId + "/status/" + 2);
                     Log.d("ddd",json);
-                    JsonParser.updateOrders(json);
+                    boolean res = JsonParser.updateOrders(json);
+                    Intent intent = new Intent(SubmitOrderActivity.this, OrderDetailsActivity.class);
+                    intent.putExtra("orderID",newOrderId);
+                    startActivity(intent);
+                    finish();
                 } catch (IOException e) {
                     mHandler.obtainMessage(ERROR).sendToTarget();
                     e.printStackTrace();

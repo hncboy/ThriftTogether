@@ -48,7 +48,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d3c468c6b5953a2e2f231ce4475728d3" />
+            android:value="cac6fd14874f45ee1160addb1f30639f" />
 
         <activity android:name=".ui.mine.order.OrderActivity" />
         <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
