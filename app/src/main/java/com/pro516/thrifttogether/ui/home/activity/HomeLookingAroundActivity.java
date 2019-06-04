@@ -1,6 +1,7 @@
 package com.pro516.thrifttogether.ui.home.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.AppCompatImageButton;
@@ -8,7 +9,10 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.mcxtzhang.layoutmanager.swipecard.CardConfig;
 import com.mcxtzhang.layoutmanager.swipecard.OverLayCardLayoutManager;
 import com.mcxtzhang.layoutmanager.swipecard.RenRenCallback;
@@ -61,6 +65,16 @@ public class HomeLookingAroundActivity extends BaseActivity implements View.OnCl
         ItemTouchHelper.Callback callback = new RenRenCallback(recyclerView, adapter, lookingAroundShopVO);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        recyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Toast.makeText(HomeLookingAroundActivity.this, "点击：" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeLookingAroundActivity.this,StoreActivity.class);
+                intent.putExtra("storeId",lookingAroundShopVO.get(position).getShopId());
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("HandlerLeak")

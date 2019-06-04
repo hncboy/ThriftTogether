@@ -1,7 +1,6 @@
 package com.pro516.thrifttogether.ui.buy.activity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,17 +15,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.mine.UserCoupon;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.buy.entity.VO.ProductDetailsVO;
 import com.pro516.thrifttogether.ui.buy.fragment.SingleProductFragment;
-import com.pro516.thrifttogether.ui.home.activity.StoreActivity;
-import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;
-import com.pro516.thrifttogether.ui.home.entity.VO.SimpleReviewVO;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.network.Url;
@@ -34,11 +28,9 @@ import com.pro516.thrifttogether.ui.network.Url;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.Response;
 
-import static com.pro516.thrifttogether.ui.network.Url.COUPON_USER;
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.SHOP;

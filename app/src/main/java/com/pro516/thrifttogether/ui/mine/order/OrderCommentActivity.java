@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -77,6 +78,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     private final int REQUEST_CODE_PICTURE = 1;
     private SimpleReviewVO simpleReviewVO;
     private String orderID;
+
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -100,7 +102,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         Intent intent = getIntent();
         orderID = intent.getStringExtra("orderID");
-        Log.d("adwd", "initData: "+orderID);
+        Log.d("adwd", "initData: " + orderID);
         starList = new ArrayList<>();
         imageUrls = new ArrayList<>();
         currentStarCount = 5;//默认为五星好评
@@ -162,13 +164,19 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 try {
                     HttpUtils.doPost(REVIEW, simpleReviewVO);
                     Log.d("----------", "run: ok");
+                    Looper.prepare();
+                    toast("评论成功");
+                    ConfirmationDialog();
+                    Looper.loop();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("----------", "run: fail");
                 }
             }
         }.start();
+
     }
+
     public void ConfirmationDialog() {
         MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(context);
         mBuilder.content("评价已成功！");
@@ -190,10 +198,11 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             }
         });
     }
+
     @Override
     public void onClick(View v) {
         //晒单图片最多选择四张
-        int MAX_PIC = 4;
+        int MAX_PIC = 9;
         switch (v.getId()) {
             case R.id.tv_submit:
                 //评价提交
@@ -202,7 +211,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                     Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 } else {
                     uploadReviewImages();
-                    MaterialDialog materialDialog =  new MaterialDialog.Builder(this)
+                    MaterialDialog materialDialog = new MaterialDialog.Builder(this)
                             .title("Progress")
                             .content("Please Wait...")
                             .progress(true, 0)
@@ -227,7 +236,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                         simpleReviewVO.setReviewScore(currentStarCount);
                         submit();
                     });
-                    ConfirmationDialog();
+
                 }
                 break;
             case R.id.common_toolbar_function_left:
