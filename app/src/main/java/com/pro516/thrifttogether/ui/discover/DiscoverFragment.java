@@ -172,11 +172,13 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
 
     @Override
     protected void init(View view) {
+        location = GPSUtils.getInstance(getContext()).getLocation();
         initView();
+        initMap();
         initRefreshLayout(view);
         Log.i("aaa", "loaddata");
         loadData();
-        initMap();
+
 
     }
 
@@ -193,12 +195,12 @@ public class DiscoverFragment extends BaseFragment implements AMap.InfoWindowAda
             @Override
             public void run() {
                 try {
-                    //location = GPSUtils.getInstance(getContext()).getLocation();
-                    location = aMap.getMyLocation();
-                    if (location==null)
-                        //location = new Location(29.88600455,121.47420162);
+                    do {
+                        location = aMap.getMyLocation();
+                        Log.i("aaa", "location is " + location);
+                    } while (location == null);
                     Log.i(TAG, location.getLatitude() + " " + location.getLongitude());
-                    String json = HttpUtils.getStringFromServer(Url.SHOP + "/city/1/lat/" + location.getLatitude() + "/lng/" + location.getLongitude() + "?size=" + size);
+                    String json = HttpUtils.getStringFromServer(Url.SHOP + "/city/1/lat/" + location.getLatitude()  + "/lng/" + location.getLongitude() + "?size=" + size);
                     List<DiscoverShopVO> mData = JsonParser.surroundingShop(json);
                     Log.i(TAG, "load all store");
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

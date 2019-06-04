@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class CollectedProductVO implements Serializable {
 
     private Integer id;
+    //@ApiModelProperty(value = "店铺id")
+    private Integer shopId;
 
     private String productName;
 
@@ -15,6 +17,14 @@ public class CollectedProductVO implements Serializable {
     private String shopName;
 
     private String shopArea;
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
 
     public Integer getId() {
         return id;
