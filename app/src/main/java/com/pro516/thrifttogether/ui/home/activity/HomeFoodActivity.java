@@ -2,7 +2,6 @@ package com.pro516.thrifttogether.ui.home.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,7 +9,6 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -23,7 +21,6 @@ import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.home.adapter.GirdDropDownAdapter;
 import com.pro516.thrifttogether.ui.mine.adapter.ShopAdapter;
-import com.pro516.thrifttogether.ui.mine.order.UseActivity;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
 import com.pro516.thrifttogether.ui.widget.DividerItemDecoration;
@@ -86,12 +83,8 @@ public class HomeFoodActivity extends BaseActivity implements View.OnClickListen
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
 
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
-            Log.d("团节", "onItemClick: ");
-            Toast.makeText(this, "onItemClick" + position, Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(this, UseActivity.class);
-            Bundle bundle=new Bundle();
-            bundle.putSerializable("data",mData.get(position));
-            intent.putExtras(bundle);
+            Intent intent = new Intent(HomeFoodActivity.this,StoreActivity.class);
+            intent.putExtra("storeId",mData.get(position).getShopId());
             startActivity(intent);
         });
 

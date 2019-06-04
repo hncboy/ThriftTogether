@@ -33,7 +33,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.app.cos.CosModel;
 import com.pro516.thrifttogether.app.cos.IDataRequestListener;
-import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.SimpleReviewVO;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.order.tools.BitmapUtils;
@@ -77,7 +76,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
     private SimpleReviewVO simpleReviewVO;
-    private OrderBean orderBean;
+    private String orderID;
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -96,13 +95,12 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("评价");
-
-
     }
 
     private void initData() {
         Intent intent = getIntent();
-        orderBean = (OrderBean) intent.getSerializableExtra("data");
+        orderID = intent.getStringExtra("orderID");
+        Log.d("adwd", "initData: "+orderID);
         starList = new ArrayList<>();
         imageUrls = new ArrayList<>();
         currentStarCount = 5;//默认为五星好评
@@ -222,6 +220,8 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                         Log.i("评论图片上传", "上传结束");
                         simpleReviewVO = new SimpleReviewVO();
                         simpleReviewVO.setUserId(1);
+                        Log.i("评论图片上传", orderID);
+                        simpleReviewVO.setOrderNo(orderID);
                         simpleReviewVO.setReviewContent(mEtCommentContent.getText().toString());
                         simpleReviewVO.setReviewPicUrlList(mReviewImages);
                         simpleReviewVO.setReviewScore(currentStarCount);
