@@ -1,14 +1,16 @@
 package com.pro516.thrifttogether.ui.home.adapter;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseItemDraggableAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
-import com.pro516.thrifttogether.entity.home.LookingAroundItem;
+import com.pro516.thrifttogether.entity.mine.LookingAroundShopVO;
 
 import java.util.List;
 
@@ -16,33 +18,32 @@ import java.util.List;
  * Created by hncboy on 2019-04-01.
  * 随便看看卡片的适配器
  */
-public class HomeLookingAroundAdapter extends RecyclerView.Adapter<HomeLookingAroundAdapter.CardItemViewHolder>  {
-
-    private Context mContext;
-    private List<LookingAroundItem> mLookingAroundItems;
-
-    @NonNull
-    @Override
-    public HomeLookingAroundAdapter.CardItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_looking_around,
-                viewGroup, false);
-        return new CardItemViewHolder(view);
+public class HomeLookingAroundAdapter extends BaseItemDraggableAdapter<LookingAroundShopVO, BaseViewHolder> {
+    public HomeLookingAroundAdapter(int layoutResId, @Nullable List<LookingAroundShopVO> data) {
+        super(layoutResId, data);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeLookingAroundAdapter.CardItemViewHolder contactItemViewHolder, int i) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 5;
-    }
-
-    static class CardItemViewHolder extends RecyclerView.ViewHolder {
-
-        CardItemViewHolder(View itemView) {
-            super(itemView);
+    protected void convert(BaseViewHolder helper, LookingAroundShopVO item) {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < item.getProductNameList().size(); i++) {
+            str.append(item.getProductNameList().get(i));
         }
+
+        helper.setText(R.id.title, item.getShopName())
+                .setText(R.id.shop_address, item.getShopArea())
+                .setText(R.id.price, "人均：￥" + item.getAveragePrice())
+                .setText(R.id.tuan, str.toString());
+
+        SimpleRatingBar simpleRatingBar = helper.getView(R.id.simpleRatingBar);
+        simpleRatingBar.setRating(item.getAverageScore().floatValue());
+
+        //设置图片圆角角度
+        RoundedCorners roundedCorners = new RoundedCorners(30);
+        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+
+        Glide.with(mContext).load(item.getShopCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.shop_iv));
     }
 }
+

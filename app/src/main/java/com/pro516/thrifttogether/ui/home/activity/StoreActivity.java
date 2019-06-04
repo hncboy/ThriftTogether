@@ -26,7 +26,6 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.buy.activity.ProductInfoActivity;
-import com.pro516.thrifttogether.ui.buy.layoutManage.MyLinearLayoutManager;
 import com.pro516.thrifttogether.ui.home.adapter.ShowCommentsAdapter;
 import com.pro516.thrifttogether.ui.home.adapter.ShowStoreProductAdapter;
 import com.pro516.thrifttogether.ui.home.entity.VO.ShopDetailsVO;

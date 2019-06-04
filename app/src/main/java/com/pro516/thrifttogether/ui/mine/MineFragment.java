@@ -65,6 +65,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         initView();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+    }
+
     private void initView() {
         SharedPreferences userSettings =  Objects.requireNonNull(getActivity()).getSharedPreferences("setting", Context.MODE_PRIVATE);
         String avatorUrl=userSettings.getString("avatorUrl","http://img.52z.com/upload/news/image/20180122/20180122093427_87666.jpg");

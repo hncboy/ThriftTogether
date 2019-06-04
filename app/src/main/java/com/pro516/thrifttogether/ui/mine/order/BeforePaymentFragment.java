@@ -89,6 +89,12 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
     public static final int SDK_PAY_FLAG = 1;
     public static final int SDK_AUTH_FLAG = 2;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -377,9 +383,7 @@ public class BeforePaymentFragment extends BaseFragment implements BaseQuickAdap
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("data", mData.get(position));
-            intent.putExtras(bundle);
+            intent.putExtra("orderID",mData.get(position).getOrderNo());
             startActivity(intent);
         });
 

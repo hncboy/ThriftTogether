@@ -3,6 +3,7 @@ package com.pro516.thrifttogether.ui.mine.settings;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,17 +18,26 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.pro516.thrifttogether.R;
+import com.pro516.thrifttogether.app.cos.CosModel;
+import com.pro516.thrifttogether.app.cos.IDataRequestListener;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.settings.callback.PhotoCallBack;
 import com.pro516.thrifttogether.ui.mine.settings.util.FileUtils;
 import com.pro516.thrifttogether.ui.mine.settings.view.AlertView;
+import com.pro516.thrifttogether.ui.network.Url;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,13 +51,14 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
     public String path = "";
     public Uri photoUri;
     private File file;
-
+    private String avatarUrl;
     private static final int TAKE_PICTURE = 0;
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int CUT_PHOTO_REQUEST_CODE = 2;
     private static final String CAMERA_PERMISSION = Manifest.permission.CAMERA;
     private static final String READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE;
     private static final String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
     @Override
     public int getLayoutRes() {
         return R.layout.activity_edit_personal_information;
@@ -62,9 +73,19 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
         AppCompatTextView title = findViewById(R.id.title);
         title.setText(getString(R.string.personal_information));
 
-        ivAvater=findViewById(R.id.iv_avater);
+        ivAvater = findViewById(R.id.iv_avater);
         LinearLayout mEditHeadPortrait = findViewById(R.id.edit_headPortrait);
         mEditHeadPortrait.setOnClickListener(this);
+        TextView username = findViewById(R.id.username);
+        TextView phone = findViewById(R.id.phone);
+        SharedPreferences userSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
+        String avatorUrl = userSettings.getString("avatorUrl", "http://img.52z.com/upload/news/image/20180122/20180122093427_87666.jpg");
+        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
+                .skipMemoryCache(true);//不做内存缓存
+        Glide.with(this).load(avatorUrl).apply(mRequestOptions).into(ivAvater);
+        username.setText(userSettings.getString("name","mike"));
+        phone.setText(userSettings.getString("phone",""));
     }
 
     @Override
@@ -80,7 +101,8 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
                 break;
         }
     }
-    private void changeAvater(){
+
+    private void changeAvater() {
         callBack = new PhotoCallBack() {
             @Override
             public void doSuccess(String path) {
@@ -209,7 +231,7 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
 
                 photoUri = Uri.fromFile(file);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    photoUri = FileProvider.getUriForFile(this,"com.pro516.thrifttogether.fileProvider", file);
+                    photoUri = FileProvider.getUriForFile(this, "com.pro516.thrifttogether.fileProvider", file);
                 } else {
                     photoUri = Uri.fromFile(file);
                 }
@@ -239,14 +261,46 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
             case CUT_PHOTO_REQUEST_CODE:
                 if (resultCode == RESULT_OK && null != data) {// 裁剪返回
                     if (path != null && path.length() != 0) {
+                        uploadAvatar(path);
+
                         Bitmap bitmap = BitmapFactory.decodeFile(path);
                         //给头像设置图片源
                         ivAvater.setImageBitmap(bitmap);
+                        SharedPreferences userSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = userSettings.edit();
+                        editor.putString("avatorUrl",avatarUrl);
+                        editor.apply();
                         if (callBack != null)
                             callBack.doSuccess(path);
                     }
                 }
                 break;
+        }
+    }
+
+    /**
+     * 上传头像
+     * @param path
+     */
+    private void uploadAvatar(String path) {
+        System.out.println("头像path = " + path);
+        String fileName = "file://" + path;
+        Uri pathUri = Uri.parse(fileName);
+        // 使用用户id作为头像地址的存储
+        String userIdStr = String.valueOf(Url.userID);
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(pathUri);
+            new CosModel(getApplication()).uploadAvatorPic(userIdStr, inputStream, new IDataRequestListener() {
+                @Override
+                public void loadSuccess(Object object) {
+                    // object 是图片的url地址
+                    avatarUrl = object.toString();
+                    Log.i("头像", "loadUrl: " + avatarUrl);
+                    hideProgress();
+                }
+            });
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -281,7 +335,7 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
             intent.putExtra("fileurl", FileUtils.SDPATH + address + ".JPEG");
             path = FileUtils.SDPATH + address + ".JPEG";
             System.out.print(path);
-            Toast.makeText(this,path,Toast.LENGTH_LONG).show();
+            Toast.makeText(this, path, Toast.LENGTH_LONG).show();
             startActivityForResult(intent, CUT_PHOTO_REQUEST_CODE);
         } catch (IOException e) {
             // TODO Auto-generated catch block

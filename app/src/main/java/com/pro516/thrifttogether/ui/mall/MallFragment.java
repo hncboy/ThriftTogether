@@ -22,6 +22,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
+import com.pro516.thrifttogether.entity.mine.User;
 import com.pro516.thrifttogether.ui.base.BaseFragment;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
 import com.pro516.thrifttogether.ui.network.JsonParser;
@@ -34,6 +35,8 @@ import java.util.Objects;
 
 import static com.pro516.thrifttogether.ui.network.Url.ERROR;
 import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
+import static com.pro516.thrifttogether.ui.network.Url.UPDATE_AFTER_EXCHANGE;
+import static com.pro516.thrifttogether.ui.network.Url.USER_INFO;
 
 /**
  * Created by hncboy on 2019-03-19.
@@ -63,6 +66,34 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
         username = view.findViewById(R.id.username);
         integral=view.findViewById(R.id.integral);
         loadData();
+        initView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+        initView();
+    }
+
+    private void updateData(){
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    String json = HttpUtils.getStringFromServer(USER_INFO);
+                    User mData = JsonParser.getUserInfo(json);
+                    mHandler.obtainMessage(UPDATE_AFTER_EXCHANGE, mData).sendToTarget();
+                } catch (IOException e) {
+                    mHandler.obtainMessage(ERROR).sendToTarget();
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void initView(){
         SharedPreferences userSettings =  Objects.requireNonNull(getActivity()).getSharedPreferences("setting", Context.MODE_PRIVATE);
         String avatorUrl=userSettings.getString("avatorUrl","http://img.52z.com/upload/news/image/20180122/20180122093427_87666.jpg");
         String name=userSettings.getString("name","mike");
@@ -85,7 +116,6 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                Toast.makeText(getActivity(), "ID：" + mData.get(position).getCouponId(), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity(),MallExchangeActivity.class);
                 intent.putExtra("ID",mData.get(position).getCouponId());
                 startActivity(intent);
@@ -109,6 +139,14 @@ public class MallFragment extends BaseFragment implements View.OnClickListener {
                         mSwipeRefresh.setRefreshing(false);
                     }
                     mProgressBar.setVisibility(View.GONE);
+                    break;
+                case UPDATE_AFTER_EXCHANGE:
+                    User userInfo = ((User) msg.obj);
+                    SharedPreferences userSettings = Objects.requireNonNull(getActivity()).getSharedPreferences("setting", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = userSettings.edit();
+                    editor.putInt("integral",userInfo.getIntegral());
+                    editor.apply();
+                    integral.setText("积分："+userInfo.getIntegral());
                     break;
                 default:
                     break;

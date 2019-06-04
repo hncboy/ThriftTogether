@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/discover_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/discover_store_icon"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_gravity="start"
+            android:contentDescription="@string/store_icon"
+            android:src="@drawable/item_test_home1" />
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/discover_store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="名羊天下"
+                android:textColor="@color/text_dark_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/discover_store_pos"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="wrap_content"
+                android:text="兴宁路"
+                android:textColor="@color/pos_color"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/discover_store_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="鄞州区兴宁路47-2号"
+                android:textColor="@color/pos_color"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/discover_star"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/three_and_half" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="60dp"
+            android:id="@+id/discover_price"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="人均￥48"
+            android:textColor="@color/text_dark_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/discover_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/split_line" />
+
+</LinearLayout>

@@ -31,7 +31,7 @@ import static com.pro516.thrifttogether.ui.network.Url.LOAD_ALL;
 import static com.pro516.thrifttogether.ui.network.Url.ORDER_GET;
 import static com.pro516.thrifttogether.ui.network.Url.userID;
 
-public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener{
+public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefresh;
@@ -39,6 +39,12 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
@@ -72,9 +78,7 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("data", mData.get(position));
-            intent.putExtras(bundle);
+            intent.putExtra("orderID", mData.get(position).getOrderNo());
             startActivity(intent);
         });
 
@@ -109,7 +113,7 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             @Override
             public void run() {
                 try {
-                    String json = HttpUtils.getStringFromServer(ORDER_GET +userID+ "/status/3");
+                    String json = HttpUtils.getStringFromServer(ORDER_GET + userID + "/status/3");
                     List<OrderBean> mData = JsonParser.Orders(json);
                     System.out.println("---------------------------->" + mData);
                     mHandler.obtainMessage(LOAD_ALL, mData).sendToTarget();

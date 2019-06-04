@@ -11,7 +11,9 @@ import com.pro516.thrifttogether.entity.ResponseMessageEntity;
 import com.pro516.thrifttogether.entity.mall.CouponDetailsVO;
 import com.pro516.thrifttogether.entity.mall.SimpleCouponVO;
 import com.pro516.thrifttogether.entity.mine.CollectedProductVO;
+import com.pro516.thrifttogether.entity.mine.LookingAroundShopVO;
 import com.pro516.thrifttogether.entity.mine.OrderBean;
+import com.pro516.thrifttogether.entity.mine.OrderDetailsVO;
 import com.pro516.thrifttogether.entity.mine.ReservationBean;
 import com.pro516.thrifttogether.entity.mine.ShopBean;
 import com.pro516.thrifttogether.entity.mine.VoucherPackageBean;
@@ -41,24 +43,6 @@ public class JsonParser {
             return new Date(json.getAsJsonPrimitive().getAsLong());
         }
     }).setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-
-    public static ArrayList<ShopBean> dailyRecommendation(String json) {
-        Type token = new TypeToken<ResponseMessageEntity<ArrayList<ShopBean>>>() {
-        }.getType();
-        ResponseMessageEntity<ArrayList<ShopBean>> entity = mGson.fromJson(json, token);
-        if (entity.getCode() == 200) {
-            return entity.getData();
-        } else {
-            return new ArrayList<>();
-        }
-
-    }
-
-    public static ArrayList<ShopBean> lookAround(String json) {
-        Type token = new TypeToken<ArrayList<ShopBean>>() {
-        }.getType();
-        return mGson.fromJson(json, token);
-    }
 
     public static ArrayList<String> Search(String json) {
         Type token = new TypeToken<ResponseMessageEntity<ArrayList<String>>>() {
@@ -159,6 +143,17 @@ public class JsonParser {
         }
     }
 
+    public static OrderDetailsVO OrdersDetails(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<OrderDetailsVO>>() {
+        }.getType();
+        ResponseMessageEntity<OrderDetailsVO> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new OrderDetailsVO();
+        }
+    }
+
     public static boolean updateOrders(String json) {
         Type token = new TypeToken<ResponseMessageEntity<ArrayList<OrderBean>>>() {
         }.getType();
@@ -241,6 +236,17 @@ public class JsonParser {
             return entity.getData();
         } else {
             return new User();
+        }
+    }
+
+    public static ArrayList<LookingAroundShopVO> lookingAroundShopVO(String json) {
+        Type token = new TypeToken<ResponseMessageEntity<ArrayList<LookingAroundShopVO>>>() {
+        }.getType();
+        ResponseMessageEntity<ArrayList<LookingAroundShopVO>> entity = mGson.fromJson(json, token);
+        if (entity.getCode() == 200) {
+            return entity.getData();
+        } else {
+            return new ArrayList<>();
         }
     }
     public static String getNewOrderId(String json) {

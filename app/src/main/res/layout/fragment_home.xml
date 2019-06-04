@@ -83,7 +83,7 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -166,7 +166,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/daily_recommendation"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="696dp"
                         tools:listitem="@layout/item_shop" />
 
                 </LinearLayout>
@@ -225,7 +225,7 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/look_around"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="696dp"
                         tools:listitem="@layout/item_shop" />
 
                 </LinearLayout>
