@@ -78,6 +78,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     private final int REQUEST_CODE_PICTURE = 1;
     private SimpleReviewVO simpleReviewVO;
     private String orderID;
+    private Double orderPrice;
 
     @Override
     public int getLayoutRes() {
@@ -102,6 +103,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         Intent intent = getIntent();
         orderID = intent.getStringExtra("orderID");
+        orderPrice = intent.getDoubleExtra("orderPrice", 0);
         Log.d("adwd", "initData: " + orderID);
         starList = new ArrayList<>();
         imageUrls = new ArrayList<>();
@@ -179,7 +181,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
 
     public void ConfirmationDialog() {
         MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(context);
-        mBuilder.content("评价已成功！");
+        mBuilder.content("评价已成功！你已获得积分" + (int) Math.rint(orderPrice / 10));
         mBuilder.contentColor(Color.parseColor("#000000"));
         mBuilder.positiveText("确定");
         mBuilder.titleGravity(GravityEnum.CENTER);

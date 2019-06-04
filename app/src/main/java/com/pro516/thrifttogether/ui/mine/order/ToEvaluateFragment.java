@@ -2,7 +2,6 @@ package com.pro516.thrifttogether.ui.mine.order;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -68,9 +67,8 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             Log.d(TAG, "onItemChildClick: ");
             Toast.makeText(getActivity(), "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), OrderCommentActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("data", mData.get(position));
-            intent.putExtras(bundle);
+            intent.putExtra("orderID",mData.get(position).getOrderNo());
+            intent.putExtra("orderPrice",mData.get(position).getProductAmountTotal());
             startActivity(intent);
         });
 
@@ -78,7 +76,7 @@ public class ToEvaluateFragment extends BaseFragment implements BaseQuickAdapter
             Log.d("团节", "onItemClick: ");
             Toast.makeText(getActivity(), "onItemClick" + position, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-            intent.putExtra("orderID", mData.get(position).getOrderNo());
+            intent.putExtra("orderID",mData.get(position).getOrderNo());
             startActivity(intent);
         });
 

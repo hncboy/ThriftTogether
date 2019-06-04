@@ -310,6 +310,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     case 3:
                         intent = new Intent(this, OrderCommentActivity.class);
                         intent.putExtra("orderID", mData.getOrderNo());
+                        intent.putExtra("orderPrice",mData.getProductAmountTotal());
                         startActivity(intent);
                         finish();
                         break;

@@ -238,6 +238,7 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
                 case 3:
                     intent = new Intent(getActivity(), OrderCommentActivity.class);
                     intent.putExtra("orderID",mData.get(position).getOrderNo());
+                    intent.putExtra("orderPrice",mData.get(position).getProductAmountTotal());
                     startActivity(intent);
                     break;
                 case 4:
