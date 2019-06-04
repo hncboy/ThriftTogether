@@ -266,10 +266,8 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
                         Bitmap bitmap = BitmapFactory.decodeFile(path);
                         //给头像设置图片源
                         ivAvater.setImageBitmap(bitmap);
-                        SharedPreferences userSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = userSettings.edit();
-                        editor.putString("avatorUrl",avatarUrl);
-                        editor.apply();
+
+
                         if (callBack != null)
                             callBack.doSuccess(path);
                     }
@@ -297,6 +295,10 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
                     avatarUrl = object.toString();
                     Log.i("头像", "loadUrl: " + avatarUrl);
                     hideProgress();
+                    SharedPreferences userSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = userSettings.edit();
+                    editor.putString("avatorUrl",avatarUrl);
+                    editor.apply();
                 }
             });
         } catch (FileNotFoundException e) {
