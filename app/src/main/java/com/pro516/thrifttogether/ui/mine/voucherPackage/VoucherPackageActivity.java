@@ -42,10 +42,10 @@ import static com.pro516.thrifttogether.ui.network.Url.USER_RECENTLY_BROWSE;
 
 public class VoucherPackageActivity extends BaseActivity implements BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
 
-    private RecyclerView mRecyclerView;
+    protected RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private SwipeRefreshLayout mSwipeRefresh;
-
+    protected VoucherPackageAdapter mAdapter;
     @Override
     protected void init() {
         AppCompatImageButton backBtn = findViewById(R.id.common_toolbar_function_left);
@@ -61,7 +61,7 @@ public class VoucherPackageActivity extends BaseActivity implements BaseQuickAda
         initRefreshLayout();
     }
 
-    private void initRecyclerView(List<UserCoupon> mData) {
+    protected void initRecyclerView(List<UserCoupon> mData) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         VoucherPackageAdapter mAdapter = new VoucherPackageAdapter(R.layout.item_mine_voucher_package, mData);

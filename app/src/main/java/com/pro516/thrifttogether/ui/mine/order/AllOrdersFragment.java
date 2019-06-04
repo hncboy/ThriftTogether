@@ -76,6 +76,12 @@ public class AllOrdersFragment extends BaseFragment implements View.OnClickListe
         initRefreshLayout(view);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")

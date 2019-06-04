@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -25,10 +26,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.pro516.thrifttogether.R;
 import com.pro516.thrifttogether.app.cos.CosModel;
 import com.pro516.thrifttogether.app.cos.IDataRequestListener;
+import com.pro516.thrifttogether.entity.mine.OrderBean;
 import com.pro516.thrifttogether.entity.mine.SimpleReviewVO;
 import com.pro516.thrifttogether.ui.base.BaseActivity;
 import com.pro516.thrifttogether.ui.mine.order.tools.BitmapUtils;
@@ -37,9 +42,12 @@ import com.pro516.thrifttogether.ui.mine.order.tools.FileUtils;
 import com.pro516.thrifttogether.ui.mine.order.tools.KeyBoardManager;
 import com.pro516.thrifttogether.ui.mine.order.tools.PermissionCheckUtil;
 import com.pro516.thrifttogether.ui.network.HttpUtils;
+import com.pro516.thrifttogether.util.ThreadUtils;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -69,7 +77,7 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
     public static final String KEY_CURRENT_INDEX = "currentIndex";
     private final int REQUEST_CODE_PICTURE = 1;
     private SimpleReviewVO simpleReviewVO;
-
+    private OrderBean orderBean;
     @Override
     public int getLayoutRes() {
         return R.layout.activity_order_comment;
@@ -88,9 +96,13 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         backBtn.setOnClickListener(this);
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("评价");
+
+
     }
 
     private void initData() {
+        Intent intent = getIntent();
+        orderBean = (OrderBean) intent.getSerializableExtra("data");
         starList = new ArrayList<>();
         imageUrls = new ArrayList<>();
         currentStarCount = 5;//默认为五星好评
@@ -151,14 +163,35 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             public void run() {
                 try {
                     HttpUtils.doPost(REVIEW, simpleReviewVO);
+                    Log.d("----------", "run: ok");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Log.d("----------", "run: fail");
                 }
             }
         }.start();
-        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
     }
-
+    public void ConfirmationDialog() {
+        MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(context);
+        mBuilder.content("评价已成功！");
+        mBuilder.contentColor(Color.parseColor("#000000"));
+        mBuilder.positiveText("确定");
+        mBuilder.titleGravity(GravityEnum.CENTER);
+        mBuilder.buttonsGravity(GravityEnum.START);
+        mBuilder.negativeText("取消");
+        mBuilder.cancelable(false);
+        MaterialDialog mMaterialDialog = mBuilder.build();
+        mMaterialDialog.show();
+        mBuilder.onAny((dialog, which) -> {
+            if (which == DialogAction.POSITIVE) {
+                mMaterialDialog.dismiss();
+                finish();
+            } else if (which == DialogAction.NEGATIVE) {
+                mMaterialDialog.dismiss();
+                finish();
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         //晒单图片最多选择四张
@@ -170,15 +203,31 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
                 if (imageUrls.isEmpty()) {
                     Toast.makeText(context, "没有图片: " + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
                 } else {
-                    simpleReviewVO = new SimpleReviewVO();
-                    simpleReviewVO.setUserId(1);//TODO
-                    simpleReviewVO.setOrderId("111d");//TODO
-                    simpleReviewVO.setReviewContent(mEtCommentContent.getText().toString());
-                    simpleReviewVO.setReviewPicUrlList(imageUrls);
-                    simpleReviewVO.setReviewScore(currentStarCount);
-                    simpleReviewVO.setProductId(1);//TODO
-                    Toast.makeText(context, "第一张图片的路径: " + imageUrls.get(0) + " 评分: " + currentStarCount, Toast.LENGTH_SHORT).show();
-                    submit();
+                    uploadReviewImages();
+                    MaterialDialog materialDialog =  new MaterialDialog.Builder(this)
+                            .title("Progress")
+                            .content("Please Wait...")
+                            .progress(true, 0)
+                            .show();
+                    ThreadUtils.runOnBackgroundThread(() -> {
+                        if (latch != null) {
+                            Log.i("latch", "run: latch ");
+                            try {
+                                latch.await();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        materialDialog.dismiss();
+                        Log.i("评论图片上传", "上传结束");
+                        simpleReviewVO = new SimpleReviewVO();
+                        simpleReviewVO.setUserId(1);
+                        simpleReviewVO.setReviewContent(mEtCommentContent.getText().toString());
+                        simpleReviewVO.setReviewPicUrlList(mReviewImages);
+                        simpleReviewVO.setReviewScore(currentStarCount);
+                        submit();
+                    });
+                    ConfirmationDialog();
                 }
                 break;
             case R.id.common_toolbar_function_left:
@@ -239,10 +288,9 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
             if (requestCode == REQUEST_CODE_PICTURE) {
                 // 获取返回的图片列表
                 List<String> paths = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                System.out.println("上传图片");
                 imageUrls.addAll(paths);
                 handleCommentPicList(imageUrls, false);
-                uploadReviewImages();
+
             }
         } else if (resultCode == RESULT_CODE_LARGE_IMAGE) {
             //晒单大图页返回, 重新设置晒单图片
@@ -258,19 +306,27 @@ public class OrderCommentActivity extends BaseActivity implements View.OnClickLi
         latch = new CountDownLatch(imageUrls.size());
         CosModel cosModel = new CosModel(getApplication());
         for (String path : imageUrls) {
-            //用作图片的名字
-            String str = UUID.randomUUID().toString().replaceAll("-", "") + new Random().nextLong();
-            String fileName = str.substring(1, 10);
-            Log.i("评论图片", "uploadImage: fileName = " + fileName);
-            cosModel.uploadPic(fileName, path, new IDataRequestListener() {
-                @Override
-                public void loadSuccess(Object object) {
-                    //加上http
-                    String url = "http://" + object;
-                    mReviewImages.add(url);
-                    latch.countDown();
-                }
-            });
+            System.out.println("评论path = " + path);
+            String fileName = "file://" + path;
+            Uri pathUri = Uri.parse(fileName);
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(pathUri);
+                String str = UUID.randomUUID().toString().replaceAll("-", "") + new Random().nextLong();
+                String filename = str.substring(1, 10);
+                Log.i("评论图片", "uploadImage: fileName = " + filename);
+                cosModel.uploadReviewPic(filename, inputStream, new IDataRequestListener() {
+                    @Override
+                    public void loadSuccess(Object object) {
+                        //加上http
+                        String url = object.toString();
+                        Log.i("评论图片url", url);
+                        mReviewImages.add(url);
+                        latch.countDown();
+                    }
+                });
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

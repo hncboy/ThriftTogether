@@ -51,7 +51,7 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
     public String path = "";
     public Uri photoUri;
     private File file;
-
+    private String avatarUrl;
     private static final int TAKE_PICTURE = 0;
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int CUT_PHOTO_REQUEST_CODE = 2;
@@ -262,9 +262,14 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
                 if (resultCode == RESULT_OK && null != data) {// 裁剪返回
                     if (path != null && path.length() != 0) {
                         uploadAvatar(path);
+
                         Bitmap bitmap = BitmapFactory.decodeFile(path);
                         //给头像设置图片源
                         ivAvater.setImageBitmap(bitmap);
+                        SharedPreferences userSettings = getSharedPreferences("setting", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = userSettings.edit();
+                        editor.putString("avatorUrl",avatarUrl);
+                        editor.apply();
                         if (callBack != null)
                             callBack.doSuccess(path);
                     }
@@ -278,17 +283,18 @@ public class EditPersonalInformationActivity extends BaseActivity implements Vie
      * @param path
      */
     private void uploadAvatar(String path) {
+        System.out.println("头像path = " + path);
         String fileName = "file://" + path;
         Uri pathUri = Uri.parse(fileName);
         // 使用用户id作为头像地址的存储
         String userIdStr = String.valueOf(Url.userID);
         try {
             InputStream inputStream = getContentResolver().openInputStream(pathUri);
-            new CosModel(getApplication()).uploadPic(userIdStr, inputStream, new IDataRequestListener() {
+            new CosModel(getApplication()).uploadAvatorPic(userIdStr, inputStream, new IDataRequestListener() {
                 @Override
                 public void loadSuccess(Object object) {
                     // object 是图片的url地址
-                    String avatarUrl = object.toString();
+                    avatarUrl = object.toString();
                     Log.i("头像", "loadUrl: " + avatarUrl);
                     hideProgress();
                 }

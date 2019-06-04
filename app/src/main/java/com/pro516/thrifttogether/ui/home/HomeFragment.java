@@ -1,6 +1,7 @@
 package com.pro516.thrifttogether.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -103,19 +104,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                startActivity(StoreActivity.class);
+                Intent intent = new Intent(getActivity(),StoreActivity.class);
+                intent.putExtra("storeId",position+1);
+                startActivity(intent);
             }
         });
 
-        //传true 可以滑动 false不可以滑动
-        lookAroundRecyclerView.setNestedScrollingEnabled(false);
-        lookAroundRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
-            @Override
-            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
-                startActivity(StoreActivity.class);
-            }
-        });
+
     }
 
     private void initRecyclerView(List<ShopBean> mData) {
@@ -144,6 +139,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
         lookAroundRecyclerView.setAdapter(mAdapter);
+        //传true 可以滑动 false不可以滑动
+        lookAroundRecyclerView.setNestedScrollingEnabled(false);
+
+        lookAroundRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Toast.makeText(getActivity(), "点击：" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),StoreActivity.class);
+                intent.putExtra("storeId",mData.get(position).getShopId());
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("HandlerLeak")

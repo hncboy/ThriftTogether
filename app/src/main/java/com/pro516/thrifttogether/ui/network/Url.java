@@ -19,8 +19,8 @@ public class Url extends Application {
 
     public static String IP = "http://hncboy.natapp1.cc/thrifttogether";
 
-    public static String RECOMMEND = IP + "/shop/city/1/recommend"; // 今日推荐
     public static String LOOKING_AROUND = IP + "/shop/city/1/user/1/lookingaround"; // 今日推荐
+    public static String RECOMMEND = IP + "/shop/city/"+cityID+"/recommend"; // 今日推荐
 
     public static String SEARCH = IP + "/search/"; // 搜索
     public static String SEARCH_HISTORY = IP + "/search/city/" + cityID + "/user/" + userID; // 历史纪录搜索
@@ -45,4 +45,9 @@ public class Url extends Application {
     public static String USER_FEEDBACK = IP + "/user/" + userID + "/feedback/";
 
     public static String UPLOAD_PIC = IP +"/user/uploadPic"; // 上传图片
+    public static String SHOP = IP +"/shop";//店铺
+
+    public static String ORDER = IP + "/order";//订单
+    public static String RESERVATION = IP + "/reservation";//预订
+
 }

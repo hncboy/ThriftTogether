@@ -30,7 +30,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".ui.home.activity.HomeSearchResultActivity"></activity>
+        <activity android:name=".ui.buy.activity.ChooseCouponsActivity"></activity>
+        <activity android:name=".ui.buy.activity.SubmitOrderActivity" />
+        <activity android:name=".ui.buy.activity.ProductInfoActivity" />
+        <activity android:name=".ui.home.activity.HomeSearchResultActivity" />
         <activity android:name=".ui.mine.order.AfterSaleActivity" />
         <activity android:name=".ui.mine.order.UseActivity" />
         <activity android:name=".ui.mine.order.OrderDetailsActivity" />
@@ -45,7 +48,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d3c468c6b5953a2e2f231ce4475728d3" />
+            android:value="cffdc8e4ba6cb6218d508195bde5fdbc" />
 
         <activity android:name=".ui.mine.order.OrderActivity" />
         <activity android:name=".ui.mine.recentlyViewed.RecentlyViewedActivity" />
