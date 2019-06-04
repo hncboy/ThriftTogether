@@ -240,6 +240,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="12dp"
         android:background="@drawable/submit_order_bt"
-        android:text="立即购买"
+        android:text="提交订单"
         android:textColor="@color/white" />
 </RelativeLayout>

@@ -70,7 +70,7 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
     TextView nameTv, priceTv, tempPriceTv, totalPriceTv, phoneTv, couponsTv;
     ImageView imgView;
     Button buyButton;
-    RelativeLayout couponsRL,parentRL;
+    RelativeLayout couponsRL, parentRL;
     SharedPreferences userSettings;
     Intent intent;
     CreatedOrderVO order;
@@ -114,10 +114,10 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
         AppCompatTextView title = findViewById(R.id.title);
         title.setText("确认订单");
 
-        phoneTv.setText(userSettings.getString("phone","110"));
-        priceTv.setText(String.valueOf(intent.getDoubleExtra("price",0)));
-        tempPriceTv.setText(String.format("￥%s",intent.getDoubleExtra("price",0)));
-        totalPriceTv.setText(String.format("￥%s",intent.getDoubleExtra("price",0)));
+        phoneTv.setText(userSettings.getString("phone", "110"));
+        priceTv.setText(String.valueOf(intent.getDoubleExtra("price", 0)));
+        tempPriceTv.setText(String.format("￥%s", intent.getDoubleExtra("price", 0)));
+        totalPriceTv.setText(String.format("￥%s", intent.getDoubleExtra("price", 0)));
         nameTv.setText(intent.getStringExtra("name"));
         RoundedCorners roundedCorners = new RoundedCorners(30);
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
@@ -191,7 +191,8 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                     bean.setOrderStatus(1);
                     bean.setCreateTime(sSimpleDateFormat.format(new Date(Calendar.getInstance().getTimeInMillis())));
                     bean.setProductName(intent.getStringExtra("name"));
-                    payV2(parentRL,bean,0);
+                    payV2(parentRL, bean, 0);
+                    toast("支付成功");
                     break;
                 case SUBMIT_ORDER_ERROR:
                     Toast.makeText(SubmitOrderActivity.this, getString(R.string.busy_server), Toast.LENGTH_SHORT).show();
@@ -266,14 +267,14 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                 order.setProductCount(mAddAndSubView.getNum());
                 order.setUserId(userSettings.getInt("userId", 1));
                 order.setContactPhone(phoneTv.getText().toString());
-                order.setIsUseCoupon(isUseCoupon?1:0);
+                order.setIsUseCoupon(isUseCoupon ? 1 : 0);
                 order.setUserCouponId(usedCouponId);
-                order.setProductId(intent.getIntExtra("id",1));
+                order.setProductId(intent.getIntExtra("id", 1));
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            Response json = HttpUtils.doPost(Url.ORDER,order);
+                            Response json = HttpUtils.doPost(Url.ORDER, order);
                             String mData = JsonParser.getNewOrderId(json.body().string());
                             System.out.println("---------------------------->" + mData);
                             newOrderId = mData;
@@ -311,12 +312,18 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                 if (isUseCoupon)
                     discount = discount - usedCouponPrice;
                 double now = Double.parseDouble(totalPriceTv.getText().toString().substring(1));
-                totalPriceTv.setText(String.format("￥%s", now - discount));
+
+                if (now - discount <= 0) {
+                    totalPriceTv.setText("￥0.01");
+                } else {
+                    totalPriceTv.setText(String.format("￥%s", now - discount));
+                }
                 isUseCoupon = true;
                 usedCouponPrice = temp;
                 break;
         }
     }
+
     /**
      * 支付宝支付业务示例
      */
@@ -361,6 +368,7 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+
     private void updateStatusLoadData() {
         new Thread() {
             @Override
@@ -368,7 +376,7 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                 try {
                     String json = HttpUtils.getStringFromServer(
                             ORDER_DELETE_OR_UPDATE + newOrderId + "/status/" + 2);
-                    Log.d("ddd",json);
+                    Log.d("ddd", json);
                     JsonParser.updateOrders(json);
                 } catch (IOException e) {
                     mHandler.obtainMessage(ERROR).sendToTarget();
