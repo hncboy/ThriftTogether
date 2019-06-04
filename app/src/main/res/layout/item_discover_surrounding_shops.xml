@@ -89,6 +89,7 @@
                 android:textSize="12sp" />
 
             <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                android:id="@+id/discover_store_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

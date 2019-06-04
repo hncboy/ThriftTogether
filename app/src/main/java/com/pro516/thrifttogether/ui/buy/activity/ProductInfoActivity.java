@@ -48,7 +48,7 @@ public class ProductInfoActivity extends BaseActivity implements View.OnClickLis
     private List<Fragment> list;
     private List<String> titles;
     private List<ProductDetailsVO> data;
-    private int storeId, chosenPos;
+    private int storeId, chosenPos,chosenProductId;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ProgressBar mProgressBar;
@@ -70,7 +70,7 @@ public class ProductInfoActivity extends BaseActivity implements View.OnClickLis
         titles = new ArrayList<>();
         Intent intent = getIntent();
         storeId = intent.getIntExtra("storeId", 1);
-        chosenPos = intent.getIntExtra("clickedPos", 1);
+        chosenProductId = intent.getIntExtra("productId", 1);
         initView();
         initData();
 
@@ -120,6 +120,9 @@ public class ProductInfoActivity extends BaseActivity implements View.OnClickLis
             singleProductFragment.setArguments(bundle);
             list.add(singleProductFragment);
             titles.add(details.getProductName());
+            if (details.getProductId() == chosenProductId){
+                chosenPos = i;
+            }
             Log.i("aaa", "initPage: fragment "+i+" is "+details.getIsCollected());
             i++;
         }

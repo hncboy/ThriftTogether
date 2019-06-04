@@ -286,7 +286,6 @@ public class SubmitOrderActivity extends BaseActivity implements View.OnClickLis
                         }
                     }
                 }).start();
-                toast("还不能买！");
                 break;
             case R.id.submit_order_rl:
                 if (isHaveCoupon) {

@@ -23,10 +23,11 @@ import com.pro516.thrifttogether.ui.home.entity.VO.SimpleProductVO;
 import java.util.List;
 
 public class ShowStoreProductAdapter extends BaseQuickAdapter<SimpleProductVO,BaseViewHolder> {
+    List<Integer> productId;
 
-
-    public ShowStoreProductAdapter(int layoutResId, @Nullable List<SimpleProductVO> data) {
+    public ShowStoreProductAdapter(int layoutResId, @Nullable List<SimpleProductVO> data,List<Integer> id) {
         super(layoutResId, data);
+        productId = id;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ShowStoreProductAdapter extends BaseQuickAdapter<SimpleProductVO,Ba
         RoundedCorners roundedCorners = new RoundedCorners(30);
         //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
         RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
-
+        productId.add(item.getProductId());
         Glide.with(mContext).load(item.getProductCoverUrl()).apply(options).into((ImageView) helper.getView(R.id.store_product_image));
         TextView oldPrice = helper.getView(R.id.store_product_old_price);
         oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG );

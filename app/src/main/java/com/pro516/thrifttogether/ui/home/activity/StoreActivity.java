@@ -39,6 +39,7 @@ import org.jaaksi.pickerview.util.DateUtil;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +55,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     private ProgressBar mProgressBar,mProgressBar2;
     private Button buyButton;
     private AppCompatImageButton love, share;
+    private List<Integer> productId;
     private int storeId, isStar = 0;
     private static final int ERROR = -666;
     private static final int LOAD_ALL = 1;
@@ -190,9 +192,10 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initProductsRV(List<SimpleProductVO> data) {
+        productId = new ArrayList<>();
         mProductsRV.setLayoutManager(new LinearLayoutManager(this));
         mProductsRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mAdapter = new ShowStoreProductAdapter(R.layout.item_store_product, data);
+        mAdapter = new ShowStoreProductAdapter(R.layout.item_store_product, data,productId);
         mProductsRV.setNestedScrollingEnabled(false);
         //mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN); // 加载动画类型
         //mAdapter.isFirstOnly(false);   // 是否第一次才加载动画
@@ -261,7 +264,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
             case R.id.store_product_buy_button:
                 Intent intent = new Intent(StoreActivity.this,ProductInfoActivity.class);
                 intent.putExtra("storeId",storeId);
-                intent.putExtra("clickedPos", clickPosition);
+                intent.putExtra("productId", productId.get(clickPosition));
                 startActivity(intent);
                 break;
             case R.id.common_toolbar_function_right_1:
