@@ -34,7 +34,8 @@ public class ShowCommentsAdapter extends BaseQuickAdapter<SimpleReviewVO, BaseVi
     protected void convert(BaseViewHolder helper, SimpleReviewVO item) {
         helper.setText(R.id.store_evaluation_content, item.getReviewContent())
                 .setText(R.id.store_evaluation_time, item.getReviewTime().toString())
-                .setText(R.id.store_evaluation_user_name, item.getUsername());
+                .setText(R.id.store_evaluation_user_name, item.getUsername())
+                .setText(R.id.store_evaluation_product_name, item.getProductName());
         RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
                 .skipMemoryCache(true);//不做内存缓存
