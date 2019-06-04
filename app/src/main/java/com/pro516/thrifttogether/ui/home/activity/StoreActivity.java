@@ -12,10 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
@@ -51,6 +55,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     private TextView storeNameTv, priceTv, storeAddressTv;
     private SimpleRatingBar ratingBar;
     private ShowStoreProductAdapter mAdapter;
+    ImageView img;
     private ProgressBar mProgressBar,mProgressBar2;
     private Button buyButton;
     private AppCompatImageButton love, share;
@@ -82,6 +87,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initView() {
+        img = findViewById(R.id.store_img);
         mProgressBar = findViewById(R.id.progress_bar);
         mProgressBar2 = findViewById(R.id.progress_bar2);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -187,7 +193,9 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
             love.setImageResource(R.drawable.ic_favorite_border_black);
             isStar = 0;
         }
-
+        RoundedCorners roundedCorners = new RoundedCorners(30);
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+        Glide.with(this).load(obj.getShopCoverUrl()).apply(options).into(img);
     }
 
     private void initProductsRV(List<SimpleProductVO> data) {
@@ -272,7 +280,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
                         @Override
                         public void run() {
                             try {
-                                Response rs = HttpUtils.doDelete(Url.COLLECTION + "/1/shop/" + storeId );
+                                Response rs = HttpUtils.doGet(Url.COLLECTION + "/1/shop/" + storeId );
                                 boolean mData = JsonParser.starStore(rs.body().string());
                                 //System.out.println("---------------------------->" + mData);
                                 if (mData)
@@ -290,7 +298,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener,
                         @Override
                         public void run() {
                             try {
-                                Response rs = HttpUtils.doGet(Url.COLLECTION + "/1/shop/" + storeId );
+                                Response rs = HttpUtils.doDelete(Url.COLLECTION + "/1/shop/" + storeId );
                                 boolean mData = JsonParser.cancelStarStore(rs.body().string());
                                 //System.out.println("---------------------------->" + mData);
                                 if (mData)

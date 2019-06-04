@@ -29,36 +29,51 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                  />
-
-            <TextView
-                android:id="@+id/store_evaluation_user_name"
+            <LinearLayout
+                android:id="@+id/store_evaluation_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/store_evaluation_user_img"
-                android:textColor="@color/text_dark_color"
-                android:textSize="20sp" />
-
-
-            <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                android:id="@+id/store_evaluation_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:layout_toRightOf="@id/store_evaluation_user_name"
-                app:srb_borderColor="@color/star_yellow"
-                app:srb_fillColor="@color/star_yellow"
-                app:srb_isIndicator="true"
-                app:srb_numberOfStars="5"
-                app:srb_rating="3"
-                app:srb_starBorderWidth="2"
-                app:srb_starCornerRadius="3"
-                app:srb_starSize="15dp"
-                app:srb_stepSize="0.5" />
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/store_evaluation_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_dark_color"
+                        android:textSize="20sp"
+                        android:text="XXXXXX"/>
+                    <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                        android:id="@+id/store_evaluation_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        app:srb_borderColor="@color/star_yellow"
+                        app:srb_fillColor="@color/star_yellow"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/store_evaluation_user_name"
+                        app:srb_isIndicator="true"
+                        app:srb_numberOfStars="5"
+                        app:srb_rating="3"
+                        app:srb_starBorderWidth="2"
+                        app:srb_starCornerRadius="3"
+                        app:srb_starSize="15dp"
+                        app:srb_stepSize="0.5" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/store_evaluation_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/store_evaluation_time"

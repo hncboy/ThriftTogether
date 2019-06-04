@@ -26,6 +26,15 @@ public class SimpleReviewVO {
     //@JsonFormat(pattern = "yyyy-MM-dd")
     //@ApiModelProperty(value = "评价时间")
     private Date reviewTime;
+    private String productName;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Integer getReviewId() {
         return reviewId;
