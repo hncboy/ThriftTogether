@@ -52,8 +52,25 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
         initRecyclerView();
         appCompatEditText = findViewById(R.id.search);
         initData();
+        appCompatEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if ((actionId == 0 || actionId == 3) && event != null) {
+                jump();
+                return true;
+            }
+            return false;
+
+        });
+
     }
 
+    private void jump(){
+        String searchContent = Objects.requireNonNull(appCompatEditText.getText()).toString();
+        if (!searchContent.equals("")) {
+            Intent intent = new Intent(HomeSearchActivity.this, HomeSearchResultActivity.class);
+            intent.putExtra("key", searchContent);
+            startActivity(intent);
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -194,13 +211,7 @@ public class HomeSearchActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.common_toolbar_function_right:
-                String searchContent = Objects.requireNonNull(appCompatEditText.getText()).toString();
-                if (searchContent.equals("")) {
-                    break;
-                }
-                Intent intent = new Intent(HomeSearchActivity.this, HomeSearchResultActivity.class);
-                intent.putExtra("key", searchContent);
-                startActivity(intent);
+                jump();
                 break;
             default:
                 break;
