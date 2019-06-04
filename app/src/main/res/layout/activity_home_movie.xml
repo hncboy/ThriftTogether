@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <WebView
+        android:layout_marginTop="-5dp"
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <include layout="@layout/include_toolbar" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <!--<android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -65,6 +69,6 @@
         app:ddmenuUnselectedIcon="@drawable/ic_drop_down"
         app:ddtextSelectedColor="@color/colorPrimary"
         app:ddtextUnselectedColor="@color/text_grey_color"
-        app:ddunderlineColor="@color/gray" />
+        app:ddunderlineColor="@color/gray" />-->
 
-</LinearLayout>
+</RelativeLayout>
