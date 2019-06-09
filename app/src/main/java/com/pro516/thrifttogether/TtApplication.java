@@ -4,12 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.pro516.thrifttogether.app.cos.LocalCredentialProvider;
 import com.pro516.thrifttogether.ui.home.activity.CustomTopBar;
 import com.tencent.cos.xml.CosXmlService;
 import com.tencent.cos.xml.CosXmlServiceConfig;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 
 import org.jaaksi.pickerview.picker.BasePicker;
 import org.jaaksi.pickerview.util.Util;
@@ -30,7 +34,7 @@ public class TtApplication extends Application {
         super.onCreate();
         // 初始化腾讯云配置
         initCos();
-        //initUPush();
+        initUPush();
         // 建议在application中初始化picker 默认属性实现全局设置
         initDefaultPicker();
         //Fresco初始化
@@ -40,7 +44,7 @@ public class TtApplication extends Application {
     /**
      * 初始化友盟推送
      */
-    /*private void initUPush() {
+    private void initUPush() {
         // 在此处调用基础组件包提供的初始化函数 相应信息可在应用管理 -> 应用信息 中找到 http://message.umeng.com/list/apps
         // 参数一：当前上下文context；
         // 参数二：应用申请的Appkey（需替换）；
@@ -63,7 +67,7 @@ public class TtApplication extends Application {
                 Log.e(TAG,"注册失败：-------->  " + "s:" + s + ",s1:" + s1);
             }
         });
-    }*/
+    }
 
     /**
      * 初始化腾讯云对象配置

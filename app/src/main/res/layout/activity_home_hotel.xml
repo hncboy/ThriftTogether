@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="4月8日"
+                        android:text="6月9日"
                         android:textColor="@color/text_grey_color"
                         android:textSize="18sp" />
 
@@ -121,7 +121,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="4月25日"
+                        android:text="6月11日"
                         android:textColor="@color/text_grey_color"
                         android:textSize="18sp" />
 
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginStart="80dp"
-                    android:text="共17晚"
+                    android:text="共3晚"
                     android:textColor="@color/text_grey_color"
                     android:textSize="13sp" />
 

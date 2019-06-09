@@ -6,8 +6,8 @@ android {
         applicationId "com.pro516.thrifttogether"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.2 答辩结束版本"
+        versionCode 3
+        versionName "1.3 用户手册版本"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -117,10 +117,10 @@ dependencies {
 
     // 没有用到
     //PushSDK必须依赖基础组件库，所以需要加入对应依赖
-   /* implementation 'com.umeng.umsdk:common:1.5.4'
+    implementation 'com.umeng.umsdk:common:1.5.4'
     //PushSDK必须依赖utdid库，所以需要加入对应依赖，与支付宝依赖包冲突
 //    implementation 'com.umeng.umsdk:utdid:1.1.5.3'
     //PushSDK
-    implementation 'com.umeng.umsdk:push:5.0.2'*/
+    implementation 'com.umeng.umsdk:push:5.0.2'
 
 }

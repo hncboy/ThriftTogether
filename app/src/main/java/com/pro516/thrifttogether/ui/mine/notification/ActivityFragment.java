@@ -50,11 +50,11 @@ public class ActivityFragment extends BaseFragment implements BaseQuickAdapter.R
 
     private void initData() {
         mData = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             mData.add(new NotificationBean(
-                    "https://img.meituan.net/msmerchant/53016dc6b5bb3d03729e5cb3eea09550401792.jpg@380w_214h_1e_1c",
-                    "干锅土豆鸡",
-                    "香香的干锅土豆鸡",
+                    "http://p0.meituan.net/mogu/cd1d92bd5970358d095d9582fc5fe483111257.jpg",
+                    "欢乐牧场",
+                    "午晚市自助特价",
                     new Date(),
                     "点击查看"));
         }
