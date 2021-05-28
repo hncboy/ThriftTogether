@@ -1,7 +1,6 @@
 # ThriftTogether
 
 开发者：[hncboy](https://github.com/hncboy)、[KevinMcblack](https://github.com/KevinMcblack)、[vergec](https://github.com/vergec)
-
 完成于 2019年5月，基于 Android 平台的团购 APP Demo，仅仅是个课程大作业，时间原因，部分功能待实现，图片仅为样例，有些功能可能不存在或者是假数据。[后台代码](https://github.com/hncboy/ThriftTogetherBackstage) 
 
 # 1.软件概述
